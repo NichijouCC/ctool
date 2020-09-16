@@ -1,0 +1,41 @@
+{
+  "name": "@mtgoo/ctool",
+  "version": "0.0.1",
+  "main": "./dist/ctool.js",
+  "module": "./dist/ctool.es.js",
+  "typings": "./dist/types/index.d.ts",
+  "repository": "https://github.com/boonray-web/ctool.git",
+  "author": "dongbo <895188445@qq.com>",
+  "license": "MIT",
+  "files": [
+    "dist/"
+  ],
+  "registory": "https://registry.npmjs.org/",
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "start": "rollup -c rollup.config.js -w",
+    "lint": "eslint **/*.ts --fix --ignore-pattern node_modules/"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.12",
+    "@types/mocha": "^8.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
+    "chai": "^4.2.0",
+    "eslint": "^7.9.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "mocha": "^8.1.3",
+    "rollup": "^1.32.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-sourcemaps": "^0.5.0",
+    "rollup-plugin-typescript2": "^0.26.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^3.8.3"
+  }
+}
