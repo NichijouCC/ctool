@@ -4,16 +4,25 @@
   "main": "./dist/ctool.js",
   "module": "./dist/ctool.es.js",
   "typings": "./dist/types/index.d.ts",
-  "repository": "https://github.com/boonray-web/ctool.git",
-  "author": "dongbo <895188445@qq.com>",
-  "license": "MIT",
   "files": [
     "dist/"
   ],
-  "registory": "https://registry.npmjs.org/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mtgoo/ctool.git"
+  },
+  "keywords": [
+    "web"
+  ],
+  "author": "NichijouCC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mtgoo/ctool/issues"
+  },
+  "homepage": "https://github.com/mtgoo/ctool#readme",
   "scripts": {
-    "build": "rollup -c rollup.config.js",
     "start": "rollup -c rollup.config.js -w",
+    "build": "rollup -c rollup.config.js",
     "lint": "eslint **/*.ts --fix --ignore-pattern node_modules/",
     "doc": "typedoc"
   },
