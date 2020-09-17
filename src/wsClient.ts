@@ -1,14 +1,39 @@
 import { EventEmitter } from "./eventEmitter";
 import { retryFn } from "./retryFn";
+import { WrapPromise } from "./wrapPromise";
 
-export class WSClient extends EventEmitter {
+/**
+ * websocket封装
+ * 
+ * @description
+ * feature:
+ * 1. 断线重连
+ * 
+ * @example
+ * const client = WSClient.connect("wss://echo.websocket.org");
+ * client.on("connect", () => {
+ *     console.log("connect to server");
+ * });
+ * client.on("message", (data) => {
+ *     console.log("new message", data);
+ * });
+ * 
+ * client.sendmsg({ role: 1, message: "hello！" });
+ * 
+ */
+export class WSClient extends EventEmitter<WSClientEventMap> {
+    /**
+     * 创建wsclient 
+     * @param url ws服务器地址
+     * @param options 
+     */
     static connect(url: string, options?: IwsOpts) {
         return new WSClient(url, options);
     }
 
     private url: string;
     private options: Required<IwsOpts>;
-    private client: { ins: WebSocket; destory: () => void; };
+    private client: { ins: WebSocket; close: () => void; };
     private constructor(url: string, opts: IwsOpts = {}) {
         super();
         this.url = url;
@@ -26,7 +51,7 @@ export class WSClient extends EventEmitter {
 
     private attachWs = (ws: WebSocket) => {
         if (this.client) {
-            this.client.destory();
+            this.client.close();
         }
         ws.addEventListener("open", this.onopen);
         ws.addEventListener("close", this.onclose);
@@ -40,7 +65,7 @@ export class WSClient extends EventEmitter {
             ws.removeEventListener("error", this.onerror);
             ws.close();
         };
-        this.client = { ins: ws, destory };
+        this.client = { ins: ws, close: destory };
     }
 
     private onopen = (ev: Event) => {
@@ -59,83 +84,103 @@ export class WSClient extends EventEmitter {
         this.emit(WSEventEnum.error, ev);
     }
 
-    reconnect = () => {
-        if (this.beOpen) return;
-        if (this.beActive != true) this.beActive = true;
-        const { autoreconnect: { reconnectCondition, reconnectCount } } = this.options;
-        if (reconnectCondition != null) {
-            retryFn({ func: () => reconnectCondition(), count: reconnectCount })
-                .then((beOk) => {
-                    if (beOk) {
-                        this._reconnect();
-                    } else {
-                        this.emit(WSEventEnum.reconnect_fail, "Result of check reconnectcondition is false");
-                    }
-                })
-                .catch((err) => {
-                    console.error("failed to check reconnectcondition", err);
-                    this.emit(WSEventEnum.reconnect_fail, "failed to check reconnectcondition");
-                });
-        } else {
-            this._reconnect();
-        }
-    }
-
-    private _reconnect = () => {
-        let notifyConnecting = false;
-        retryFn<WebSocket>({
-            func: () => createWs(this.url),
-            count: this.options.autoreconnect.reconnectCount,
-            onceCallback: (index) => {
-                this.emit(WSEventEnum.reconnecting, index);
-                if (!notifyConnecting) {
-                    notifyConnecting = true;
-                    this.emit(WSEventEnum.connecting, "连接中...");
-                }
-            }
-        })
-            .then((ins) => {
-                this.attachWs(ins);
-                this.emit(WSEventEnum.reconnect, "ws 重连成功");
-                this.emit(WSEventEnum.connect, "ws 建立连接[重连]");
-            })
-            .catch(() => {
-                this.emit(WSEventEnum.reconnect_fail, "ws 重连失败");
-            });
-    }
-
     private onmessage = (ev: MessageEvent) => {
         this.emit(WSEventEnum.message, ev.data);
     }
 
-    get beOpen() { return this.client?.ins.readyState == 1; };
+    private reconnect = async () => {
+        if (this.beopen) return;
+        const { reconnectCount } = this.options.autoreconnect;
+        retryFn(() => this._onceConnect(),
+            {
+                count: reconnectCount,
+                onceCallback: (index) => {
+                    this.emit(WSEventEnum.reconnecting, index);
+                }
+            });
+    }
+
+    private _onceConnect = async () => {
+        const { autoreconnect: { reconnectCondition } } = this.options;
+        if (reconnectCondition != null) {
+            const [err, result] = await WrapPromise(() => reconnectCondition());
+            if (err) {
+                this.emit(WSEventEnum.reconnect_fail, "failed to check reconnectcondition");
+                return false;
+            } else {
+                if (!result) {
+                    this.emit(WSEventEnum.reconnect_fail, "Result of check reconnectcondition is false");
+                    return false;
+                }
+            }
+        }
+        this.emit(WSEventEnum.connecting, "连接中...");
+        const besuccess = await createWs(this.url)
+            .then((ins) => {
+                this.attachWs(ins);
+                this.emit(WSEventEnum.reconnect, "ws 重连成功");
+                this.emit(WSEventEnum.connect, new Event("ws 建立连接[重连]"));
+                return true;
+            })
+            .catch(() => {
+                this.emit(WSEventEnum.reconnect_fail, "ws 重连失败");
+
+                return false;
+            });
+        return besuccess;
+    }
+
+    /**
+     * 是否ready
+     */
+    get beopen() { return this.client?.ins.readyState == 1; };
+    /**
+     * 关闭 websocket
+     */
     close = () => {
-        // this.removeAllListeners();
-        this.beActive = false;
-        this.client?.destory();
+        this.beactive = false;
+        this.client?.close();
         this.client = null;
     }
 
+    /**
+     * 发送消息
+     */
     sendmsg = (msg: any) => {
-        if (this.beOpen) this.client?.ins.send(msg);
+        if (this.beopen) this.client?.ins.send(msg);
     }
 }
 
+/**
+ * 创建ws的可配置参数
+ */
 export interface IwsOpts {
+    /**
+     * 自动重连可选配置
+     */
     autoreconnect?: {
         /**
-         * 默认开启
+         * 是否自动重连,默认开启
          */
         active?: boolean,
         /**
-         * 默认5
+         * 重连次数，默认5
          */
         reconnectCount?: number,
+        /**
+         * 重连前置条件
+         */
         reconnectCondition?: () => Promise<boolean>
     }
 }
 
+/**
+ * ws 事件枚举器
+ */
 export enum WSEventEnum {
+    /**
+     * 建立连接中触发
+     */
     connecting = "connecting",
     /**
      * 建立连接触发
@@ -170,15 +215,26 @@ export enum WSEventEnum {
 function createWs(url: string): Promise<WebSocket> {
     return new Promise((resolve, reject) => {
         const ins = new WebSocket(url);
-        const onClose = (ev: CloseEvent) => {
+        const onclose = (ev: CloseEvent) => {
             reject(ev);
         };
-        const onOpen = () => {
-            ins.removeEventListener("open", onOpen);
-            ins.removeEventListener("close", onClose);
+        const onopen = () => {
+            ins.removeEventListener("open", onopen);
+            ins.removeEventListener("close", onclose);
             resolve(ins);
         };
-        ins.addEventListener("open", onOpen);
-        ins.addEventListener("close", onClose);
+        ins.addEventListener("open", onopen);
+        ins.addEventListener("close", onclose);
     });
+}
+
+interface WSClientEventMap {
+    "connect": Event;
+    "connecting": string;
+    "disconnect": CloseEvent;
+    "error": Event;
+    "message": any;
+    "reconnecting": number;
+    "reconnect": string;
+    "reconnect_fail": string;
 }

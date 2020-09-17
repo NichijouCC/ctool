@@ -1,7 +1,28 @@
 /**
- * 将一组任务分割到多个Event cycle执行
+ * 将多条任务分割到多个Event cycle 执行。
  * @param tasks 任务
- * @param options 分割参数等
+ * @param options.groupCount 分组的数量, 默认: 10
+ * @param options.waitTime 组任务执行间隔, 默认: 0
+ * @param options.onprogress 每组任务完成后回调，返回 { progress: 进度, groupResult: 组任务结果 }
+ * 
+ * 
+ * @description
+ * 可用于：耗时函数拆分、削峰等
+ * 
+ * @example
+ * ```typescript
+ * const tasks = new Array(100000).map(item => {
+ *     return () => new Promise((resolve, reject) => {
+ *         setTimeout(() => resolve(1), 1000);
+ *     });
+ * });
+ * tasksSplite(tasks, {
+ *     onprogress: (info) => {
+ *         console.log("progress", info.progress);
+ *     }
+ * });
+ * 
+ * ```
  */
 export async function tasksSplite<T>(
     tasks: (() => Promise<T>)[],
