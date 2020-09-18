@@ -29,23 +29,19 @@ export class Timer {
     /**
      * 是否激活计时器,默认：true
      */
-    set beactibe(state: boolean) {
+    set beactive(state: boolean) {
         if (state == false) {
             this._lastTime = null;
         }
         this._beactive = state;
     }
 
-    get beactibe() { return this._beactive; }
+    get beactive() { return this._beactive; }
 
     /**
      * 创建计时器实例
      */
-    static create() {
-        return new Timer();
-    }
-
-    private constructor() {
+    constructor() {
         this.startLoop();
     }
 
@@ -53,6 +49,7 @@ export class Timer {
         if (this._beactive) {
             const currentTime = Date.now();
             const deltaTime = this._lastTime != null ? (currentTime - this._lastTime) : 0;
+            this._lastTime = currentTime;
             this._recordTime += deltaTime;
             this.tick.raiseEvent(deltaTime);
         }
