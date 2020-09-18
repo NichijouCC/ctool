@@ -137,7 +137,7 @@ export class WSClient extends EventEmitter<WSClientEventMap> {
     /**
      * 关闭 websocket
      */
-    close = () => {
+    dispose = () => {
         this.beactive = false;
         this.client?.close();
         this.client = null;

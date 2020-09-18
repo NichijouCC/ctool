@@ -64,7 +64,7 @@ export class EventTarget<T = void> {
     /**
      * 销毁自己,移除所有监听
      */
-    destroy() {
+    dispose() {
         this.listener = undefined;
     }
 }
