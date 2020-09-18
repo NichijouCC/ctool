@@ -82,14 +82,15 @@
 							</ol>
 						</dd>
 						<dt>example</dt>
-						<dd><p>const client = TinyWs.connect(&quot;wss://echo.websocket.org&quot;);
-								client.on(&quot;connect&quot;, () =&gt; {
-								console.log(&quot;connect to server&quot;);
-								});
-								client.on(&quot;message&quot;, (data) =&gt; {
-								console.log(&quot;new message&quot;, data);
-							});</p>
-							<p>client.sendmsg({ role: 1, message: &quot;hello！&quot; });</p>
+						<dd><pre><code class="language-typescript"><span class="hljs-keyword">const</span> client = TinyWs.connect(<span class="hljs-string">&quot;wss://echo.websocket.org&quot;</span>);
+client.on(<span class="hljs-string">&quot;connect&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;connect to server&quot;</span>);
+});
+client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;new message&quot;</span>, data);
+});
+
+client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class="hljs-string">&quot;hello！&quot;</span> });</code></pre>
 						</dd>
 					</dl>
 				</div>
@@ -168,7 +169,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in tinyWs.ts:36</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L37">tinyWs.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -194,7 +195,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#_listener">_listener</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6599a78/src/eventEmitter.ts#L43">eventEmitter.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L43">eventEmitter.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -205,7 +206,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#beactive">beactive</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6599a78/src/eventEmitter.ts#L47">eventEmitter.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L47">eventEmitter.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -220,7 +221,7 @@
 					<div class="tsd-signature tsd-kind-icon">client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>close<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">; </span>ins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">WebSocket</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in tinyWs.ts:36</li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L37">tinyWs.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -253,7 +254,7 @@
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_tinyws_.iwsopts.html" class="tsd-signature-type">IwsOpts</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in tinyWs.ts:35</li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L36">tinyWs.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -263,7 +264,7 @@
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in tinyWs.ts:34</li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L35">tinyWs.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -280,7 +281,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in tinyWs.ts:136</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L137">tinyWs.ts:137</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -305,7 +306,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in tinyWs.ts:103</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L104">tinyWs.ts:104</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -322,7 +323,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in tinyWs.ts:52</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L53">tinyWs.ts:53</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -345,7 +346,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in tinyWs.ts:140</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L141">tinyWs.ts:141</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -368,7 +369,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#emit">emit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6599a78/src/eventEmitter.ts#L63">eventEmitter.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L63">eventEmitter.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -412,7 +413,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#off">off</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6599a78/src/eventEmitter.ts#L74">eventEmitter.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L74">eventEmitter.ts:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -474,7 +475,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#on">on</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6599a78/src/eventEmitter.ts#L53">eventEmitter.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L53">eventEmitter.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -535,7 +536,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in tinyWs.ts:75</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L76">tinyWs.ts:76</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -558,7 +559,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in tinyWs.ts:83</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L84">tinyWs.ts:84</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -581,7 +582,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in tinyWs.ts:87</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L88">tinyWs.ts:88</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -604,7 +605,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in tinyWs.ts:71</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L72">tinyWs.ts:72</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -627,7 +628,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in tinyWs.ts:91</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L92">tinyWs.ts:92</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -645,7 +646,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#removealllisteners">removeAllListeners</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6599a78/src/eventEmitter.ts#L94">eventEmitter.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L94">eventEmitter.ts:94</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -668,7 +669,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#removeeventlisteners">removeEventListeners</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6599a78/src/eventEmitter.ts#L87">eventEmitter.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L87">eventEmitter.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -705,7 +706,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in tinyWs.ts:149</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L150">tinyWs.ts:150</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -733,7 +734,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in tinyWs.ts:30</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L31">tinyWs.ts:31</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
