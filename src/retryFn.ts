@@ -14,13 +14,17 @@
  *     } else {
  *         reject(value);
  *     }
- * }))
+ * }), {
+ *     onceTryBefore: (index) => console.log("开始执行", index),
+ *     onceTryCallBack: (index, result, err) => console.log("单次执行结果:", index, result, err)
+ * })
  *     .then(result => {
  *         // do somethin
  *     })
  *     .catch(err => {
  *         // do somethin
  *     });
+ * 
  * ```
  */
 export function retryFn<T>(
@@ -28,17 +32,22 @@ export function retryFn<T>(
     options?: {
         count?: number,
         retryFence?: number,
-        onceCallback?: (index: number) => void
+        onceTryBefore?: (index: number) => void,
+        onceTryCallBack?: (index: number, result: T, error?: any) => void,
     }): Promise<T> {
-    const { count = 5, retryFence = 1500, onceCallback: onceTryCallback } = options || {};
+    const { count = 5, retryFence = 1500, onceTryBefore, onceTryCallBack } = options || {};
     const promis = new Promise<any>((resolve, reject) => {
         let retryCount = 0;
         const tryFn = () => {
             retryCount++;
-            if (onceTryCallback != null) onceTryCallback(retryCount);
+            if (onceTryBefore != null) onceTryBefore(retryCount);
             func()
-                .then((res) => resolve(res))
+                .then((res) => {
+                    onceTryCallBack?.(retryCount, res, undefined);
+                    resolve(res);
+                })
                 .catch((err) => {
+                    onceTryCallBack?.(retryCount, undefined, err);
                     if (retryCount >= count) {
                         reject(err);
                     } else {

@@ -88,6 +88,9 @@
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_tinyws_.wseventenum.html#disconnect" class="tsd-kind-icon">disconnect</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_tinyws_.wseventenum.html#error" class="tsd-kind-icon">error</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_tinyws_.wseventenum.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_tinyws_.wseventenum.html#once_reconnect" class="tsd-kind-icon">once_<wbr>reconnect</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_tinyws_.wseventenum.html#once_reconnect_fail" class="tsd-kind-icon">once_<wbr>reconnect_<wbr>fail</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_tinyws_.wseventenum.html#once_reconnecting" class="tsd-kind-icon">once_<wbr>reconnecting</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_tinyws_.wseventenum.html#reconnect" class="tsd-kind-icon">reconnect</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_tinyws_.wseventenum.html#reconnect_fail" class="tsd-kind-icon">reconnect_<wbr>fail</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_tinyws_.wseventenum.html#reconnecting" class="tsd-kind-icon">reconnecting</a></li>
@@ -104,7 +107,7 @@
 					<div class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;connect&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L189">tinyWs.ts:189</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L234">tinyWs.ts:234</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -119,7 +122,7 @@
 					<div class="tsd-signature tsd-kind-icon">connecting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;connecting&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L185">tinyWs.ts:185</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L230">tinyWs.ts:230</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -134,7 +137,7 @@
 					<div class="tsd-signature tsd-kind-icon">disconnect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;disconnect&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L193">tinyWs.ts:193</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L238">tinyWs.ts:238</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -149,7 +152,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;error&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L197">tinyWs.ts:197</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L242">tinyWs.ts:242</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -164,7 +167,7 @@
 					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;message&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L201">tinyWs.ts:201</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L246">tinyWs.ts:246</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -174,12 +177,57 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="once_reconnect" class="tsd-anchor"></a>
+					<h3>once_<wbr>reconnect</h3>
+					<div class="tsd-signature tsd-kind-icon">once_<wbr>reconnect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;once_reconnect&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L266">tinyWs.ts:266</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>单次重连成功时触发</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="once_reconnect_fail" class="tsd-anchor"></a>
+					<h3>once_<wbr>reconnect_<wbr>fail</h3>
+					<div class="tsd-signature tsd-kind-icon">once_<wbr>reconnect_<wbr>fail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;once_reconnect_fail&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L270">tinyWs.ts:270</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>单次重连失败时触发</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="once_reconnecting" class="tsd-anchor"></a>
+					<h3>once_<wbr>reconnecting</h3>
+					<div class="tsd-signature tsd-kind-icon">once_<wbr>reconnecting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;once_reconnecting&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L262">tinyWs.ts:262</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>单次重连时触发</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="reconnect" class="tsd-anchor"></a>
 					<h3>reconnect</h3>
 					<div class="tsd-signature tsd-kind-icon">reconnect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;reconnect&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L209">tinyWs.ts:209</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L254">tinyWs.ts:254</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -194,7 +242,7 @@
 					<div class="tsd-signature tsd-kind-icon">reconnect_<wbr>fail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;reconnect_fail&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L213">tinyWs.ts:213</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L258">tinyWs.ts:258</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -209,7 +257,7 @@
 					<div class="tsd-signature tsd-kind-icon">reconnecting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;reconnecting&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L205">tinyWs.ts:205</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L250">tinyWs.ts:250</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -279,6 +327,15 @@
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="_tinyws_.wseventenum.html#message" class="tsd-kind-icon">message</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_tinyws_.wseventenum.html#once_reconnect" class="tsd-kind-icon">once_<wbr>reconnect</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_tinyws_.wseventenum.html#once_reconnect_fail" class="tsd-kind-icon">once_<wbr>reconnect_<wbr>fail</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_tinyws_.wseventenum.html#once_reconnecting" class="tsd-kind-icon">once_<wbr>reconnecting</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 								<a href="_tinyws_.wseventenum.html#reconnect" class="tsd-kind-icon">reconnect</a>

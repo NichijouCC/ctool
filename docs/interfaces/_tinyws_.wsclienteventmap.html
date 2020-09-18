@@ -89,6 +89,9 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_tinyws_.wsclienteventmap.html#disconnect" class="tsd-kind-icon">disconnect</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_tinyws_.wsclienteventmap.html#error" class="tsd-kind-icon">error</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_tinyws_.wsclienteventmap.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_tinyws_.wsclienteventmap.html#once_reconnect" class="tsd-kind-icon">once_<wbr>reconnect</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_tinyws_.wsclienteventmap.html#once_reconnect_fail" class="tsd-kind-icon">once_<wbr>reconnect_<wbr>fail</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_tinyws_.wsclienteventmap.html#once_reconnecting" class="tsd-kind-icon">once_<wbr>reconnecting</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_tinyws_.wsclienteventmap.html#reconnect" class="tsd-kind-icon">reconnect</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_tinyws_.wsclienteventmap.html#reconnect_fail" class="tsd-kind-icon">reconnect_<wbr>fail</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_tinyws_.wsclienteventmap.html#reconnecting" class="tsd-kind-icon">reconnecting</a></li>
@@ -105,17 +108,17 @@
 					<div class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Event</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L233">tinyWs.ts:233</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L291">tinyWs.ts:291</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="connecting" class="tsd-anchor"></a>
 					<h3>connecting</h3>
-					<div class="tsd-signature tsd-kind-icon">connecting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">connecting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L234">tinyWs.ts:234</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L292">tinyWs.ts:292</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -125,7 +128,7 @@
 					<div class="tsd-signature tsd-kind-icon">disconnect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CloseEvent</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L235">tinyWs.ts:235</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L293">tinyWs.ts:293</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -135,7 +138,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Event</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L236">tinyWs.ts:236</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L294">tinyWs.ts:294</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -145,37 +148,67 @@
 					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L237">tinyWs.ts:237</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L295">tinyWs.ts:295</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="once_reconnect" class="tsd-anchor"></a>
+					<h3>once_<wbr>reconnect</h3>
+					<div class="tsd-signature tsd-kind-icon">once_<wbr>reconnect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L300">tinyWs.ts:300</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="once_reconnect_fail" class="tsd-anchor"></a>
+					<h3>once_<wbr>reconnect_<wbr>fail</h3>
+					<div class="tsd-signature tsd-kind-icon">once_<wbr>reconnect_<wbr>fail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L301">tinyWs.ts:301</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="once_reconnecting" class="tsd-anchor"></a>
+					<h3>once_<wbr>reconnecting</h3>
+					<div class="tsd-signature tsd-kind-icon">once_<wbr>reconnecting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L299">tinyWs.ts:299</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="reconnect" class="tsd-anchor"></a>
 					<h3>reconnect</h3>
-					<div class="tsd-signature tsd-kind-icon">reconnect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">reconnect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L239">tinyWs.ts:239</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L297">tinyWs.ts:297</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="reconnect_fail" class="tsd-anchor"></a>
 					<h3>reconnect_<wbr>fail</h3>
-					<div class="tsd-signature tsd-kind-icon">reconnect_<wbr>fail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">reconnect_<wbr>fail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L240">tinyWs.ts:240</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L298">tinyWs.ts:298</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="reconnecting" class="tsd-anchor"></a>
 					<h3>reconnecting</h3>
-					<div class="tsd-signature tsd-kind-icon">reconnecting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<div class="tsd-signature tsd-kind-icon">reconnecting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L238">tinyWs.ts:238</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L296">tinyWs.ts:296</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -249,6 +282,15 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_tinyws_.wsclienteventmap.html#message" class="tsd-kind-icon">message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_tinyws_.wsclienteventmap.html#once_reconnect" class="tsd-kind-icon">once_<wbr>reconnect</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_tinyws_.wsclienteventmap.html#once_reconnect_fail" class="tsd-kind-icon">once_<wbr>reconnect_<wbr>fail</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_tinyws_.wsclienteventmap.html#once_reconnecting" class="tsd-kind-icon">once_<wbr>reconnecting</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 								<a href="_tinyws_.wsclienteventmap.html#reconnect" class="tsd-kind-icon">reconnect</a>

@@ -14,17 +14,50 @@ import { WrapPromise } from "./wrapPromise";
  * const client = TinyWs.connect("wss://echo.websocket.org");
  * client.on("connect", () => {
  *     console.log("connect to server");
+ *     client.sendmsg({ role: 1, message: "hello！" });
  * });
- * client.on("message", (data) => {
- *     console.log("new message", data);
- * });
+ * client.on("error", (err) => console.log("出错", err));
  * 
- * client.sendmsg({ role: 1, message: "hello！" });
+ * client.on("reconnecting", () => console.log("开始重连..."));
+ * client.on("reconnect", () => console.log("重连成功"));
+ * client.on("reconnect_fail", () => console.log("重连失败"));
+ * 
+ * client.on("once_reconnecting", () => console.log("单次开始重连..."));
+ * client.on("once_reconnect", () => console.log("单次重连成功"));
+ * client.on("once_reconnect_fail", () => console.log("单次重连失败"));
+ * 
+ * client.on("message", (data) => console.log("new message", data));
+ * 
+ * // 使用connectSync
+ * (async () => {
+ *     const ins = await TinyWs.connectSync("wss://echo.websocket.org");
+ *     ins.sendmsg("sssss");
+ *     ins.on("message", (data) => {
+ *         console.log("new message", data);
+ *     });
+ * })();
  * ```
  */
 export class TinyWs extends EventEmitter<WSClientEventMap> {
     /**
-     * 创建wsclient 
+     * 创建wsclient,等待连接建立
+     * @param url ws服务器地址
+     * @param options 
+     */
+    static connectSync(url: string, options?: IwsOpts): Promise<TinyWs> {
+        return new Promise((resolve, reject) => {
+            const ins = new TinyWs(url, options);
+            ins.on("connect", () => resolve(ins));
+            if (ins.options.autoreconnect.active) {
+                ins.on("reconnect_fail", (err) => reject(err));
+            } else {
+                ins.on("disconnect", (err) => reject(err));
+            }
+        });
+    }
+
+    /**
+     * 创建wsclient,不等待连接建立
      * @param url ws服务器地址
      * @param options 
      */
@@ -33,7 +66,7 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     }
 
     private url: string;
-    private options: Required<IwsOpts>;
+    private options: Omit<Required<IwsOpts>, "listeners">;
     private client: { ins: WebSocket; close: () => void; };
     private constructor(url: string, opts: IwsOpts = {}) {
         super();
@@ -47,7 +80,12 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
             }
         };
         this.attachWs(new WebSocket(url));
-        this.emit(WSEventEnum.connecting, "ws 连接中..");
+        if (opts.listeners) {
+            for (const event in opts.listeners) {
+                this.on(event as any, opts.listeners[event]);
+            }
+        }
+        this.emit(WSEventEnum.connecting, undefined);
     }
 
     private attachWs = (ws: WebSocket) => {
@@ -92,12 +130,29 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     private reconnect = async () => {
         if (this.beopen) return;
         const { reconnectCount } = this.options.autoreconnect;
+        this.emit(WSEventEnum.reconnecting, undefined);
         retryFn(() => this._onceConnect(),
             {
                 count: reconnectCount,
-                onceCallback: (index) => {
-                    this.emit(WSEventEnum.reconnecting, index);
+                onceTryBefore: (index) => {
+                    this.emit(WSEventEnum.once_reconnecting, index);
+                },
+                onceTryCallBack: (index, result, err) => {
+                    if (result) {
+                        this.emit(WSEventEnum.once_reconnect, undefined);
+                    } else {
+                        this.emit(WSEventEnum.once_reconnect_fail, undefined);
+                    }
                 }
+            })
+            .then((ws) => {
+                this.attachWs(ws);
+                this.emit(WSEventEnum.connect, undefined);
+                this.emit(WSEventEnum.reconnect, undefined);
+            })
+            .catch(() => {
+                this.emit(WSEventEnum.disconnect, undefined);
+                this.emit(WSEventEnum.reconnect_fail, undefined);
             });
     }
 
@@ -106,29 +161,15 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
         if (reconnectCondition != null) {
             const [err, result] = await WrapPromise(() => reconnectCondition());
             if (err) {
-                this.emit(WSEventEnum.reconnect_fail, "failed to check reconnectcondition");
-                return false;
+                return Promise.reject(new Error("重连校验报错!"));
             } else {
                 if (!result) {
-                    this.emit(WSEventEnum.reconnect_fail, "Result of check reconnectcondition is false");
-                    return false;
+                    return Promise.reject(new Error("重连校验失败!"));
                 }
             }
         }
-        this.emit(WSEventEnum.connecting, "连接中...");
-        const besuccess = await createWs(this.url)
-            .then((ins) => {
-                this.attachWs(ins);
-                this.emit(WSEventEnum.reconnect, "ws 重连成功");
-                this.emit(WSEventEnum.connect, new Event("ws 建立连接[重连]"));
-                return true;
-            })
-            .catch(() => {
-                this.emit(WSEventEnum.reconnect_fail, "ws 重连失败");
-
-                return false;
-            });
-        return besuccess;
+        this.emit(WSEventEnum.connecting, undefined);
+        return createWs(this.url);
     }
 
     /**
@@ -145,7 +186,7 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     }
 
     /**
-     * 发送消息
+     * 发送消息。注意：未建立连接,会发送失败
      */
     sendmsg = (msg: any) => {
         if (this.beopen) this.client?.ins.send(msg);
@@ -173,6 +214,10 @@ export interface IwsOpts {
          */
         reconnectCondition?: () => Promise<boolean>
     }
+    /**
+     * 事件监听
+     */
+    listeners?: { [key in keyof WSEventEnum]: () => void }
 }
 
 /**
@@ -211,6 +256,19 @@ export enum WSEventEnum {
      * 重连失败时触发
      */
     reconnect_fail = "reconnect_fail",
+    /**
+     * 单次重连时触发
+     */
+    once_reconnecting = "once_reconnecting",
+    /**
+     * 单次重连成功时触发
+     */
+    once_reconnect = "once_reconnect",
+    /**
+     * 单次重连失败时触发
+     */
+    once_reconnect_fail = "once_reconnect_fail",
+
 }
 
 function createWs(url: string): Promise<WebSocket> {
@@ -231,11 +289,14 @@ function createWs(url: string): Promise<WebSocket> {
 
 interface WSClientEventMap {
     "connect": Event;
-    "connecting": string;
+    "connecting": void;
     "disconnect": CloseEvent;
     "error": Event;
     "message": any;
-    "reconnecting": number;
-    "reconnect": string;
-    "reconnect_fail": string;
+    "reconnecting": void;
+    "reconnect": void;
+    "reconnect_fail": void;
+    "once_reconnecting": number;
+    "once_reconnect": void;
+    "once_reconnect_fail": void;
 }

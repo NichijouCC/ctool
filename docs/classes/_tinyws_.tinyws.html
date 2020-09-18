@@ -85,12 +85,28 @@
 						<dd><pre><code class="language-typescript"><span class="hljs-keyword">const</span> client = TinyWs.connect(<span class="hljs-string">&quot;wss://echo.websocket.org&quot;</span>);
 client.on(<span class="hljs-string">&quot;connect&quot;</span>, <span class="hljs-function">() =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;connect to server&quot;</span>);
+    client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class="hljs-string">&quot;hello！&quot;</span> });
 });
-client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;new message&quot;</span>, data);
-});
+client.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;出错&quot;</span>, err));
 
-client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class="hljs-string">&quot;hello！&quot;</span> });</code></pre>
+client.on(<span class="hljs-string">&quot;reconnecting&quot;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;开始重连...&quot;</span>));
+client.on(<span class="hljs-string">&quot;reconnect&quot;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;重连成功&quot;</span>));
+client.on(<span class="hljs-string">&quot;reconnect_fail&quot;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;重连失败&quot;</span>));
+
+client.on(<span class="hljs-string">&quot;once_reconnecting&quot;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;单次开始重连...&quot;</span>));
+client.on(<span class="hljs-string">&quot;once_reconnect&quot;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;单次重连成功&quot;</span>));
+client.on(<span class="hljs-string">&quot;once_reconnect_fail&quot;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;单次重连失败&quot;</span>));
+
+client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;new message&quot;</span>, data));
+
+<span class="hljs-comment">// 使用connectSync</span>
+(<span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">const</span> ins = <span class="hljs-keyword">await</span> TinyWs.connectSync(<span class="hljs-string">&quot;wss://echo.websocket.org&quot;</span>);
+    ins.sendmsg(<span class="hljs-string">&quot;sssss&quot;</span>);
+    ins.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;new message&quot;</span>, data);
+    });
+})();</code></pre>
 						</dd>
 					</dl>
 				</div>
@@ -152,6 +168,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="_tinyws_.tinyws.html#removeeventlisteners" class="tsd-kind-icon">remove<wbr>Event<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_tinyws_.tinyws.html#sendmsg" class="tsd-kind-icon">sendmsg</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_tinyws_.tinyws.html#connect" class="tsd-kind-icon">connect</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_tinyws_.tinyws.html#connectsync" class="tsd-kind-icon">connect<wbr>Sync</a></li>
 							</ul>
 						</section>
 					</div>
@@ -169,7 +186,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L37">tinyWs.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L70">tinyWs.ts:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -195,7 +212,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#_listener">_listener</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L43">eventEmitter.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/eventEmitter.ts#L43">eventEmitter.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -206,7 +223,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#beactive">beactive</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L47">eventEmitter.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/eventEmitter.ts#L47">eventEmitter.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -221,7 +238,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 					<div class="tsd-signature tsd-kind-icon">client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>close<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">; </span>ins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">WebSocket</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L37">tinyWs.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L70">tinyWs.ts:70</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -251,10 +268,10 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="options" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> options</h3>
-					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_tinyws_.iwsopts.html" class="tsd-signature-type">IwsOpts</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_tinyws_.iwsopts.html" class="tsd-signature-type">IwsOpts</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"listeners"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L36">tinyWs.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L69">tinyWs.ts:69</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -264,7 +281,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L35">tinyWs.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L68">tinyWs.ts:68</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -281,7 +298,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L137">tinyWs.ts:137</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L178">tinyWs.ts:178</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -300,16 +317,16 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 					<a name="_onceconnect" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _once<wbr>Connect</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">_once<wbr>Connect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">_once<wbr>Connect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">WebSocket</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L104">tinyWs.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L159">tinyWs.ts:159</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">WebSocket</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -323,7 +340,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L53">tinyWs.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L91">tinyWs.ts:91</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -346,7 +363,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L141">tinyWs.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L182">tinyWs.ts:182</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -369,7 +386,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#emit">emit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L63">eventEmitter.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/eventEmitter.ts#L63">eventEmitter.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -413,7 +430,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#off">off</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L74">eventEmitter.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/eventEmitter.ts#L74">eventEmitter.ts:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -475,7 +492,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#on">on</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L53">eventEmitter.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/eventEmitter.ts#L53">eventEmitter.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -536,7 +553,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L76">tinyWs.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L114">tinyWs.ts:114</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -559,7 +576,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L84">tinyWs.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L122">tinyWs.ts:122</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -582,7 +599,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L88">tinyWs.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L126">tinyWs.ts:126</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -605,7 +622,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L72">tinyWs.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L110">tinyWs.ts:110</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -628,7 +645,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L92">tinyWs.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L130">tinyWs.ts:130</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -646,7 +663,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#removealllisteners">removeAllListeners</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L94">eventEmitter.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/eventEmitter.ts#L94">eventEmitter.ts:94</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -669,7 +686,7 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_eventemitter_.eventemitter.html">EventEmitter</a>.<a href="_eventemitter_.eventemitter.html#removeeventlisteners">removeEventListeners</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/eventEmitter.ts#L87">eventEmitter.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/eventEmitter.ts#L87">eventEmitter.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -706,12 +723,12 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L150">tinyWs.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L191">tinyWs.ts:191</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>发送消息</p>
+									<p>发送消息。注意：未建立连接,会发送失败</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -734,12 +751,12 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/cd527e3/src/tinyWs.ts#L31">tinyWs.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L64">tinyWs.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>创建wsclient</p>
+									<p>创建wsclient,不等待连接建立</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -757,6 +774,42 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_tinyws_.tinyws.html" class="tsd-signature-type">TinyWs</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="connectsync" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> connect<wbr>Sync</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">connect<wbr>Sync<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_tinyws_.iwsopts.html" class="tsd-signature-type">IwsOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_tinyws_.tinyws.html" class="tsd-signature-type">TinyWs</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/1707b7d/src/tinyWs.ts#L47">tinyWs.ts:47</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>创建wsclient,等待连接建立</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>ws服务器地址</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_tinyws_.iwsopts.html" class="tsd-signature-type">IwsOpts</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_tinyws_.tinyws.html" class="tsd-signature-type">TinyWs</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -875,6 +928,9 @@ client.sendmsg({ role: <span class="hljs-number">1</span>, message: <span class=
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_tinyws_.tinyws.html#connect" class="tsd-kind-icon">connect</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_tinyws_.tinyws.html#connectsync" class="tsd-kind-icon">connect<wbr>Sync</a>
 							</li>
 						</ul>
 					</li>
