@@ -4,3 +4,4 @@ export * from "./retryFn";
 export * from "./wsClient";
 export * from "./tasksSplite";
 export * from "./wrapPromise";
+export * from "./guid";
