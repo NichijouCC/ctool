@@ -91,7 +91,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/aabfe4f/src/retryFn.ts#L20">retryFn.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6599a78/src/retryFn.ts#L26">retryFn.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -107,7 +107,13 @@
     } <span class="hljs-keyword">else</span> {
         reject(value);
     }
-}));</code></pre>
+}))
+    .then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
+        <span class="hljs-comment">// do somethin</span>
+    })
+    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+        <span class="hljs-comment">// do somethin</span>
+    });</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -213,10 +219,13 @@
 						<a href="_taskssplite_.html">&quot;tasks<wbr>Splite&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="_wrappromise_.html">&quot;wrap<wbr>Promise&quot;</a>
+						<a href="_timer_.html">&quot;timer&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="_wsclient_.html">&quot;ws<wbr>Client&quot;</a>
+						<a href="_tinyws_.html">&quot;tiny<wbr>Ws&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_wrappromise_.html">&quot;wrap<wbr>Promise&quot;</a>
 					</li>
 				</ul>
 			</nav>

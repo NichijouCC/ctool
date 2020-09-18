@@ -14,7 +14,13 @@
  *     } else {
  *         reject(value);
  *     }
- * }));
+ * }))
+ *     .then(result => {
+ *         // do somethin
+ *     })
+ *     .catch(err => {
+ *         // do somethin
+ *     });
  * ```
  */
 export function retryFn<T>(

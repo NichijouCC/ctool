@@ -6,10 +6,14 @@
  * 
  * @example
  * ```typescript
- * DebuffAction.excute(() => {
+ * const ins = DebuffAction.excute(() => {
  *     const delay = setTimeout(() => console.log("do something!"), 10000000);
  *     return () => clearTimeout(delay);
  * });
+ * 
+ * // when need dispose
+ * ins.dispose();
+ * 
  * ```
  */
 export class DebuffAction {

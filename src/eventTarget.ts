@@ -1,6 +1,8 @@
 /**
  * 单个事件的事件管理器
  * 
+ * @description
+ * node.js eventTarget
  * @example
  * ```typescript
  * const clickEvent = new EventTarget();
@@ -13,7 +15,6 @@
  * // ---触发事件
  * clickEvent.raiseEvent();
  * ```
- * 
  */
 export class EventTarget<T = void> {
     protected listener: ((event: T) => void)[] = [];

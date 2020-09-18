@@ -28,7 +28,6 @@
  * emiter.removeAllListeners();
  * 
  * // ----------定义事件类型
- * 
  * interface KeyboardEventMap {
  *     "keydown": KeyboardEvent,
  *     "keyup": KeyboardEvent

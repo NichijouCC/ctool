@@ -1,12 +1,11 @@
 /**
- * 生成guid/uuid
+ * 生成唯一ID
  * 
  * @description
  * 参考:https://stackoverflow.com/questions/105034/how-to-create-guid-uuid
  * 
- * 
  * @example
- * ```
+ * ```typescript
  * const id = guid();
  * 
  * ```

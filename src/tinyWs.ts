@@ -10,7 +10,7 @@ import { WrapPromise } from "./wrapPromise";
  * 1. 断线重连
  * 
  * @example
- * const client = WSClient.connect("wss://echo.websocket.org");
+ * const client = TinyWs.connect("wss://echo.websocket.org");
  * client.on("connect", () => {
  *     console.log("connect to server");
  * });
@@ -21,14 +21,14 @@ import { WrapPromise } from "./wrapPromise";
  * client.sendmsg({ role: 1, message: "hello！" });
  * 
  */
-export class WSClient extends EventEmitter<WSClientEventMap> {
+export class TinyWs extends EventEmitter<WSClientEventMap> {
     /**
      * 创建wsclient 
      * @param url ws服务器地址
      * @param options 
      */
     static connect(url: string, options?: IwsOpts) {
-        return new WSClient(url, options);
+        return new TinyWs(url, options);
     }
 
     private url: string;
