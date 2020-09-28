@@ -18,9 +18,9 @@ describe("timer", () => {
     it("recordTime", async () => {
         const timer = new Timer();
         await new Promise((resolve, reject) => {
-            setTimeout(() => resolve(), 50);
+            setTimeout(() => resolve(), 500);
         });
-        expect(timer.recordTime).to.approximately(50, 10);
+        expect(timer.recordTime).to.approximately(500, 10);
         timer.resetRecordTime();
         expect(timer.recordTime).to.equal(0);
     });
@@ -35,5 +35,16 @@ describe("timer", () => {
             setTimeout(() => resolve(), 50);
         });
         expect(timer.recordTime).to.approximately(total, 10);
+    });
+
+    it("intervel", (done) => {
+        const timer = new Timer();
+        timer.interval = 200;
+        let index = 0;
+        timer.tick.addEventListener((deltaTime) => {
+            index++;
+            expect(deltaTime).to.approximately(200, 30);
+            if (index == 3) done();
+        });
     });
 });
