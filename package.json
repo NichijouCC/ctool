@@ -25,7 +25,8 @@
     "build": "rollup -c rollup.config.js",
     "lint": "eslint **/*.ts --fix --ignore-pattern node_modules/",
     "doc": "typedoc",
-    "test": "cross-env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'test/*.ts'"
+    "test": "cross-env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'test/*.ts'",
+    "patch": "npm version patch"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",
