@@ -59,6 +59,8 @@ export class Timer {
     private _loopFunc: (func: () => void) => void;
 
     private _tickDeltaTime: number = 0;
+    private _tickOffsetTime: number = 0;
+
     private startLoop = () => {
         if (this._beactive) {
             const currentTime = Date.now();
@@ -68,9 +70,11 @@ export class Timer {
 
             if (this._interval != null) {
                 this._tickDeltaTime += deltaTime;
-                if (this._tickDeltaTime > this._interval) {
+                const newOffset = this._tickDeltaTime + this._tickOffsetTime - this._interval;
+                if (newOffset >= 0) {
+                    this._tickOffsetTime = newOffset;
                     this.tick.raiseEvent(this._tickDeltaTime);
-                    this._tickDeltaTime -= this._interval;
+                    this._tickDeltaTime = 0;
                 }
             } else {
                 this.tick.raiseEvent(deltaTime);

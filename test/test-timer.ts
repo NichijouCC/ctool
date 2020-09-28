@@ -39,11 +39,11 @@ describe("timer", () => {
 
     it("intervel", (done) => {
         const timer = new Timer();
-        timer.interval = 500;
+        timer.interval = 200;
         let index = 0;
         timer.tick.addEventListener((deltaTime) => {
             index++;
-            expect(deltaTime).to.approximately(500, 10);
+            expect(deltaTime).to.approximately(200, 30);
             if (index == 3) done();
         });
     });
