@@ -38,23 +38,46 @@ export class Timer {
 
     get beactive() { return this._beactive; }
 
+    private _interval: number;
+    /**
+     * 计时间隔, 默认：undefined
+     */
+    set interval(value: number) {
+        this._interval = value;
+    }
+
+    get interval() { return this._interval; }
+
     /**
      * 创建计时器实例
      */
     constructor() {
+        this._loopFunc = requestAnimationFrame ?? ((func: () => void) => { setTimeout(func, 0); });
         this.startLoop();
     }
 
+    private _loopFunc: (func: () => void) => void;
+
+    private _tickDeltaTime: number = 0;
     private startLoop = () => {
         if (this._beactive) {
             const currentTime = Date.now();
             const deltaTime = this._lastTime != null ? (currentTime - this._lastTime) : 0;
             this._lastTime = currentTime;
             this._recordTime += deltaTime;
-            this.tick.raiseEvent(deltaTime);
+
+            if (this._interval != null) {
+                this._tickDeltaTime += deltaTime;
+                if (this._tickDeltaTime > this._interval) {
+                    this.tick.raiseEvent(this._tickDeltaTime);
+                    this._tickDeltaTime -= this._interval;
+                }
+            } else {
+                this.tick.raiseEvent(deltaTime);
+            }
         }
         if (!this._bedisposed) {
-            requestAnimationFrame(this.startLoop);
+            this._loopFunc(this.startLoop);
         }
     }
 

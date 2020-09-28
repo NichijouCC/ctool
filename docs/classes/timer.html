@@ -113,8 +113,11 @@ timer.dispose();</code></pre>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="timer.html#_beactive" class="tsd-kind-icon">_beactive</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="timer.html#_bedisposed" class="tsd-kind-icon">_bedisposed</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="timer.html#_interval" class="tsd-kind-icon">_interval</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="timer.html#_lasttime" class="tsd-kind-icon">_last<wbr>Time</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="timer.html#_loopfunc" class="tsd-kind-icon">_loop<wbr>Func</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="timer.html#_recordtime" class="tsd-kind-icon">_record<wbr>Time</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="timer.html#_tickdeltatime" class="tsd-kind-icon">_tick<wbr>Delta<wbr>Time</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="timer.html#tick" class="tsd-kind-icon">tick</a></li>
 							</ul>
 						</section>
@@ -122,6 +125,7 @@ timer.dispose();</code></pre>
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="timer.html#beactive" class="tsd-kind-icon">beactive</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="timer.html#interval" class="tsd-kind-icon">interval</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="timer.html#recordtime" class="tsd-kind-icon">record<wbr>Time</a></li>
 							</ul>
 						</section>
@@ -148,7 +152,7 @@ timer.dispose();</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6442908/src/timer.ts#L39">timer.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L49">timer.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -169,7 +173,7 @@ timer.dispose();</code></pre>
 					<div class="tsd-signature tsd-kind-icon">_beactive<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6442908/src/timer.ts#L28">timer.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L28">timer.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -179,7 +183,17 @@ timer.dispose();</code></pre>
 					<div class="tsd-signature tsd-kind-icon">_bedisposed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6442908/src/timer.ts#L74">timer.ts:74</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L97">timer.ts:97</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_interval" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _interval</h3>
+					<div class="tsd-signature tsd-kind-icon">_interval<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L41">timer.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,9 +203,52 @@ timer.dispose();</code></pre>
 					<div class="tsd-signature tsd-kind-icon">_last<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6442908/src/timer.ts#L26">timer.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L26">timer.ts:26</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_loopfunc" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _loop<wbr>Func</h3>
+					<div class="tsd-signature tsd-kind-icon">_loop<wbr>Func<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L59">timer.ts:59</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>func: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+												<ul class="tsd-parameters">
+													<li class="tsd-parameter-signature">
+														<ul class="tsd-signatures tsd-kind-type-literal">
+															<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+														</ul>
+														<ul class="tsd-descriptions">
+															<li class="tsd-description">
+																<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+															</li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_recordtime" class="tsd-anchor"></a>
@@ -199,7 +256,17 @@ timer.dispose();</code></pre>
 					<div class="tsd-signature tsd-kind-icon">_record<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6442908/src/timer.ts#L27">timer.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L27">timer.ts:27</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_tickdeltatime" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _tick<wbr>Delta<wbr>Time</h3>
+					<div class="tsd-signature tsd-kind-icon">_tick<wbr>Delta<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L61">timer.ts:61</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -209,7 +276,7 @@ timer.dispose();</code></pre>
 					<div class="tsd-signature tsd-kind-icon">tick<span class="tsd-signature-symbol">:</span> <a href="eventtarget.html" class="tsd-signature-type">EventTarget</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new EventTarget&lt;number&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6442908/src/timer.ts#L72">timer.ts:72</a></li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L95">timer.ts:95</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -232,7 +299,7 @@ timer.dispose();</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6442908/src/timer.ts#L39">timer.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L39">timer.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,7 +312,7 @@ timer.dispose();</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6442908/src/timer.ts#L32">timer.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L32">timer.ts:32</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -263,6 +330,48 @@ timer.dispose();</code></pre>
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="interval" class="tsd-anchor"></a>
+					<h3>interval</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> interval<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> interval<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L49">timer.ts:49</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>计时间隔, 默认：undefined</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L45">timer.ts:45</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>计时间隔, 默认：undefined</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="recordtime" class="tsd-anchor"></a>
 					<h3>record<wbr>Time</h3>
@@ -273,7 +382,7 @@ timer.dispose();</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6442908/src/timer.ts#L64">timer.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L87">timer.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -298,7 +407,7 @@ timer.dispose();</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6442908/src/timer.ts#L78">timer.ts:78</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L101">timer.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -320,7 +429,7 @@ timer.dispose();</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6442908/src/timer.ts#L68">timer.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L91">timer.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -342,7 +451,7 @@ timer.dispose();</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/6442908/src/timer.ts#L48">timer.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/timer.ts#L62">timer.ts:62</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -388,16 +497,28 @@ timer.dispose();</code></pre>
 								<a href="timer.html#_bedisposed" class="tsd-kind-icon">_bedisposed</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="timer.html#_interval" class="tsd-kind-icon">_interval</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="timer.html#_lasttime" class="tsd-kind-icon">_last<wbr>Time</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="timer.html#_loopfunc" class="tsd-kind-icon">_loop<wbr>Func</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="timer.html#_recordtime" class="tsd-kind-icon">_record<wbr>Time</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="timer.html#_tickdeltatime" class="tsd-kind-icon">_tick<wbr>Delta<wbr>Time</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="timer.html#tick" class="tsd-kind-icon">tick</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="timer.html#beactive" class="tsd-kind-icon">beactive</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="timer.html#interval" class="tsd-kind-icon">interval</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="timer.html#recordtime" class="tsd-kind-icon">record<wbr>Time</a>
