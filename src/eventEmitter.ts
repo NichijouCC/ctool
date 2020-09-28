@@ -60,7 +60,7 @@ export class EventEmitter<T = { [key: string]: void }> {
      * @param ev 事件str
      * @param params 事件传递的可选参数
      */
-    emit<K extends keyof T>(ev: K, params: T[K]) {
+    emit<K extends keyof T>(ev: K, params?: T[K]) {
         if (this.beactive) {
             this._listener[ev]?.forEach((func: (...args: any) => any) => func(params));
         }

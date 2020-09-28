@@ -3,7 +3,7 @@
  * @param tasks 任务
  * @param options.groupCount 分组的数量, 默认: 10
  * @param options.waitTime 组任务执行间隔, 默认: 0
- * @param options.onprogress 每组任务完成后回调，返回 { progress: 进度, groupResult: 组任务结果 }
+ * @param options.onprogress 每个任务完成后回调，返回  progress: 进度, result: 任务结果 
  * 
  * 
  * @description
@@ -17,8 +17,8 @@
  *     });
  * });
  * tasksSplite(tasks, {
- *     onprogress: (info) => {
- *         console.log("progress", info.progress);
+ *     onprogress: (progress, result) => {
+ *         console.log("progress", progress, result);
  *     }
  * });
  * 
@@ -29,24 +29,24 @@ export async function tasksSplite<T>(
     options?: {
         groupCount?: number,
         waitTime?: number,
-        onprogress?: (processInfo: { progress: number, groupResult: T[] }) => void
+        onprogress?: (progress: number, result?: T) => void
     }
 ): Promise<T[]> {
     const { groupCount = 10, waitTime = 0, onprogress } = options || {};
     const batchCount = Math.ceil(tasks.length / groupCount);
-    let results: T[] = [];
+    const results: T[] = [];
     for (let i = 0; i < batchCount; i++) {
         const currentTasks = tasks.slice(i * groupCount, Math.min((i + 1) * groupCount, tasks.length));
         await new Promise((resolve, reject) => {
-            Promise.all(currentTasks.map(item => item()))
-                .then((res) => {
-                    if (onprogress) {
-                        onprogress({ progress: i / batchCount, groupResult: res });
-                    }
-                    setTimeout(() => {
-                        results = results.concat(res);
-                        resolve(res);
-                    }, waitTime);
+            Promise.all(currentTasks.map(item => {
+                return item()
+                    .then((res) => {
+                        results.push(res);
+                        onprogress?.(results.length / tasks.length, res);
+                    });
+            }))
+                .then(() => {
+                    setTimeout(() => resolve(), waitTime);
                 })
                 .catch((err) => reject(err));
         });

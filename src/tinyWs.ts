@@ -48,7 +48,7 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
         return new Promise((resolve, reject) => {
             const ins = new TinyWs(url, options);
             ins.on("connect", () => resolve(ins));
-            if (ins.options.autoreconnect.active) {
+            if (ins.options.autoReconnect.active) {
                 ins.on("reconnect_fail", (err) => reject(err));
             } else {
                 ins.on("disconnect", (err) => reject(err));
@@ -57,7 +57,7 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     }
 
     /**
-     * 创建wsclient,不等待连接建立
+     * 创建wsclient, 不需要等待连接建立
      * @param url ws服务器地址
      * @param options 
      */
@@ -71,9 +71,9 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     private constructor(url: string, opts: IwsOpts = {}) {
         super();
         this.url = url;
-        const { autoreconnect = {} } = opts;
+        const { autoReconnect: autoreconnect = {} } = opts;
         this.options = {
-            autoreconnect: {
+            autoReconnect: {
                 active: autoreconnect.active ?? true,
                 reconnectCount: autoreconnect.reconnectCount ?? 5,
                 reconnectCondition: autoreconnect.reconnectCondition
@@ -113,7 +113,7 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
 
     private onclose = (ev: CloseEvent) => {
         this.emit(WSEventEnum.disconnect, ev);
-        const { autoreconnect: { active } } = this.options;
+        const { autoReconnect: { active } } = this.options;
         if (active) {
             this.reconnect();
         }
@@ -129,7 +129,7 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
 
     private reconnect = async () => {
         if (this.beopen) return;
-        const { reconnectCount } = this.options.autoreconnect;
+        const { reconnectCount } = this.options.autoReconnect;
         this.emit(WSEventEnum.reconnecting, undefined);
         retryFn(() => this._onceConnect(),
             {
@@ -147,24 +147,24 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
             })
             .then((ws) => {
                 this.attachWs(ws);
-                this.emit(WSEventEnum.connect, undefined);
                 this.emit(WSEventEnum.reconnect, undefined);
+                this.emit(WSEventEnum.connect, undefined);
             })
             .catch(() => {
-                this.emit(WSEventEnum.disconnect, undefined);
                 this.emit(WSEventEnum.reconnect_fail, undefined);
+                this.emit(WSEventEnum.disconnect, undefined);
             });
     }
 
     private _onceConnect = async () => {
-        const { autoreconnect: { reconnectCondition } } = this.options;
+        const { autoReconnect: { reconnectCondition } } = this.options;
         if (reconnectCondition != null) {
             const [err, result] = await WrapPromise(() => reconnectCondition());
             if (err) {
-                return Promise.reject(new Error("重连校验报错!"));
+                return Promise.reject(new Error("重连校验的过程报错"));
             } else {
                 if (!result) {
-                    return Promise.reject(new Error("重连校验失败!"));
+                    return Promise.reject(new Error("重连校验结果为false"));
                 }
             }
         }
@@ -200,7 +200,7 @@ export interface IwsOpts {
     /**
      * 自动重连可选配置
      */
-    autoreconnect?: {
+    autoReconnect?: {
         /**
          * 是否自动重连,默认开启
          */
@@ -277,13 +277,16 @@ function createWs(url: string): Promise<WebSocket> {
         const onclose = (ev: CloseEvent) => {
             reject(ev);
         };
+        const onerror = () => { };
         const onopen = () => {
             ins.removeEventListener("open", onopen);
             ins.removeEventListener("close", onclose);
+            ins.removeEventListener("error", onerror);
             resolve(ins);
         };
         ins.addEventListener("open", onopen);
         ins.addEventListener("close", onclose);
+        ins.addEventListener("error", onerror);
     });
 }
 
