@@ -1,1 +1,1 @@
-import { } from "@mtgoo/ctool";
+import { retryFn } from "@mtgoo/ctool";

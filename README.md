@@ -1,4 +1,7 @@
 # tool
+[![](https://img.shields.io/badge/npm-0.0.3-blue)](https://www.npmjs.com/package/@mtgoo/ctool)
+![](https://img.shields.io/badge/license-MIT-green)
+
 web/node.js常用方法工具集
 
 ## feature
