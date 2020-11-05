@@ -68,7 +68,7 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     private url: string;
     private options: Omit<Required<IwsOpts>, "listeners">;
     private client: { ins: WebSocket; close: () => void; };
-    private constructor(url: string, opts: IwsOpts = {}) {
+    protected constructor(url: string, opts: IwsOpts = {}) {
         super();
         this.url = url;
         const { autoReconnect: autoreconnect = {} } = opts;
@@ -123,8 +123,9 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
         this.emit(WSEventEnum.error, ev);
     }
 
-    private onmessage = (ev: MessageEvent) => {
-        this.emit(WSEventEnum.message, ev.data);
+    protected onmessage = (ev: MessageEvent) => {
+        let data: Buffer = ev.data;
+        if (data) this.emit(WSEventEnum.message, ev.data);
     }
 
     private reconnect = async () => {
@@ -188,8 +189,10 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     /**
      * 发送消息。注意：未建立连接,会发送失败
      */
-    sendmsg = (msg: any) => {
-        if (this.beopen) this.client?.ins.send(msg);
+    sendMessage<T = any>(data: string) {
+        if (this.beopen) {
+            this.client.ins.send(Buffer.from(JSON.stringify(data)));
+        }
     }
 }
 
