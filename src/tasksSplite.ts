@@ -6,7 +6,8 @@
  * @param options.onprogress 每个任务完成后回调，返回  progress: 进度, result: 任务结果 
  * 
  * 
- * @description
+ * @description <br/> 
+ * <br/> 
  * 可用于：耗时函数拆分、削峰等
  * 
  * @example

@@ -2,7 +2,8 @@
  * 
  * 多个事件的集合管理器
  * 
- * @description
+ * @description <br/> 
+ * <br/> 
  * node.js EventEmitter的简版
  * 
  * @example

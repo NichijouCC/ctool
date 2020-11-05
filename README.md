@@ -5,16 +5,16 @@
 web/node.js常用方法工具集
 
 ## feature
-1. 管理事件[【eventEmitter】](https://mtgoo.github.io/ctool/classes/eventemitter.html),[【eventTaget】](https://mtgoo.github.io/ctool/classes/eventtarget.html)
-2. 任务分割[【tasksSplite】](https://mtgoo.github.io/ctool/globals.html#taskssplite)
-3. promise 在async/await下的异常管理[【wrapPromise】](https://mtgoo.github.io/ctool/globals.html#wrappromise)
-4. 轻量级ws[【tinyWs】](https://mtgoo.github.io/ctool/classes/tinyws.html)
-5. 重试执行任务[【retryFn】](https://mtgoo.github.io/ctool/globals.html#retryfn)
-6. 唯一ID[【guid】](https://mtgoo.github.io/ctool/globals.html#guid)
-7. 计时器[【timer】](https://mtgoo.github.io/ctool/classes/timer.html)
+1. 管理事件[【eventEmitter】](https://nichijoucc.github.io/ctool/classes/eventemitter.html),[【eventTaget】](https://nichijoucc.github.io/ctool/classes/eventtarget.html)
+2. 任务分割[【tasksSplite】](https://nichijoucc.github.io/ctool/globals.html#taskssplite)
+3. promise 在async/await下的异常管理[【wrapPromise】](https://nichijoucc.github.io/ctool/globals.html#wrappromise)
+4. 轻量级ws[【tinyWs】](https://nichijoucc.github.io/ctool/classes/tinyws.html)
+5. 重试执行任务[【retryFn】](https://nichijoucc.github.io/ctool/globals.html#retryfn)
+6. 唯一ID[【uuid】](https://nichijoucc.github.io/ctool/globals.html#uuid)
+7. 计时器[【timer】](https://nichijoucc.github.io/ctool/classes/timer.html)
+7. 轻量级rpc[【tinyRpc】](https://nichijoucc.github.io/ctool/classes/tinyrpc_ws.html)
 
-
-API文档：https://mtgoo.github.io/ctool/
+API文档：https://nichijoucc.github.io/ctool/
 
 ## 安装
 ``npm install @mtgoo/ctool``

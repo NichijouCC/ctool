@@ -1,7 +1,8 @@
 /**
  * 单个事件的事件管理器
  * 
- * @description
+ * @description <br/> 
+ * <br/> 
  * node.js eventTarget
  * @example
  * ```typescript

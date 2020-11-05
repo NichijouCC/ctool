@@ -28,7 +28,7 @@ describe("tinyws", () => {
         const ins = TinyWs.connect("ws://localhost:8181");
         const msg = "hello";
         ins.on("connect", () => {
-            ins.sendmsg(msg);
+            ins.sendMessage(msg);
         });
         ins.on("message", (ev) => {
             expect(ev).to.be.equal(backmsgMark + msg);
