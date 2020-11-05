@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@mtgoo/ctool</title>
+	<title>UUID | @mtgoo/ctool</title>
 	<meta name="description" content="Documentation for @mtgoo/ctool">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">@mtgoo/ctool</a>
+					<a href="../index.html" class="title">@mtgoo/ctool</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -53,94 +53,144 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="globals.html">Globals</a>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="uuid.html">UUID</a>
 				</li>
 			</ul>
-			<h1>@mtgoo/ctool</h1>
+			<h1>Class UUID</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#tool" id="tool" style="color: inherit; text-decoration: none;">
-					<h1>tool</h1>
-				</a>
-				<p><a href="https://www.npmjs.com/package/@mtgoo/ctool"><img src="https://img.shields.io/badge/npm-0.0.3-blue" alt=""></a>
-				<img src="https://img.shields.io/badge/license-MIT-green" alt=""></p>
-				<p>web/node.js常用方法工具集</p>
-				<a href="#feature" id="feature" style="color: inherit; text-decoration: none;">
-					<h2>feature</h2>
-				</a>
-				<ol>
-					<li>管理事件<a href="https://mtgoo.github.io/ctool/classes/eventemitter.html">【eventEmitter】</a>,<a href="https://mtgoo.github.io/ctool/classes/eventtarget.html">【eventTaget】</a></li>
-					<li>任务分割<a href="https://mtgoo.github.io/ctool/globals.html#taskssplite">【tasksSplite】</a></li>
-					<li>promise 在async/await下的异常管理<a href="https://mtgoo.github.io/ctool/globals.html#wrappromise">【wrapPromise】</a></li>
-					<li>轻量级ws<a href="https://mtgoo.github.io/ctool/classes/tinyws.html">【tinyWs】</a></li>
-					<li>重试执行任务<a href="https://mtgoo.github.io/ctool/globals.html#retryfn">【retryFn】</a></li>
-					<li>唯一ID<a href="https://mtgoo.github.io/ctool/globals.html#guid">【guid】</a></li>
-					<li>计时器<a href="https://mtgoo.github.io/ctool/classes/timer.html">【timer】</a></li>
-					<li>轻量级rpc<a href="https://mtgoo.github.io/ctool/classes/timer.html">【tinyRpc】</a></li>
-				</ol>
-				<p>API文档：<a href="https://mtgoo.github.io/ctool/">https://mtgoo.github.io/ctool/</a></p>
-				<a href="#安装" id="安装" style="color: inherit; text-decoration: none;">
-					<h2>安装</h2>
-				</a>
-				<p><code>npm install @mtgoo/ctool</code></p>
-			</div>
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>生成唯一ID</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>description</dt>
+						<dd><br/>
+							<br/>
+							参考:https://stackoverflow.com/questions/105034/how-to-create-guid-uuid
+						</dd>
+						<dt>example</dt>
+						<dd><pre><code class="language-typescript"><span class="hljs-keyword">const</span> id = UUID.create_v4();
+</code></pre>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">UUID</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="uuid.html#create_v4" class="tsd-kind-icon">create_<wbr>v4</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="create_v4" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> create_<wbr>v4</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">create_<wbr>v4<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in uuid.ts:18</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>uuidv4</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum">
-						<a href="enums/wseventenum.html" class="tsd-kind-icon">WSEvent<wbr>Enum</a>
+						<a href="../enums/wseventenum.html" class="tsd-kind-icon">WSEvent<wbr>Enum</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/debuffaction.html" class="tsd-kind-icon">Debuff<wbr>Action</a>
+						<a href="debuffaction.html" class="tsd-kind-icon">Debuff<wbr>Action</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="classes/eventemitter.html" class="tsd-kind-icon">Event<wbr>Emitter</a>
+						<a href="eventemitter.html" class="tsd-kind-icon">Event<wbr>Emitter</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="classes/eventtarget.html" class="tsd-kind-icon">Event<wbr>Target</a>
+						<a href="eventtarget.html" class="tsd-kind-icon">Event<wbr>Target</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/timer.html" class="tsd-kind-icon">Timer</a>
+						<a href="timer.html" class="tsd-kind-icon">Timer</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/tinyrpc_ws.html" class="tsd-kind-icon">Tiny<wbr>Rpc_<wbr>ws</a>
+						<a href="tinyrpc_ws.html" class="tsd-kind-icon">Tiny<wbr>Rpc_<wbr>ws</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/tinyws.html" class="tsd-kind-icon">Tiny<wbr>Ws</a>
+						<a href="tinyws.html" class="tsd-kind-icon">Tiny<wbr>Ws</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/uuid.html" class="tsd-kind-icon">UUID</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="uuid.html" class="tsd-kind-icon">UUID</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="uuid.html#create_v4" class="tsd-kind-icon">create_<wbr>v4</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/iwsopts.html" class="tsd-kind-icon">Iws<wbr>Opts</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/iwsopts.html" class="tsd-kind-icon">Iws<wbr>Opts</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/wsclienteventmap.html" class="tsd-kind-icon">WSClient<wbr>Event<wbr>Map</a>
+						<a href="../interfaces/wsclienteventmap.html" class="tsd-kind-icon">WSClient<wbr>Event<wbr>Map</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#wrappromise" class="tsd-kind-icon">Wrap<wbr>Promise</a>
+						<a href="../globals.html#wrappromise" class="tsd-kind-icon">Wrap<wbr>Promise</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#createws" class="tsd-kind-icon">create<wbr>Ws</a>
+						<a href="../globals.html#createws" class="tsd-kind-icon">create<wbr>Ws</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#retryfn" class="tsd-kind-icon">retry<wbr>Fn</a>
+						<a href="../globals.html#retryfn" class="tsd-kind-icon">retry<wbr>Fn</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#taskssplite" class="tsd-kind-icon">tasks<wbr>Splite</a>
+						<a href="../globals.html#taskssplite" class="tsd-kind-icon">tasks<wbr>Splite</a>
 					</li>
 				</ul>
 			</nav>
@@ -182,6 +232,6 @@
 	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
 </body>
 </html>

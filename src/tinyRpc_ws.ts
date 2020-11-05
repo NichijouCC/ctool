@@ -1,5 +1,4 @@
-import { config } from "chai";
-import { guid } from "./guid";
+import { UUID } from "./uuid";
 import { IwsOpts, TinyWs } from "./tinyWs";
 /**
  * 基于ws的简易rpc实现
@@ -58,7 +57,7 @@ export class TinyRpc_ws extends TinyWs {
     callMethod<T = any>(methodeName: string, params: any[]): Promise<T> {
         return new Promise((resolve, reject) => {
             if (this.beopen) {
-                let msgId = guid();
+                let msgId = UUID.create_v4();
                 this.rpcCall.set(msgId, resolve);
                 this.sendMessage(Buffer.from(JSON.stringify({ id: msgId, method: methodeName, params })));
             }

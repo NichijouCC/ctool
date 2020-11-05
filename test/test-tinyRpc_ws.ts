@@ -12,7 +12,6 @@ describe("tinyRpc-ws", () => {
         server.on("connection", (socket) => {
             socket.on("message", (data) => {
                 let datainfo = JSON.parse(data.toString())
-                console.log("method call", datainfo);
                 socket.send(Buffer.from(JSON.stringify({ id: datainfo.id, result: 3 })));
             })
         })
