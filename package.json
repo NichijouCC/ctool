@@ -26,6 +26,7 @@
     "lint": "eslint **/*.ts --fix --ignore-pattern node_modules/",
     "doc": "typedoc",
     "test": "cross-env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'test/*.ts'",
+    "test_one": "cross-env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'test/test-tinyRpc_ws.ts'",
     "patch": "npm version patch"
   },
   "devDependencies": {

@@ -5,7 +5,8 @@ import { WrapPromise } from "./wrapPromise";
 /**
  * websocket封装
  * 
- * @description
+ * @description <br/> 
+ * <br/>  
  * feature:
  * 1. 断线重连
  * 
@@ -62,7 +63,7 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
      * @param options 
      */
     static connect(url: string, options?: IwsOpts) {
-        return new TinyWs(url, options);
+        return new this(url, options);
     }
 
     private url: string;
@@ -124,8 +125,7 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     }
 
     protected onmessage = (ev: MessageEvent) => {
-        let data: Buffer = ev.data;
-        if (data) this.emit(WSEventEnum.message, ev.data);
+        this.emit(WSEventEnum.message, ev.data);
     }
 
     private reconnect = async () => {
@@ -189,12 +189,15 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     /**
      * 发送消息。注意：未建立连接,会发送失败
      */
-    sendMessage<T = any>(data: string) {
+    sendMessage<T = any>(data: string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView) {
         if (this.beopen) {
-            this.client.ins.send(Buffer.from(JSON.stringify(data)));
+            this.client.ins.send(data);
         }
     }
 }
+
+
+
 
 /**
  * 创建ws的可配置参数

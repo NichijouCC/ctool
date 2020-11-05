@@ -12,7 +12,7 @@ web/node.js常用方法工具集
 5. 重试执行任务[【retryFn】](https://mtgoo.github.io/ctool/globals.html#retryfn)
 6. 唯一ID[【guid】](https://mtgoo.github.io/ctool/globals.html#guid)
 7. 计时器[【timer】](https://mtgoo.github.io/ctool/classes/timer.html)
-
+7. 轻量级rpc[【tinyRpc】](https://mtgoo.github.io/ctool/classes/timer.html)
 
 API文档：https://mtgoo.github.io/ctool/
 

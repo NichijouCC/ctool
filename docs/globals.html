@@ -80,6 +80,7 @@
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/eventemitter.html" class="tsd-kind-icon">Event<wbr>Emitter</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/eventtarget.html" class="tsd-kind-icon">Event<wbr>Target</a></li>
 								<li class="tsd-kind-class"><a href="classes/timer.html" class="tsd-kind-icon">Timer</a></li>
+								<li class="tsd-kind-class"><a href="classes/tinyrpc_ws.html" class="tsd-kind-icon">Tiny<wbr>Rpc_<wbr>ws</a></li>
 								<li class="tsd-kind-class"><a href="classes/tinyws.html" class="tsd-kind-icon">Tiny<wbr>Ws</a></li>
 							</ul>
 						</section>
@@ -115,7 +116,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/wrapPromise.ts#L15">wrapPromise.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/1bbab0f/src/wrapPromise.ts#L16">wrapPromise.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -124,7 +125,9 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>参考：<a href="https://blog.grossman.io/how-to-write-async-await-without-try-catch-blocks-in-javascript/">how-to-write-async-await-without-try-catch</a></p>
+									<dd><br/>
+										<br/>
+										参考：[how-to-write-async-await-without-try-catch](https://blog.grossman.io/how-to-write-async-await-without-try-catch-blocks-in-javascript/)
 									</dd>
 									<dt>example</dt>
 									<dd><pre><code class="language-typescript"><span class="hljs-comment">//包裹api请求</span>
@@ -174,7 +177,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/tinyWs.ts#L274">tinyWs.ts:274</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/1bbab0f/src/tinyWs.ts#L280">tinyWs.ts:280</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -197,7 +200,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/guid.ts#L13">guid.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/1bbab0f/src/guid.ts#L14">guid.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -206,7 +209,9 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>参考:<a href="https://stackoverflow.com/questions/105034/how-to-create-guid-uuid">https://stackoverflow.com/questions/105034/how-to-create-guid-uuid</a></p>
+									<dd><br/>
+										<br/>
+										参考:https://stackoverflow.com/questions/105034/how-to-create-guid-uuid
 									</dd>
 									<dt>example</dt>
 									<dd><pre><code class="language-typescript"><span class="hljs-keyword">const</span> id = guid();
@@ -228,7 +233,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/retryFn.ts#L30">retryFn.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/1bbab0f/src/retryFn.ts#L30">retryFn.ts:30</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,8 +250,8 @@
         reject(value);
     }
 }), {
-    onceTryBefore: <span class="hljs-function">(<span class="hljs-params">index</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;开始执行&quot;</span>, index),
-    onceTryCallBack: <span class="hljs-function">(<span class="hljs-params">index, result, err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;单次执行结果:&quot;</span>, index, result, err)
+    <span class="hljs-attr">onceTryBefore</span>: <span class="hljs-function">(<span class="hljs-params">index</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;开始执行&quot;</span>, index),
+    <span class="hljs-attr">onceTryCallBack</span>: <span class="hljs-function">(<span class="hljs-params">index, result, err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;单次执行结果:&quot;</span>, index, result, err)
 })
     .then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
         <span class="hljs-comment">// do somethin</span>
@@ -364,7 +369,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/db3f32c/src/tasksSplite.ts#L27">tasksSplite.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/1bbab0f/src/tasksSplite.ts#L28">tasksSplite.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -373,7 +378,9 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>可用于：耗时函数拆分、削峰等</p>
+									<dd><br/>
+										<br/>
+										可用于：耗时函数拆分、削峰等
 									</dd>
 									<dt>example</dt>
 									<dd><pre><code class="language-typescript"><span class="hljs-keyword">const</span> tasks = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">100000</span>).map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {
@@ -382,7 +389,7 @@
     });
 });
 tasksSplite(tasks, {
-    onprogress: <span class="hljs-function">(<span class="hljs-params">progress, result</span>) =&gt;</span> {
+    <span class="hljs-attr">onprogress</span>: <span class="hljs-function">(<span class="hljs-params">progress, result</span>) =&gt;</span> {
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;progress&quot;</span>, progress, result);
     }
 });
@@ -481,6 +488,9 @@ tasksSplite(tasks, {
 						<a href="classes/timer.html" class="tsd-kind-icon">Timer</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/tinyrpc_ws.html" class="tsd-kind-icon">Tiny<wbr>Rpc_<wbr>ws</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/tinyws.html" class="tsd-kind-icon">Tiny<wbr>Ws</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -524,14 +534,15 @@ tasksSplite(tasks, {
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
 			</ul>
 			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+			</ul>
+			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
