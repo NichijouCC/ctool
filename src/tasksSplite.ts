@@ -35,7 +35,7 @@ export async function tasksSplite<T>(
 ): Promise<T[]> {
     const { groupCount = 10, waitTime = 0, onprogress } = options || {};
     const batchCount = Math.ceil(tasks.length / groupCount);
-    const results: T[] = [];
+    let results: T[] = [];
     for (let i = 0; i < batchCount; i++) {
         const currentTasks = tasks.slice(i * groupCount, Math.min((i + 1) * groupCount, tasks.length));
         await new Promise((resolve, reject) => {
