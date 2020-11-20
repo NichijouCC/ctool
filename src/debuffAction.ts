@@ -7,7 +7,7 @@
  * 
  * @example
  * ```typescript
- * const ins = DebuffAction.excute(() => {
+ * const ins = DebuffAction.create(() => {
  *     const delay = setTimeout(() => console.log("do something!"), 10000000);
  *     return () => clearTimeout(delay);
  * });
@@ -30,7 +30,7 @@ export class DebuffAction {
      * 执行目标方法
      * @param action 目标方法
      */
-    static excute(action: () => Function) {
+    static create(action: () => Function) {
         const newAct = new DebuffAction();
         if (action) {
             newAct.debuff = action();

@@ -5,7 +5,7 @@ import { expect } from "chai";
 describe("debuffaction", () => {
     it("do action and dispose", () => {
         let a = 0;
-        const action = DebuffAction.excute(() => {
+        const action = DebuffAction.create(() => {
             a = 100;
             const time = setTimeout(() => { a = 5; }, 1000);
             return () => {

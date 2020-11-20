@@ -7,3 +7,4 @@ export * from "./wrapPromise";
 export * from "./uuid";
 export * from "./timer";
 export * from './tinyRpc_ws';
+export * from './persistPromise';
