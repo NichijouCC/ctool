@@ -1,10 +1,13 @@
 /**
- * 复用promise结果直到promise结束；
- * 触发 dropCondition 即解除复用，默认dropCondition为func 结束。
+ * 复用promise结果直到promise结束；  
+ * 触发 dropCondition （promise.then）即解除复用，(promise.reject)即无限复用；  
+ * 默认dropCondition为func 结束。
+ * 
  * 
  * 
  * @example
  * ```
+ * //任务执行中时复用结果，执行结束时候重新执行
  * const action = PersistPromise.create((): Promise<number> => {
  *     return new Promise((resolve, reject) => {
  *         setTimeout(() => resolve(Math.random()), 100)
@@ -14,6 +17,26 @@
  *     let bequal = results[0] == results[1] && results[1] == results[2];
  *     console.log("result be equal", bequal);
  * })
+ * 
+ * 
+ * // task任务：修改a，persistTask保持task仅仅执行一次，复用结果
+ * let a = 0;
+ * let changA_task = () => {
+ *     return new Promise((resolve) => {
+ *         setTimeout(() => {
+ *             a++;
+ *             resolve()
+ *         }, 1000)
+ *     })
+ * }
+ * 
+ * let persistTask = PersistPromise.create(changA_task, () => Promise.reject());
+ * setInterval(async () => {
+ *     await persistTask();
+ *     console.log("a 一直为1", a);
+ * }, 1000);
+ * 
+ * 
  * ```
  */
 export class PersistPromise {
@@ -26,9 +49,11 @@ export class PersistPromise {
                 let task = func();
                 this.doingtasks.set(func, task);
                 if (dropCondition) {
-                    dropCondition().then(() => {
-                        this.doingtasks.delete(func);
-                    })
+                    dropCondition()
+                        .then(() => {
+                            this.doingtasks.delete(func);
+                        })
+                        .catch(() => { })
                 } else {
                     task.finally(() => {
                         this.doingtasks.delete(func);

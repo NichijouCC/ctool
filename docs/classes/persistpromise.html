@@ -70,11 +70,13 @@
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>复用promise结果直到promise结束；
-						触发 dropCondition 即解除复用，默认dropCondition为func 结束。</p>
+							触发 dropCondition （promise.then）即解除复用，(promise.reject)即无限复用；
+						默认dropCondition为func 结束。</p>
 					</div>
 					<dl class="tsd-comment-tags">
 						<dt>example</dt>
-						<dd><pre><code>const action = PersistPromise.create((): <span class="hljs-built_in">Promise</span>&lt;number&gt; =&gt; {
+						<dd><pre><code><span class="hljs-regexp">//</span>任务执行中时复用结果，执行结束时候重新执行
+const action = PersistPromise.create((): <span class="hljs-built_in">Promise</span>&lt;number&gt; =&gt; {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve, reject)</span> =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> resolve(<span class="hljs-built_in">Math</span>.random()), <span class="hljs-number">100</span>)
     })
@@ -82,7 +84,27 @@
 <span class="hljs-built_in">Promise</span>.all([action(), action(), action()]).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(results)</span> =&gt;</span> {
     let bequal = results[<span class="hljs-number">0</span>] == results[<span class="hljs-number">1</span>] &amp;&amp; results[<span class="hljs-number">1</span>] == results[<span class="hljs-number">2</span>];
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;result be equal&quot;</span>, bequal);
-})</code></pre>
+})
+
+
+<span class="hljs-regexp">//</span> task任务：修改a，persistTask保持task仅仅执行一次，复用结果
+let a = <span class="hljs-number">0</span>;
+let changA_task = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve)</span> =&gt;</span> {
+        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            a++;
+            resolve()
+        }, <span class="hljs-number">1000</span>)
+    })
+}
+
+let persistTask = PersistPromise.create(changA_task, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">Promise</span>.reject());
+<span class="hljs-built_in">setInterval</span>(<span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">await</span> persistTask();
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;a 一直为1&quot;</span>, a);
+}, <span class="hljs-number">1000</span>);
+
+</code></pre>
 						</dd>
 					</dl>
 				</div>
@@ -122,7 +144,7 @@
 					<div class="tsd-signature tsd-kind-icon">doingtasks<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Map()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in persistPromise.ts:20</li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/105b799/src/persistPromise.ts#L43">persistPromise.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -139,7 +161,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in persistPromise.ts:21</li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/105b799/src/persistPromise.ts#L44">persistPromise.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
