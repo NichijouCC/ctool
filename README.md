@@ -15,7 +15,7 @@ web/node.js常用方法工具集
 8. 计时器[【timer】](https://nichijoucc.github.io/ctool/classes/timer.html)
 9. 轻量级rpc[【tinyRpc】](https://nichijoucc.github.io/ctool/classes/tinyrpc_ws.html)
 10. promise结果复用[【persistPromise】](https://nichijoucc.github.io/ctool/classes/persistpromise.html)
-11. 副作用管理[【debuffAction】](https://nichijoucc.github.io/ctool/classes/debuffAction.html)
+11. 副作用管理[【debuffAction】](https://nichijoucc.github.io/ctool/classes/debuffaction.html)
 
 API文档：https://nichijoucc.github.io/ctool/
 

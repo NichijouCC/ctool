@@ -10,7 +10,7 @@
  * 
  * @example
  * ```
- * //任务执行中时复用结果，执行结束时候重新执行
+ * //example1: 任务执行中时复用结果，执行结束时候重新执行
  * const action = PersistPromise.create(() => {
  *     return new Promise<number>((resolve, reject) => {
  *         setTimeout(() => resolve(Math.random()), 100)
@@ -22,7 +22,7 @@
  * })
  * 
  * 
- * // task任务：修改a，persistTask保持task仅仅执行一次，复用结果
+ * // example2: task任务为修改a，persistTask保持task仅仅执行一次，复用结果
  * let a = 0;
  * let changA_task = () => {
  *     return new Promise((resolve) => {
