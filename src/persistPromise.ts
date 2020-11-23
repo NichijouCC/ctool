@@ -1,15 +1,18 @@
 /**
- * 复用promise结果直到promise结束；  
+ * 复用promise  
+ * @description <br/>
+ * <br/>
+ * 默认dropCondition为func 结束；  
  * 触发 dropCondition （promise.then）即解除复用，(promise.reject)即无限复用；  
- * 默认dropCondition为func 结束。
+ * 
  * 
  * 
  * 
  * @example
  * ```
  * //任务执行中时复用结果，执行结束时候重新执行
- * const action = PersistPromise.create((): Promise<number> => {
- *     return new Promise((resolve, reject) => {
+ * const action = PersistPromise.create(() => {
+ *     return new Promise<number>((resolve, reject) => {
  *         setTimeout(() => resolve(Math.random()), 100)
  *     })
  * });

@@ -12,7 +12,7 @@
  * 
  * @example
  * ```typescript
- * const tasks = new Array(100000).map(item => {
+ * const tasks = [...Array(100)].map(item => {
  *     return () => new Promise((resolve, reject) => {
  *         setTimeout(() => resolve(1), 1000);
  *     });
@@ -38,13 +38,13 @@ export async function tasksSplite<T>(
     let results: T[] = [];
     for (let i = 0; i < batchCount; i++) {
         const currentTasks = tasks.slice(i * groupCount, Math.min((i + 1) * groupCount, tasks.length));
-        await new Promise((resolve, reject): Promise<void> => {
-            return Promise.all(currentTasks.map(item => {
+        await new Promise<void>((resolve, reject) => {
+            Promise.all(currentTasks.map(item => {
                 return item()
                     .then((res) => {
                         results.push(res);
                         onprogress?.(results.length / tasks.length, res);
-                    });
+                    }).catch(ee => console.error(ee))
             }))
                 .then(() => {
                     setTimeout(() => resolve(), waitTime);

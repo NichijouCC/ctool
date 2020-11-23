@@ -4,12 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test_one": "ts-node/register 'src/tasksSplite.ts'",
+    "start": "node ./run.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@mtgoo/ctool": "^0.0.2",
+    "@mtgoo/ctool": "0.0.7",
     "typescript": "^4.0.3"
+  },
+  "devDependencies": {
+    "fs": "^0.0.1-security",
+    "ts-node": "^9.0.0"
   }
 }

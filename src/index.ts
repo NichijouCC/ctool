@@ -1,5 +1,6 @@
 export * from "./debuffAction";
 export * from "./eventEmitter";
+export * from "./eventTarget";
 export * from "./retryFn";
 export * from "./tinyWs";
 export * from "./tasksSplite";

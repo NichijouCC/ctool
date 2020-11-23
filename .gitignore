@@ -4,3 +4,4 @@
 /*.log
 /package-lock.json
 /examples/node_modules
+/examples/*.lock

@@ -117,7 +117,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/105b799/src/wrapPromise.ts#L16">wrapPromise.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/74a7321/src/wrapPromise.ts#L16">wrapPromise.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -178,7 +178,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/105b799/src/tinyWs.ts#L280">tinyWs.ts:280</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/74a7321/src/tinyWs.ts#L280">tinyWs.ts:280</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -201,7 +201,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/105b799/src/retryFn.ts#L30">retryFn.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/74a7321/src/retryFn.ts#L30">retryFn.ts:30</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -337,7 +337,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/105b799/src/tasksSplite.ts#L28">tasksSplite.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/74a7321/src/tasksSplite.ts#L28">tasksSplite.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -351,7 +351,7 @@
 										可用于：耗时函数拆分、削峰等
 									</dd>
 									<dt>example</dt>
-									<dd><pre><code class="language-typescript"><span class="hljs-keyword">const</span> tasks = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">100000</span>).map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {
+									<dd><pre><code class="language-typescript"><span class="hljs-keyword">const</span> tasks = [...Array(<span class="hljs-number">100</span>)].map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {
     <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> resolve(<span class="hljs-number">1</span>), <span class="hljs-number">1000</span>);
     });

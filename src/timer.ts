@@ -7,7 +7,7 @@ import { EventTarget } from "./eventTarget";
  * @example
  * 
  * ```typescript
- * const timer = Timer.create();
+ * const timer =new Timer();
  * // update监听
  * timer.tick.addEventListener((deltaTime) => {
  *     console.log("deltaTime:", deltaTime);
@@ -52,7 +52,7 @@ export class Timer {
      * 创建计时器实例
      */
     constructor() {
-        this._loopFunc = requestAnimationFrame ?? ((func: () => void) => { setTimeout(func, 0); });
+        this._loopFunc = global.requestAnimationFrame ?? ((func: () => void) => { setTimeout(func, 0); });
         this.startLoop();
     }
 
@@ -100,7 +100,7 @@ export class Timer {
 
     private _bedisposed = false;
     /**
-     * 释放次实例
+     * 销毁
      */
     dispose() {
         this._bedisposed = true;
