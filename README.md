@@ -6,7 +6,7 @@ web/node.js常用方法工具集
 
 ## feature
 1. 管理事件(类似nodejs eventEmitter)[【eventEmitter】](https://nichijoucc.github.io/ctool/classes/eventemitter.html)
-2. 管理事件((类似nodejs eventTaget))[【eventTaget】](https://nichijoucc.github.io/ctool/classes/eventtarget.html)
+2. 管理事件((类似nodejs eventTarget))[【eventTarget】](https://nichijoucc.github.io/ctool/classes/eventtarget.html)
 3. 任务分割[【tasksSplite】](https://nichijoucc.github.io/ctool/globals.html#taskssplite)
 4. promise 在async/await下的异常管理[【wrapPromise】](https://nichijoucc.github.io/ctool/globals.html#wrappromise)
 5. 轻量级ws[【tinyWs】](https://nichijoucc.github.io/ctool/classes/tinyws.html)
@@ -16,6 +16,8 @@ web/node.js常用方法工具集
 9. 轻量级rpc[【tinyRpc】](https://nichijoucc.github.io/ctool/classes/tinyrpc_ws.html)
 10. promise结果复用[【persistPromise】](https://nichijoucc.github.io/ctool/classes/persistpromise.html)
 11. 副作用管理[【debuffAction】](https://nichijoucc.github.io/ctool/classes/debuffaction.html)
+12. 对象池[【objectPool】](https://nichijoucc.github.io/ctool/classes/objectpool.html)
+
 
 API文档：https://nichijoucc.github.io/ctool/
 

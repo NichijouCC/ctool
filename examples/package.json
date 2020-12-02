@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@mtgoo/ctool": "0.0.7",
+    "@mtgoo/ctool": "0.0.8",
     "typescript": "^4.0.3"
   },
   "devDependencies": {

@@ -21,7 +21,7 @@ describe("tasksSplite", () => {
 
     it("tasks error", (done) => {
         const tasks = [...Array(100)].map(item => {
-            return () => new Promise((resolve, reject) => {
+            return () => new Promise<void>((resolve, reject) => {
                 setTimeout(() => resolve(), 10);
             });
         });

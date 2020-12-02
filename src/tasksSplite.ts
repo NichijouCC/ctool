@@ -44,7 +44,7 @@ export async function tasksSplite<T>(
                     .then((res) => {
                         results.push(res);
                         onprogress?.(results.length / tasks.length, res);
-                    }).catch(ee => console.error(ee))
+                    })
             }))
                 .then(() => {
                     setTimeout(() => resolve(), waitTime);

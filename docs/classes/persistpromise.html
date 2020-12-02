@@ -79,7 +79,7 @@
 							触发 dropCondition （promise.then）即解除复用，(promise.reject)即无限复用；
 						</dd>
 						<dt>example</dt>
-						<dd><pre><code><span class="hljs-regexp">//</span>任务执行中时复用结果，执行结束时候重新执行
+						<dd><pre><code>//example1: 任务执行中时复用结果，执行结束时候重新执行
 const action = PersistPromise.create(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>&lt;number&gt;(<span class="hljs-function"><span class="hljs-params">(resolve, reject)</span> =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> resolve(<span class="hljs-built_in">Math</span>.random()), <span class="hljs-number">100</span>)
@@ -91,7 +91,7 @@ const action = PersistPromise.create(<span class="hljs-function"><span class="hl
 })
 
 
-<span class="hljs-regexp">//</span> task任务：修改a，persistTask保持task仅仅执行一次，复用结果
+<span class="hljs-regexp">//</span> example2: task任务为修改a，persistTask保持task仅仅执行一次，复用结果
 let a = <span class="hljs-number">0</span>;
 let changA_task = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve)</span> =&gt;</span> {
@@ -148,7 +148,7 @@ let persistTask = PersistPromise.create(changA_task, <span class="hljs-function"
 					<div class="tsd-signature tsd-kind-icon">doingtasks<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Map()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/74a7321/src/persistPromise.ts#L46">persistPromise.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/c94fc66/src/persistPromise.ts#L46">persistPromise.ts:46</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -165,7 +165,7 @@ let persistTask = PersistPromise.create(changA_task, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/74a7321/src/persistPromise.ts#L47">persistPromise.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/c94fc66/src/persistPromise.ts#L47">persistPromise.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -235,6 +235,9 @@ let persistTask = PersistPromise.create(changA_task, <span class="hljs-function"
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="eventtarget.html" class="tsd-kind-icon">Event<wbr>Target</a>
 					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="objectpool.html" class="tsd-kind-icon">Object<wbr>Pool</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
@@ -267,6 +270,12 @@ let persistTask = PersistPromise.create(changA_task, <span class="hljs-function"
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/wsclienteventmap.html" class="tsd-kind-icon">WSClient<wbr>Event<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#ins" class="tsd-kind-icon">ins</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#pool" class="tsd-kind-icon">pool</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../globals.html#wrappromise" class="tsd-kind-icon">Wrap<wbr>Promise</a>

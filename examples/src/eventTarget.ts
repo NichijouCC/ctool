@@ -1,4 +1,4 @@
-import { EventTarget } from "@mtgoo/ctool/dist/types/eventTarget";
+import { EventTarget } from "@mtgoo/ctool";
 
 
 const clickEvent = new EventTarget();
