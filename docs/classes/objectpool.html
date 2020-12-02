@@ -90,7 +90,10 @@
 <span class="hljs-keyword">let</span> ins = pool.create();
 
 <span class="hljs-comment">//回收</span>
-pool.recycle(ins);</code></pre>
+pool.recycle(ins);
+
+<span class="hljs-comment">//清空池子</span>
+pool.clear();</code></pre>
 						</dd>
 					</dl>
 				</div>
@@ -138,6 +141,7 @@ pool.recycle(ins);</code></pre>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="objectpool.html#clear" class="tsd-kind-icon">clear</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="objectpool.html#create" class="tsd-kind-icon">create</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="objectpool.html#recycle" class="tsd-kind-icon">recycle</a></li>
 							</ul>
@@ -157,7 +161,7 @@ pool.recycle(ins);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in objectPool.ts:33</li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/5a4c14c/src/objectPool.ts#L36">objectPool.ts:36</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -220,7 +224,7 @@ pool.recycle(ins);</code></pre>
 					<div class="tsd-signature tsd-kind-icon">_create<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in objectPool.ts:29</li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/5a4c14c/src/objectPool.ts#L32">objectPool.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -245,7 +249,7 @@ pool.recycle(ins);</code></pre>
 					<div class="tsd-signature tsd-kind-icon">_pool<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in objectPool.ts:31</li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/5a4c14c/src/objectPool.ts#L34">objectPool.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -255,7 +259,7 @@ pool.recycle(ins);</code></pre>
 					<div class="tsd-signature tsd-kind-icon">_reset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in objectPool.ts:30</li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/5a4c14c/src/objectPool.ts#L33">objectPool.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -293,7 +297,7 @@ pool.recycle(ins);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in objectPool.ts:33</li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/5a4c14c/src/objectPool.ts#L36">objectPool.ts:36</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -304,6 +308,28 @@ pool.recycle(ins);</code></pre>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="clear" class="tsd-anchor"></a>
+					<h3>clear</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">clear<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/5a4c14c/src/objectPool.ts#L72">objectPool.ts:72</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>清空池子</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="create" class="tsd-anchor"></a>
 					<h3>create</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -313,7 +339,7 @@ pool.recycle(ins);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in objectPool.ts:49</li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/5a4c14c/src/objectPool.ts#L52">objectPool.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -335,7 +361,7 @@ pool.recycle(ins);</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in objectPool.ts:62</li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/5a4c14c/src/objectPool.ts#L65">objectPool.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -398,6 +424,9 @@ pool.recycle(ins);</code></pre>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="objectpool.html#size" class="tsd-kind-icon">size</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="objectpool.html#clear" class="tsd-kind-icon">clear</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="objectpool.html#create" class="tsd-kind-icon">create</a>

@@ -23,6 +23,9 @@
  * 
  * //回收
  * pool.recycle(ins);
+ * 
+ * //清空池子
+ * pool.clear();
  * ```
  */
 export class ObjectPool<T> {
@@ -61,6 +64,13 @@ export class ObjectPool<T> {
      */
     recycle(obj: T) {
         this._pool.push(obj);
+    }
+
+    /**
+     * 清空池子
+     */
+    clear() {
+        this._pool = [];
     }
 }
 
