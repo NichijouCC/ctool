@@ -1,5 +1,5 @@
 # tool
-[![](https://img.shields.io/badge/npm-0.0.9-blue)](https://www.npmjs.com/package/@mtgoo/ctool)
+[![](https://img.shields.io/badge/npm-0.0.10-blue)](https://www.npmjs.com/package/@mtgoo/ctool)
 ![](https://img.shields.io/badge/license-MIT-green)
 
 web/node.js常用方法工具集
@@ -17,6 +17,8 @@ web/node.js常用方法工具集
 10. promise结果复用[【persistPromise】](https://nichijoucc.github.io/ctool/classes/persistpromise.html)
 11. 副作用管理[【debuffAction】](https://nichijoucc.github.io/ctool/classes/debuffaction.html)
 12. 对象池[【objectPool】](https://nichijoucc.github.io/ctool/classes/objectpool.html)
+13. 数据分类[【classify】](https://nichijoucc.github.io/ctool/classes/classify.html)
+
 
 
 API文档：https://nichijoucc.github.io/ctool/
