@@ -60,10 +60,10 @@ export class Classify {
      * ```
      * let b = Classify.arrayToArray(
      *     [{ a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 3 }, { a: 2, b: 3, c: 1 }],
-     *     { itemToKey: (item) => item.a },
-     *     { itemToKey: (item) => item.b });
+     *     { itemToKey: (item) => item.a, keyTransformt: (item) => { return { newKey: item, layer: 1 } } },
+     *     { itemToKey: (item) => item.b, keyTransformt: (item) => { return { newKey: item, layer: 2 } } });
      * console.log(JSON.stringify(b));
-     * // [{"key":1,"child":[{"key":2,"child":[{"a":1,"b":2}]}]},{"key":2,"child":[{"key":2,"child":[{"a":2,"b":2}]},{"key":3,"child":[{"a":2,"b":3},{"a":2,"b":3,"c":1}]}]}]
+     * //[{"newKey":1,"layer":1,"child":[{"newKey":2,"layer":2,"child":[{"a":1,"b":2}]}]},{"newKey":2,"layer":1,"child":[{"newKey":2,"layer":2,"child":[{"a":2,"b":2}]},{"newKey":3,"layer":2,"child":[{"a":2,"b":3},{"a":2,"b":3,"c":1}]}]}
      * ```
      * 
      */
