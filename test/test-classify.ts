@@ -40,15 +40,15 @@ describe("Classify", () => {
                 [{ a: 1, b: 1 }, { a: 1, b: 3 }, { a: 2, b: 2 }, { a: 3, b: 2 }, { a: 4, b: 3 }, { a: 5, b: 3, c: 4 }, { a: 1, b: 3, c: 5 }],
                 {
                     itemToKey: item => item.a,
-                    keyTransformt: key => { return { newKey: key, layer: 1 } }
+                    layerTransformater: key => { return { newKey: key, layer: 1 } }
                 },
                 {
                     itemToKey: item => item.b,
-                    keyTransformt: key => { return { newKey: key, layer: 2 } }
+                    layerTransformater: key => { return { newKey: key, layer: 2 } }
                 },
                 {
                     itemToKey: item => item.c,
-                    keyTransformt: key => { return { newKey: key, layer: 3 } }
+                    layerTransformater: key => { return { newKey: key, layer: 3 } }
                 }
             )
             expect(newArr.length).to.equal(5);

@@ -4,8 +4,9 @@
 export class Classify {
     /**
      * 将数组转为多级MAP
+     * @description 分为几级由不定参数个数决定
      * @param arr 目标数组
-     * @param args 不定参数
+     * @param args 不定参数，对应每一层级的key
      * 
      * @example
      * ```
@@ -52,16 +53,19 @@ export class Classify {
 
     /**
      * 将数组转为多级数组
+     * @description 分为几级由不定参数个数决定
      * @param arr 目标数组
      * @param args 不定参数
+     * @param args.itemToKey 对应层级分组的key值
+     * @param args.keyTransformt 将对应层级{key,item}转换为其他结构
      * 
      * @example
      * 
      * ```
      * let b = Classify.arrayToArray(
      *     [{ a: 1, b: 2 }, { a: 2, b: 2 }, { a: 2, b: 3 }, { a: 2, b: 3, c: 1 }],
-     *     { itemToKey: (item) => item.a, keyTransformt: (item) => { return { newKey: item, layer: 1 } } },
-     *     { itemToKey: (item) => item.b, keyTransformt: (item) => { return { newKey: item, layer: 2 } } });
+     *     { itemToKey: (item) => item.a, layerTransformater: (key,item) => { return { newKey: key, layer: 1 } } },
+     *     { itemToKey: (item) => item.b, layerTransformater: (key,item) => { return { newKey: key, layer: 2 } } });
      * console.log(JSON.stringify(b));
      * //[{"newKey":1,"layer":1,"child":[{"newKey":2,"layer":2,"child":[{"a":1,"b":2}]}]},{"newKey":2,"layer":1,"child":[{"newKey":2,"layer":2,"child":[{"a":2,"b":2}]},{"newKey":3,"layer":2,"child":[{"a":2,"b":3},{"a":2,"b":3,"c":1}]}]}
      * ```
@@ -71,25 +75,25 @@ export class Classify {
         arr: T[],
         ...args: {
             itemToKey: (item: T) => K,
-            keyTransformt?: (item: K) => U
+            layerTransformater?: (key: K, item?: T) => U
         }[]): ({ key?: K, child: any[] } & Partial<U>)[] {
 
         let [condition, ...rest] = args;
         if (condition == null) return arr as any;
-        let { itemToKey, keyTransformt } = condition;
-        let arrLayer: { key: K, child: any[] }[] = [];
+        let { itemToKey, layerTransformater } = condition;
+        let arrLayer: { key: K, item: T, child: any[] }[] = [];
         arr.forEach(item => {
             let key = itemToKey(item);
             let target = arrLayer.find(child => child.key == key);
             if (target != null) {
                 target.child.push(item);
             } else {
-                arrLayer.push({ key, child: [item] });
+                arrLayer.push({ key, item, child: [item] });
             }
         });
-        if (keyTransformt != null) {
+        if (layerTransformater != null) {
             arrLayer.forEach((item, index) => {
-                arrLayer[index] = { ...keyTransformt(item.key), child: item.child } as any;
+                arrLayer[index] = { ...layerTransformater(item.key, item.item), child: item.child } as any;
             })
         }
 
