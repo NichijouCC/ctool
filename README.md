@@ -1,5 +1,5 @@
 # tool
-[![](https://img.shields.io/badge/npm-0.0.10-blue)](https://www.npmjs.com/package/@mtgoo/ctool)
+[![](https://img.shields.io/badge/npm-0.0.13-blue)](https://www.npmjs.com/package/@mtgoo/ctool)
 ![](https://img.shields.io/badge/license-MIT-green)
 
 web/node.js常用方法工具集
