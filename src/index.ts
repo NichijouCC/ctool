@@ -11,4 +11,4 @@ export * from './tinyRpc_ws';
 export * from './persistPromise';
 export * from './objectPool';
 export * from './classify';
-
+export * from './task';

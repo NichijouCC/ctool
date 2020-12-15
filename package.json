@@ -1,6 +1,6 @@
 {
   "name": "@mtgoo/ctool",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "main": "./dist/ctool.js",
   "module": "./dist/ctool.es.js",
   "typings": "./dist/types/index.d.ts",
@@ -27,7 +27,7 @@
     "doc": "typedoc",
     "test": "cross-env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'test/*.ts'",
     "test_one": "cross-env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'test/test-classify.ts'",
-    "test_t": "cross-env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'src/classify.ts'",
+    "test_t": "cross-env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'src/task.ts'",
     "patch": "npm version patch"
   },
   "devDependencies": {

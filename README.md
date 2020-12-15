@@ -1,5 +1,5 @@
 # tool
-[![](https://img.shields.io/badge/npm-0.0.13-blue)](https://www.npmjs.com/package/@mtgoo/ctool)
+[![](https://img.shields.io/badge/npm-0.0.16-blue)](https://www.npmjs.com/package/@mtgoo/ctool)
 ![](https://img.shields.io/badge/license-MIT-green)
 
 web/node.js常用方法工具集
@@ -18,6 +18,7 @@ web/node.js常用方法工具集
 11. 副作用管理[【debuffAction】](https://nichijoucc.github.io/ctool/classes/debuffaction.html)
 12. 对象池[【objectPool】](https://nichijoucc.github.io/ctool/classes/objectpool.html)
 13. 数据分类[【classify】](https://nichijoucc.github.io/ctool/classes/classify.html)
+14. promise控制句柄暴露[【task】](https://nichijoucc.github.io/ctool/classes/task.html)
 
 
 

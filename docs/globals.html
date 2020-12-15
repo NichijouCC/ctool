@@ -82,6 +82,7 @@
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/eventtarget.html" class="tsd-kind-icon">Event<wbr>Target</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/objectpool.html" class="tsd-kind-icon">Object<wbr>Pool</a></li>
 								<li class="tsd-kind-class"><a href="classes/persistpromise.html" class="tsd-kind-icon">Persist<wbr>Promise</a></li>
+								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/task.html" class="tsd-kind-icon">Task</a></li>
 								<li class="tsd-kind-class"><a href="classes/timer.html" class="tsd-kind-icon">Timer</a></li>
 								<li class="tsd-kind-class"><a href="classes/tinyrpc_ws.html" class="tsd-kind-icon">Tiny<wbr>Rpc_<wbr>ws</a></li>
 								<li class="tsd-kind-class"><a href="classes/tinyws.html" class="tsd-kind-icon">Tiny<wbr>Ws</a></li>
@@ -122,7 +123,7 @@
 					<div class="tsd-signature tsd-kind-icon">ins<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol"> = pool.create()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/eb0f9cf/src/objectPool.ts#L88">objectPool.ts:88</a></li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/32fcd91/src/objectPool.ts#L88">objectPool.ts:88</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -132,7 +133,7 @@
 					<div class="tsd-signature tsd-kind-icon">pool<span class="tsd-signature-symbol">:</span> <a href="classes/objectpool.html" class="tsd-signature-type">ObjectPool</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new ObjectPool({create: () &#x3D;&gt; new Float32Array(4),reset: (item: Float32Array) &#x3D;&gt; {for (let i &#x3D; 0; i &lt; item.length; i++) {item[i] &#x3D; 0;}}})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/eb0f9cf/src/objectPool.ts#L78">objectPool.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/32fcd91/src/objectPool.ts#L78">objectPool.ts:78</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -149,7 +150,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/eb0f9cf/src/wrapPromise.ts#L16">wrapPromise.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/32fcd91/src/wrapPromise.ts#L16">wrapPromise.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -210,7 +211,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/eb0f9cf/src/tinyWs.ts#L280">tinyWs.ts:280</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/32fcd91/src/tinyWs.ts#L280">tinyWs.ts:280</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -233,7 +234,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/eb0f9cf/src/retryFn.ts#L30">retryFn.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/32fcd91/src/retryFn.ts#L30">retryFn.ts:30</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -369,7 +370,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/eb0f9cf/src/tasksSplite.ts#L28">tasksSplite.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/32fcd91/src/tasksSplite.ts#L28">tasksSplite.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -492,6 +493,9 @@ tasksSplite(tasks, {
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/persistpromise.html" class="tsd-kind-icon">Persist<wbr>Promise</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/task.html" class="tsd-kind-icon">Task</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/timer.html" class="tsd-kind-icon">Timer</a>
