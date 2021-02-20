@@ -17,8 +17,8 @@
  *     })
  * });
  * Promise.all([action(), action(), action()]).then((results) => {
- *     let bequal = results[0] == results[1] && results[1] == results[2];
- *     console.log("result be equal", bequal);
+ *     let beEqual = results[0] == results[1] && results[1] == results[2];
+ *     console.log("result be equal", beEqual);
  * })
  * 
  * 

@@ -25,18 +25,18 @@ import { EventTarget } from "./eventTarget";
 export class Timer {
     private _lastTime: number;
     private _recordTime: number = 0;
-    private _beactive: boolean = true;
+    private _beActive: boolean = true;
     /**
      * 是否激活计时器,默认：true
      */
-    set beactive(state: boolean) {
+    set beActive(state: boolean) {
         if (state == false) {
             this._lastTime = null;
         }
-        this._beactive = state;
+        this._beActive = state;
     }
 
-    get beactive() { return this._beactive; }
+    get beActive() { return this._beActive; }
 
     private _interval: number;
     /**
@@ -51,18 +51,15 @@ export class Timer {
     /**
      * 创建计时器实例
      */
-    constructor() {
-        this._loopFunc = global.requestAnimationFrame ?? ((func: () => void) => { setTimeout(func, 0); });
+    constructor(opts: { interval?: number }) {
         this.startLoop();
     }
-
-    private _loopFunc: (func: () => void) => void;
 
     private _tickDeltaTime: number = 0;
     private _tickOffsetTime: number = 0;
 
     private startLoop = () => {
-        if (this._beactive) {
+        if (this._beActive) {
             const currentTime = Date.now();
             const deltaTime = this._lastTime != null ? (currentTime - this._lastTime) : 0;
             this._lastTime = currentTime;
@@ -81,7 +78,11 @@ export class Timer {
             }
         }
         if (!this._bedisposed) {
-            this._loopFunc(this.startLoop);
+            if (typeof requestAnimationFrame != undefined) {
+                requestAnimationFrame(this.startLoop);
+            } else {
+                setTimeout(this.startLoop, 0);
+            }
         }
     }
 
