@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>UUID | @mtgoo/ctool</title>
+	<title>ITransition | @mtgoo/ctool</title>
 	<meta name="description" content="Documentation for @mtgoo/ctool">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,40 +56,28 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="uuid.html">UUID</a>
+					<a href="itransition.html">ITransition</a>
 				</li>
 			</ul>
-			<h1>Class UUID</h1>
+			<h1>Interface ITransition</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>生成唯一ID</p>
-					</div>
-					<dl class="tsd-comment-tags">
-						<dt>description</dt>
-						<dd><br/>
-							<br/>
-							参考:https://stackoverflow.com/questions/105034/how-to-create-guid-uuid
-						</dd>
-						<dt>example</dt>
-						<dd><pre><code class="language-typescript"><span class="hljs-keyword">const</span> id = UUID.create_v4();
-</code></pre>
-						</dd>
-					</dl>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">UUID</span>
+						<span class="target">ITransition</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/fsmtranslation.html" class="tsd-signature-type">FsmTranslation</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -97,37 +85,68 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="uuid.html#create_v4" class="tsd-kind-icon">create_<wbr>v4</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itransition.html#checkfunc" class="tsd-kind-icon">check<wbr>Func</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itransition.html#from" class="tsd-kind-icon">from</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itransition.html#to" class="tsd-kind-icon">to</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="create_v4" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> create_<wbr>v4</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">create_<wbr>v4<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/3977347/src/uuid.ts#L18">uuid.ts:18</a></li>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="checkfunc" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> check<wbr>Func</h3>
+					<div class="tsd-signature tsd-kind-icon">check<wbr>Func<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>store<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in tinyHFSM.ts:158</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>store<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>uuidv4</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>store: <span class="tsd-signature-type">any</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="from" class="tsd-anchor"></a>
+					<h3>from</h3>
+					<div class="tsd-signature tsd-kind-icon">from<span class="tsd-signature-symbol">:</span> <a href="istate.html" class="tsd-signature-type">IState</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in tinyHFSM.ts:156</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="to" class="tsd-anchor"></a>
+					<h3>to</h3>
+					<div class="tsd-signature tsd-kind-icon">to<span class="tsd-signature-symbol">:</span> <a href="istate.html" class="tsd-signature-type">IState</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in tinyHFSM.ts:157</li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -145,76 +164,82 @@
 						<a href="../enums/wseventenum.html" class="tsd-kind-icon">WSEvent<wbr>Enum</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="anystate.html" class="tsd-kind-icon">Any<wbr>State</a>
+						<a href="../classes/anystate.html" class="tsd-kind-icon">Any<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="debuffaction.html" class="tsd-kind-icon">Debuff<wbr>Action</a>
+						<a href="../classes/debuffaction.html" class="tsd-kind-icon">Debuff<wbr>Action</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="enterstate.html" class="tsd-kind-icon">Enter<wbr>State</a>
+						<a href="../classes/enterstate.html" class="tsd-kind-icon">Enter<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="eventemitter.html" class="tsd-kind-icon">Event<wbr>Emitter</a>
+						<a href="../classes/eventemitter.html" class="tsd-kind-icon">Event<wbr>Emitter</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="eventtarget.html" class="tsd-kind-icon">Event<wbr>Target</a>
+						<a href="../classes/eventtarget.html" class="tsd-kind-icon">Event<wbr>Target</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="exitstate.html" class="tsd-kind-icon">Exit<wbr>State</a>
+						<a href="../classes/exitstate.html" class="tsd-kind-icon">Exit<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="exposedpromise.html" class="tsd-kind-icon">Exposed<wbr>Promise</a>
+						<a href="../classes/exposedpromise.html" class="tsd-kind-icon">Exposed<wbr>Promise</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="fsmtranslation.html" class="tsd-kind-icon">Fsm<wbr>Translation</a>
+						<a href="../classes/fsmtranslation.html" class="tsd-kind-icon">Fsm<wbr>Translation</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="hfsmstate.html" class="tsd-kind-icon">HFSMState</a>
+						<a href="../classes/hfsmstate.html" class="tsd-kind-icon">HFSMState</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="objectpool.html" class="tsd-kind-icon">Object<wbr>Pool</a>
+						<a href="../classes/objectpool.html" class="tsd-kind-icon">Object<wbr>Pool</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="persistpromise.html" class="tsd-kind-icon">Persist<wbr>Promise</a>
+						<a href="../classes/persistpromise.html" class="tsd-kind-icon">Persist<wbr>Promise</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="timer.html" class="tsd-kind-icon">Timer</a>
+						<a href="../classes/timer.html" class="tsd-kind-icon">Timer</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="tinyhfsm.html" class="tsd-kind-icon">TinyHFsm</a>
+						<a href="../classes/tinyhfsm.html" class="tsd-kind-icon">TinyHFsm</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="tinyrpc_ws.html" class="tsd-kind-icon">Tiny<wbr>Rpc_<wbr>ws</a>
+						<a href="../classes/tinyrpc_ws.html" class="tsd-kind-icon">Tiny<wbr>Rpc_<wbr>ws</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="tinyws.html" class="tsd-kind-icon">Tiny<wbr>Ws</a>
+						<a href="../classes/tinyws.html" class="tsd-kind-icon">Tiny<wbr>Ws</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/uuid.html" class="tsd-kind-icon">UUID</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="istate.html" class="tsd-kind-icon">IState</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="istatemachine.html" class="tsd-kind-icon">IState<wbr>Machine</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="uuid.html" class="tsd-kind-icon">UUID</a>
+					<li class="current tsd-kind-interface">
+						<a href="itransition.html" class="tsd-kind-icon">ITransition</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="uuid.html#create_v4" class="tsd-kind-icon">create_<wbr>v4</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="itransition.html#checkfunc" class="tsd-kind-icon">check<wbr>Func</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="itransition.html#from" class="tsd-kind-icon">from</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="itransition.html#to" class="tsd-kind-icon">to</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/istate.html" class="tsd-kind-icon">IState</a>
+						<a href="iwsopts.html" class="tsd-kind-icon">Iws<wbr>Opts</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/istatemachine.html" class="tsd-kind-icon">IState<wbr>Machine</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/itransition.html" class="tsd-kind-icon">ITransition</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/iwsopts.html" class="tsd-kind-icon">Iws<wbr>Opts</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/wsclienteventmap.html" class="tsd-kind-icon">WSClient<wbr>Event<wbr>Map</a>
+						<a href="wsclienteventmap.html" class="tsd-kind-icon">WSClient<wbr>Event<wbr>Map</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="../globals.html#parent" class="tsd-kind-icon">PARENT</a>

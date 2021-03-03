@@ -9,11 +9,11 @@
  * @example
  * ```typescript
  * //包裹api请求
- * const [err, result] = await WrapPromise(() => fetch("baidu.com"));
+ * const [err, result] = await wrapPromise(() => fetch("baidu.com"));
  * 
  * ```
  */
-export function WrapPromise<T>(func: () => Promise<T>): Promise<[any, T]> {
+export function wrapPromise<T>(func: () => Promise<T>): Promise<[any, T]> {
     return new Promise<[any, T]>((resolve, reject) => {
         func()
             .then((data) => {

@@ -67,26 +67,26 @@
 				<a href="#tool" id="tool" style="color: inherit; text-decoration: none;">
 					<h1>tool</h1>
 				</a>
-				<p><a href="https://www.npmjs.com/package/@mtgoo/ctool"><img src="https://img.shields.io/badge/npm-0.0.13-blue" alt=""></a>
+				<p><a href="https://www.npmjs.com/package/@mtgoo/ctool"><img src="https://img.shields.io/badge/npm-0.0.16-blue" alt=""></a>
 				<img src="https://img.shields.io/badge/license-MIT-green" alt=""></p>
 				<p>web/node.js常用方法工具集</p>
 				<a href="#feature" id="feature" style="color: inherit; text-decoration: none;">
 					<h2>feature</h2>
 				</a>
 				<ol>
-					<li>管理事件(类似nodejs eventEmitter)<a href="https://nichijoucc.github.io/ctool/classes/eventemitter.html">【eventEmitter】</a></li>
-					<li>管理事件((类似nodejs eventTarget))<a href="https://nichijoucc.github.io/ctool/classes/eventtarget.html">【eventTarget】</a></li>
-					<li>任务分割<a href="https://nichijoucc.github.io/ctool/globals.html#taskssplite">【tasksSplite】</a></li>
-					<li>promise 在async/await下的异常管理<a href="https://nichijoucc.github.io/ctool/globals.html#wrappromise">【wrapPromise】</a></li>
+					<li>事件：多事件管理(类似nodejs eventEmitter)<a href="https://nichijoucc.github.io/ctool/classes/eventemitter.html">【eventEmitter】</a></li>
+					<li>事件：单事件管理(类似nodejs eventTarget)<a href="https://nichijoucc.github.io/ctool/classes/eventtarget.html">【eventTarget】</a></li>
+					<li>promise：多个任务进行分组执行<a href="https://nichijoucc.github.io/ctool/globals.html#executepromisesbybatch">【executePromisesByBatch】</a></li>
+					<li>promise：结果复用<a href="https://nichijoucc.github.io/ctool/classes/persistpromise.html">【persistPromise】</a></li>
+					<li>promise：在async/await下的异常管理<a href="https://nichijoucc.github.io/ctool/globals.html#wrappromise">【wrapPromise】</a></li>
+					<li>promise：控制句柄暴露<a href="https://nichijoucc.github.io/ctool/classes/exposedPromise.html">【exposedPromise】</a></li>
+					<li>promise：重试执行<a href="https://nichijoucc.github.io/ctool/globals.html#retryfn">【retryPromise】</a></li>
 					<li>轻量级ws<a href="https://nichijoucc.github.io/ctool/classes/tinyws.html">【tinyWs】</a></li>
-					<li>重试执行任务<a href="https://nichijoucc.github.io/ctool/globals.html#retryfn">【retryFn】</a></li>
+					<li>轻量级rpc<a href="https://nichijoucc.github.io/ctool/classes/tinyrpc_ws.html">【tinyRpc】</a></li>
 					<li>唯一ID<a href="https://nichijoucc.github.io/ctool/globals.html#uuid">【uuid】</a></li>
 					<li>计时器<a href="https://nichijoucc.github.io/ctool/classes/timer.html">【timer】</a></li>
-					<li>轻量级rpc<a href="https://nichijoucc.github.io/ctool/classes/tinyrpc_ws.html">【tinyRpc】</a></li>
-					<li>promise结果复用<a href="https://nichijoucc.github.io/ctool/classes/persistpromise.html">【persistPromise】</a></li>
 					<li>副作用管理<a href="https://nichijoucc.github.io/ctool/classes/debuffaction.html">【debuffAction】</a></li>
 					<li>对象池<a href="https://nichijoucc.github.io/ctool/classes/objectpool.html">【objectPool】</a></li>
-					<li>数据分类<a href="https://nichijoucc.github.io/ctool/classes/classify.html">【classify】</a></li>
 				</ol>
 				<p>API文档：<a href="https://nichijoucc.github.io/ctool/">https://nichijoucc.github.io/ctool/</a></p>
 				<a href="#安装" id="安装" style="color: inherit; text-decoration: none;">
@@ -109,10 +109,13 @@
 						<a href="enums/wseventenum.html" class="tsd-kind-icon">WSEvent<wbr>Enum</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/classify.html" class="tsd-kind-icon">Classify</a>
+						<a href="classes/anystate.html" class="tsd-kind-icon">Any<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/debuffaction.html" class="tsd-kind-icon">Debuff<wbr>Action</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/enterstate.html" class="tsd-kind-icon">Enter<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/eventemitter.html" class="tsd-kind-icon">Event<wbr>Emitter</a>
@@ -120,17 +123,29 @@
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/eventtarget.html" class="tsd-kind-icon">Event<wbr>Target</a>
 					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/exitstate.html" class="tsd-kind-icon">Exit<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/exposedpromise.html" class="tsd-kind-icon">Exposed<wbr>Promise</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/fsmtranslation.html" class="tsd-kind-icon">Fsm<wbr>Translation</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/hfsmstate.html" class="tsd-kind-icon">HFSMState</a>
+					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/objectpool.html" class="tsd-kind-icon">Object<wbr>Pool</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/persistpromise.html" class="tsd-kind-icon">Persist<wbr>Promise</a>
 					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="classes/task.html" class="tsd-kind-icon">Task</a>
-					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/timer.html" class="tsd-kind-icon">Timer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/tinyhfsm.html" class="tsd-kind-icon">TinyHFsm</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/tinyrpc_ws.html" class="tsd-kind-icon">Tiny<wbr>Rpc_<wbr>ws</a>
@@ -142,28 +157,43 @@
 						<a href="classes/uuid.html" class="tsd-kind-icon">UUID</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/istate.html" class="tsd-kind-icon">IState</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/istatemachine.html" class="tsd-kind-icon">IState<wbr>Machine</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/itransition.html" class="tsd-kind-icon">ITransition</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/iwsopts.html" class="tsd-kind-icon">Iws<wbr>Opts</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/wsclienteventmap.html" class="tsd-kind-icon">WSClient<wbr>Event<wbr>Map</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#ins" class="tsd-kind-icon">ins</a>
+						<a href="globals.html#parent" class="tsd-kind-icon">PARENT</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#pool" class="tsd-kind-icon">pool</a>
+						<a href="globals.html#state_dic" class="tsd-kind-icon">STATE_<wbr>DIC</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#wrappromise" class="tsd-kind-icon">Wrap<wbr>Promise</a>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#translation_dic" class="tsd-kind-icon">TRANSLATION_<wbr>DIC</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#update" class="tsd-kind-icon">UPDATE</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#createws" class="tsd-kind-icon">create<wbr>Ws</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#retryfn" class="tsd-kind-icon">retry<wbr>Fn</a>
+						<a href="globals.html#executepromisesbybatch" class="tsd-kind-icon">execute<wbr>Promises<wbr>ByBatch</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#taskssplite" class="tsd-kind-icon">tasks<wbr>Splite</a>
+						<a href="globals.html#retrypromise" class="tsd-kind-icon">retry<wbr>Promise</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#wrappromise" class="tsd-kind-icon">wrap<wbr>Promise</a>
 					</li>
 				</ul>
 			</nav>
@@ -181,6 +211,10 @@
 				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
 			</ul>
@@ -191,9 +225,6 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>

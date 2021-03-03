@@ -1,7 +1,7 @@
 import { UUID } from "./uuid";
 import { IwsOpts, TinyWs } from "./tinyWs";
 /**
- * 基于ws的简易rpc实现
+ * 基于tinyWs的简易rpc实现
  * 
  * @example
  * ```
@@ -51,15 +51,15 @@ export class TinyRpc_ws extends TinyWs {
     private rpcCall = new Map<string, (result: any) => void>();
     /**
      * rpc调用
-     * @param methode 
+     * @param methodName 
      * @param params 
      */
-    callMethod<T = any>(methodeName: string, params: any[]): Promise<T> {
+    callMethod<T = any>(methodName: string, params: any[]): Promise<T> {
         return new Promise((resolve, reject) => {
-            if (this.beopen) {
+            if (this.beOpen) {
                 let msgId = UUID.create_v4();
                 this.rpcCall.set(msgId, resolve);
-                this.sendMessage(Buffer.from(JSON.stringify({ id: msgId, method: methodeName, params })));
+                this.sendMessage(Buffer.from(JSON.stringify({ id: msgId, method: methodName, params })));
             }
         })
     }

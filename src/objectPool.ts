@@ -11,7 +11,7 @@
  * //初始化池子
  * let pool = new ObjectPool({
  *     create: () => new Float32Array(4),
- *     reset: (item: Float32Array) => {
+ *     reInit: (item: Float32Array) => {
  *         for (let i = 0; i < item.length; i++) {
  *             item[i] = 0;
  *         }
@@ -30,18 +30,18 @@
  */
 export class ObjectPool<T> {
     private _create: () => T;
-    private _reset: (obj: T) => void;
+    private _reInit: (obj: T) => void;
     private _pool: T[] = [];
 
     get size() { return this._pool.length }
     constructor(
         options: {
             create: () => T,
-            reset: (obj: T) => void,
+            reInit: (obj: T) => void,
             initSize?: number,
         }) {
         this._create = options.create;
-        this._reset = options.reset;
+        this._reInit = options.reInit;
         if (options.initSize != null) {
             this._pool = [...new Array(options.initSize)].map(item => this._create())
         }
@@ -49,12 +49,12 @@ export class ObjectPool<T> {
     /**
      * 创建对象
      */
-    create() {
+    instantiate() {
         if (this._pool.length == 0) {
             return this._create();
         } else {
             let item = this._pool.shift();
-            this._reset(item);
+            this._reInit(item);
             return item;
         }
     }
@@ -73,19 +73,3 @@ export class ObjectPool<T> {
         this._pool = [];
     }
 }
-
-//初始化池子
-let pool = new ObjectPool({
-    create: () => new Float32Array(4),
-    reset: (item: Float32Array) => {
-        for (let i = 0; i < item.length; i++) {
-            item[i] = 0;
-        }
-    }
-});
-
-//创建
-let ins = pool.create();
-
-//回收
-pool.recycle(ins);

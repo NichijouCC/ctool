@@ -59,9 +59,9 @@ describe("tinyws", () => {
 
     it("reconnect once trigger", (done) => {
         const ins = TinyWs.connect("ws://localhost:8585");
-        let trycount = 0; let failedCount = 0; let sucessedCount = 0;
+        let tryCount = 0; let failedCount = 0; let sucessedCount = 0;
         ins.on("once_reconnecting", (index) => {
-            trycount++;
+            tryCount++;
         });
 
         ins.on("once_reconnect_fail", () => {
@@ -73,7 +73,7 @@ describe("tinyws", () => {
         });
 
         ins.on("reconnect_fail", () => {
-            expect(trycount).to.be.equal(5);
+            expect(tryCount).to.be.equal(5);
             expect(failedCount).to.be.equal(5);
             expect(sucessedCount).to.be.equal(0);
             done();

@@ -1,17 +1,17 @@
 /* eslint-disable prefer-promise-reject-errors */
 import { describe, it } from "mocha";
-import { tasksSplite } from "../src/index";
+import { executePromisesByBatch } from "../src/index";
 import { expect } from "chai";
 
-describe("tasksSplite", () => {
+describe("executePromisesByBatch", () => {
     it("on progress", async () => {
         const tasks = [...Array(100)].map(item => {
-            return () => new Promise((resolve, reject) => {
+            return () => new Promise<void>((resolve, reject) => {
                 setTimeout(() => resolve(), 10);
             });
         });
         let count = 0;
-        await tasksSplite(tasks, {
+        await executePromisesByBatch(tasks, {
             onprogress: (progress, result) => {
                 count++;
             }
@@ -26,7 +26,7 @@ describe("tasksSplite", () => {
             });
         });
         tasks.splice(50, 0, () => Promise.reject());
-        tasksSplite(tasks).catch(() => done());
+        executePromisesByBatch(tasks).catch(() => done());
     }).timeout(20000);
 
     it("tasks success", (done) => {
@@ -36,7 +36,7 @@ describe("tasksSplite", () => {
             });
         });
 
-        tasksSplite(tasks).then((results) => {
+        executePromisesByBatch(tasks).then((results) => {
             expect(results[1]).to.be.equal(1);
             expect(results.length).to.be.equal(100);
             done();

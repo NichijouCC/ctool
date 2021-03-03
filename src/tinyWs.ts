@@ -1,6 +1,6 @@
 import { EventEmitter } from "./eventEmitter";
-import { retryFn } from "./retryFn";
-import { WrapPromise } from "./wrapPromise";
+import { retryPromise } from "./retryPromise";
+import { wrapPromise } from "./wrapPromise";
 
 /**
  * websocket封装
@@ -15,7 +15,7 @@ import { WrapPromise } from "./wrapPromise";
  * const client = TinyWs.connect("wss://echo.websocket.org");
  * client.on("connect", () => {
  *     console.log("connect to server");
- *     client.sendmsg({ role: 1, message: "hello！" });
+ *     client.sendMessage({ role: 1, message: "hello！" });
  * });
  * client.on("error", (err) => console.log("出错", err));
  * 
@@ -32,7 +32,7 @@ import { WrapPromise } from "./wrapPromise";
  * // 使用connectSync
  * (async () => {
  *     const ins = await TinyWs.connectSync("wss://echo.websocket.org");
- *     ins.sendmsg("sssss");
+ *     ins.sendMessage("sssss");
  *     ins.on("message", (data) => {
  *         console.log("new message", data);
  *     });
@@ -41,7 +41,7 @@ import { WrapPromise } from "./wrapPromise";
  */
 export class TinyWs extends EventEmitter<WSClientEventMap> {
     /**
-     * 创建wsclient,等待连接建立
+     * 创建wsClient,等待连接建立
      * @param url ws服务器地址
      * @param options 
      */
@@ -58,7 +58,7 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     }
 
     /**
-     * 创建wsclient, 不需要等待连接建立
+     * 创建wsClient, 不需要等待连接建立
      * @param url ws服务器地址
      * @param options 
      */
@@ -72,12 +72,12 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     protected constructor(url: string, opts: IwsOpts = {}) {
         super();
         this.url = url;
-        const { autoReconnect: autoreconnect = {} } = opts;
+        const { autoReconnect = {} } = opts;
         this.options = {
             autoReconnect: {
-                active: autoreconnect.active ?? true,
-                reconnectCount: autoreconnect.reconnectCount ?? 5,
-                reconnectCondition: autoreconnect.reconnectCondition
+                active: autoReconnect.active ?? true,
+                reconnectCount: autoReconnect.reconnectCount ?? 5,
+                reconnectCondition: autoReconnect.reconnectCondition
             }
         };
         this.attachWs(new WebSocket(url));
@@ -98,14 +98,14 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
         ws.addEventListener("message", this.onmessage);
         ws.addEventListener("error", this.onerror);
 
-        const destory = () => {
+        const destroy = () => {
             ws.removeEventListener("open", this.onopen);
             ws.removeEventListener("close", this.onclose);
             ws.removeEventListener("message", this.onmessage);
             ws.removeEventListener("error", this.onerror);
             ws.close();
         };
-        this.client = { ins: ws, close: destory };
+        this.client = { ins: ws, close: destroy };
     }
 
     private onopen = (ev: Event) => {
@@ -129,10 +129,10 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     }
 
     private reconnect = async () => {
-        if (this.beopen) return;
+        if (this.beOpen) return;
         const { reconnectCount } = this.options.autoReconnect;
         this.emit(WSEventEnum.reconnecting, undefined);
-        retryFn(() => this._onceConnect(),
+        retryPromise(() => this._onceConnect(),
             {
                 count: reconnectCount,
                 onceTryBefore: (index) => {
@@ -160,7 +160,7 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     private _onceConnect = async () => {
         const { autoReconnect: { reconnectCondition } } = this.options;
         if (reconnectCondition != null) {
-            const [err, result] = await WrapPromise(() => reconnectCondition());
+            const [err, result] = await wrapPromise(() => reconnectCondition());
             if (err) {
                 return Promise.reject(new Error("重连校验的过程报错"));
             } else {
@@ -176,12 +176,12 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     /**
      * 是否ready
      */
-    get beopen() { return this.client?.ins.readyState == 1; };
+    get beOpen() { return this.client?.ins.readyState == 1; };
     /**
      * 关闭 websocket
      */
     dispose = () => {
-        this.beactive = false;
+        this.beActive = false;
         this.client?.close();
         this.client = null;
     }
@@ -189,8 +189,8 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     /**
      * 发送消息。注意：未建立连接,会发送失败
      */
-    sendMessage<T = any>(data: string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView) {
-        if (this.beopen) {
+    sendMessage(data: string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView) {
+        if (this.beOpen) {
             this.client.ins.send(data);
         }
     }

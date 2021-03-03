@@ -10,14 +10,14 @@ before(function () {
 });
 
 describe("timer", () => {
-    it("beactive default to be true", () => {
+    it("beActive default to be true", () => {
         const timer = new Timer();
-        expect(timer.beactive).to.equal(true);
+        expect(timer.beActive).to.equal(true);
     });
 
     it("recordTime", async () => {
         const timer = new Timer();
-        await new Promise((resolve, reject) => {
+        await new Promise<void>((resolve, reject) => {
             setTimeout(() => resolve(), 500);
         });
         expect(timer.recordTime).to.approximately(500, 10);
@@ -31,7 +31,7 @@ describe("timer", () => {
         timer.tick.addEventListener((deltaTime) => {
             total += deltaTime;
         });
-        await new Promise((resolve, reject) => {
+        await new Promise<void>((resolve, reject) => {
             setTimeout(() => resolve(), 50);
         });
         expect(timer.recordTime).to.approximately(total, 10);

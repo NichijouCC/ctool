@@ -11,8 +11,8 @@ describe("tinyRpc-ws", () => {
         var server = new ws.Server({ port: 9191 });
         server.on("connection", (socket) => {
             socket.on("message", (data) => {
-                let datainfo = JSON.parse(data.toString())
-                socket.send(Buffer.from(JSON.stringify({ id: datainfo.id, result: 3 })));
+                let dataInfo = JSON.parse(data.toString())
+                socket.send(Buffer.from(JSON.stringify({ id: dataInfo.id, result: 3 })));
             })
         })
 

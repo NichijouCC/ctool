@@ -5,21 +5,20 @@
 web/node.js常用方法工具集
 
 ## feature
-1. 管理事件(类似nodejs eventEmitter)[【eventEmitter】](https://nichijoucc.github.io/ctool/classes/eventemitter.html)
-2. 管理事件((类似nodejs eventTarget))[【eventTarget】](https://nichijoucc.github.io/ctool/classes/eventtarget.html)
-3. 任务分割[【tasksSplite】](https://nichijoucc.github.io/ctool/globals.html#taskssplite)
-4. promise 在async/await下的异常管理[【wrapPromise】](https://nichijoucc.github.io/ctool/globals.html#wrappromise)
-5. 轻量级ws[【tinyWs】](https://nichijoucc.github.io/ctool/classes/tinyws.html)
-6. 重试执行任务[【retryFn】](https://nichijoucc.github.io/ctool/globals.html#retryfn)
-7. 唯一ID[【uuid】](https://nichijoucc.github.io/ctool/globals.html#uuid)
-8. 计时器[【timer】](https://nichijoucc.github.io/ctool/classes/timer.html)
+1. 事件：多事件管理(类似nodejs eventEmitter)[【eventEmitter】](https://nichijoucc.github.io/ctool/classes/eventemitter.html)
+2. 事件：单事件管理(类似nodejs eventTarget)[【eventTarget】](https://nichijoucc.github.io/ctool/classes/eventtarget.html)
+3. promise：多个任务进行分组执行[【executePromisesByBatch】](https://nichijoucc.github.io/ctool/globals.html#executepromisesbybatch)
+4. promise：结果复用[【persistPromise】](https://nichijoucc.github.io/ctool/classes/persistpromise.html)
+5. promise：在async/await下的异常管理[【wrapPromise】](https://nichijoucc.github.io/ctool/globals.html#wrappromise)
+6. promise：控制句柄暴露[【exposedPromise】](https://nichijoucc.github.io/ctool/classes/exposedPromise.html)
+7. promise：重试执行[【retryPromise】](https://nichijoucc.github.io/ctool/globals.html#retryfn)
+8. 轻量级ws[【tinyWs】](https://nichijoucc.github.io/ctool/classes/tinyws.html)
 9. 轻量级rpc[【tinyRpc】](https://nichijoucc.github.io/ctool/classes/tinyrpc_ws.html)
-10. promise结果复用[【persistPromise】](https://nichijoucc.github.io/ctool/classes/persistpromise.html)
-11. 副作用管理[【debuffAction】](https://nichijoucc.github.io/ctool/classes/debuffaction.html)
-12. 对象池[【objectPool】](https://nichijoucc.github.io/ctool/classes/objectpool.html)
-13. 数据分类[【classify】](https://nichijoucc.github.io/ctool/classes/classify.html)
-14. promise控制句柄暴露[【task】](https://nichijoucc.github.io/ctool/classes/task.html)
-
+10. 唯一ID[【uuid】](https://nichijoucc.github.io/ctool/globals.html#uuid)
+11. 计时器[【timer】](https://nichijoucc.github.io/ctool/classes/timer.html)
+12. 副作用管理[【debuffAction】](https://nichijoucc.github.io/ctool/classes/debuffaction.html)
+13. 对象池[【objectPool】](https://nichijoucc.github.io/ctool/classes/objectpool.html)
+14. 分层状态机[【tinyhfsm】](https://nichijoucc.github.io/ctool/classes/tinyhfsm.html)
 
 
 API文档：https://nichijoucc.github.io/ctool/

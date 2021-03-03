@@ -9,24 +9,24 @@
  * @example
  * ```typescript
  * // --------- EventEmitter基本使用 -----------
- * const emiter = new EventEmitter();
+ * const emitter = new EventEmitter();
  * 
  * // 听事件-》触发事件-》移除事件
  * const onHover = () => console.log("be hovered!");
- * emiter.on("hover", onHover);
- * emiter.emit("hover");
- * emiter.off("hover", onHover);
+ * emitter.on("hover", onHover);
+ * emitter.emit("hover");
+ * emitter.off("hover", onHover);
  * 
  * // 多个事件监听-》移除
- * emiter.on("hover", onHover);
- * emiter.on("hover", onHover);
- * emiter.removeEventListeners("hover");
+ * emitter.on("hover", onHover);
+ * emitter.on("hover", onHover);
+ * emitter.removeEventListeners("hover");
  * 
  * // 暂时禁用事件管理器
- * emiter.beactive = false;
+ * emitter.beActive = false;
  * 
  * // 移除所有事件的监听器
- * emiter.removeAllListeners();
+ * emitter.removeAllListeners();
  * 
  * // ----------定义事件类型
  * interface KeyboardEventMap {
@@ -45,7 +45,7 @@ export class EventEmitter<T = { [key: string]: void }> {
     /**
      * 激活/禁用 事件管理器，在激活状态下，触发事件才会触发监听器
      */
-    beactive = true;
+    beActive = true;
     /**
      * 为指定事件添加一个监听器到监听器数组的尾部
      * @param ev 事件str
@@ -62,7 +62,7 @@ export class EventEmitter<T = { [key: string]: void }> {
      * @param params 事件传递的可选参数
      */
     emit<K extends keyof T>(ev: K, params?: T[K]) {
-        if (this.beactive) {
+        if (this.beActive) {
             this._listener[ev]?.forEach((func: (...args: any) => any) => func(params));
         }
     }

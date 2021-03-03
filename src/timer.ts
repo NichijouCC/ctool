@@ -35,23 +35,24 @@ export class Timer {
         }
         this._beActive = state;
     }
-
     get beActive() { return this._beActive; }
 
     private _interval: number;
     /**
      * 计时间隔, 默认：undefined
      */
-    set interval(value: number) {
-        this._interval = value;
-    }
-
+    set interval(value: number) { this._interval = value; }
     get interval() { return this._interval; }
 
     /**
      * 创建计时器实例
      */
-    constructor(opts: { interval?: number }) {
+    constructor(opts?: {
+        interval?: number,
+        beActive?: boolean
+    }) {
+        this._interval = opts?.interval;
+        this._beActive = opts?.beActive ?? true;
         this.startLoop();
     }
 
@@ -77,7 +78,7 @@ export class Timer {
                 this.tick.raiseEvent(deltaTime);
             }
         }
-        if (!this._bedisposed) {
+        if (!this._beDisposed) {
             if (typeof requestAnimationFrame != undefined) {
                 requestAnimationFrame(this.startLoop);
             } else {
@@ -99,12 +100,12 @@ export class Timer {
      */
     tick = new EventTarget<number>();
 
-    private _bedisposed = false;
+    private _beDisposed = false;
     /**
      * 销毁
      */
     dispose() {
-        this._bedisposed = true;
+        this._beDisposed = true;
         this.tick.dispose();
     }
 }

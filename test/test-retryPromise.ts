@@ -1,11 +1,11 @@
 import { describe, it } from "mocha";
-import { retryFn } from "../src/index";
+import { retryPromise } from "../src/index";
 import { expect } from "chai";
 
-describe("retryfn", () => {
+describe("retryPromise", () => {
     it("once try before", async () => {
         let count = 0;
-        await retryFn(() => {
+        await retryPromise(() => {
             return new Promise((resolve, reject) => {
                 count++;
                 if (count > 3) {
@@ -24,7 +24,7 @@ describe("retryfn", () => {
 
     it("once try callback", async () => {
         let count = 0;
-        await retryFn(() => {
+        await retryPromise(() => {
             return new Promise((resolve, reject) => {
                 count++;
                 if (count > 3) {
@@ -48,7 +48,7 @@ describe("retryfn", () => {
 
     it("retry count", async () => {
         let count = 0;
-        await retryFn(() => {
+        await retryPromise(() => {
             return new Promise((resolve, reject) => {
                 count++;
                 if (count > Number.MAX_SAFE_INTEGER) {
@@ -68,7 +68,7 @@ describe("retryfn", () => {
 
     it("retry error", async () => {
         let count = 0;
-        await retryFn(() => {
+        await retryPromise(() => {
             return new Promise((resolve, reject) => {
                 count++;
                 if (count > Number.MAX_SAFE_INTEGER) {
@@ -86,7 +86,7 @@ describe("retryfn", () => {
 
     it("retry success", async () => {
         let count = 0;
-        const result = await retryFn(() => {
+        const result = await retryPromise(() => {
             return new Promise((resolve, reject) => {
                 count++;
                 if (count > 2) {

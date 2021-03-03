@@ -1,5 +1,4 @@
 import { retryFn } from "@mtgoo/ctool";
-import { time } from "console";
 
 let func = () => {
     return new Promise((resolve, reject) => {

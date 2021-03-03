@@ -2,7 +2,7 @@ import { describe, it } from "mocha";
 import { EventTarget } from "../src/eventTarget";
 import { expect } from "chai";
 
-describe("eventtarget", () => {
+describe("eventTarget", () => {
     it("listen to event", () => {
         const ev = new EventTarget<number>();
         let result = 0;

@@ -32,16 +32,17 @@
  * ```
  */
 export class DebuffAction {
-    private debuff: Function[] = [];
+    private debuffs: Function[] = [];
     /**
      * 副作用释放
      */
     dispose = () => {
-        this.debuff.forEach(item => {
+        this.debuffs.forEach(item => {
             if (typeof item == "function") {
                 item();
             }
-        })
+        });
+        this.debuffs = [];
     }
 
     /**
@@ -49,13 +50,13 @@ export class DebuffAction {
      * @param anotherAction 
      */
     executeAnother(anotherAction: () => any) {
-        this.debuff.push(anotherAction());
+        this.debuffs.push(anotherAction());
     }
     /**
      * 添加待处理的副作用
      */
     appendDebuff(debuff: () => any) {
-        this.debuff.push(debuff);
+        this.debuffs.push(debuff);
     }
 
     /**
@@ -65,7 +66,7 @@ export class DebuffAction {
     static create(action?: () => any) {
         const newAct = new DebuffAction();
         if (action) {
-            newAct.debuff.push(action());
+            newAct.debuffs.push(action());
         }
         return newAct;
     }

@@ -6,7 +6,7 @@ describe("objectPool", () => {
     it("create 100 ins", () => {
         let pool = new ObjectPool({
             create: () => new Float32Array(4),
-            reset: (item: Float32Array) => {
+            reInit: (item: Float32Array) => {
                 for (let i = 0; i < item.length; i++) {
                     item[i] = 0;
                 }
@@ -19,7 +19,7 @@ describe("objectPool", () => {
     it("creat ins by pool", () => {
         let pool = new ObjectPool({
             create: () => new Float32Array(4),
-            reset: (item: Float32Array) => {
+            reInit: (item: Float32Array) => {
                 for (let i = 0; i < item.length; i++) {
                     item[i] = 0;
                 }
@@ -35,7 +35,7 @@ describe("objectPool", () => {
     it("reset ins by pool", () => {
         let pool = new ObjectPool({
             create: () => new Float32Array(4),
-            reset: (item: Float32Array) => {
+            reInit: (item: Float32Array) => {
                 for (let i = 0; i < item.length; i++) {
                     item[i] = 1;
                 }

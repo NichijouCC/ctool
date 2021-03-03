@@ -2,7 +2,7 @@ import { describe, it } from "mocha";
 import { DebuffAction } from "../src/index";
 import { expect } from "chai";
 
-describe("debuffaction", () => {
+describe("debuffAction", () => {
     it("do action and dispose", () => {
         let a = 0;
         const action = DebuffAction.create(() => {

@@ -49,10 +49,10 @@ describe("eventEmitter", () => {
         const emiter = new EventEmitter<{ "xx": number }>();
         let result = 0;
         emiter.on("xx", (value) => { result = value; });
-        emiter.beactive = false;
+        emiter.beActive = false;
         emiter.emit("xx", 100);
         expect(result).to.equal(0);
-        emiter.beactive = true;
+        emiter.beActive = true;
         emiter.emit("xx", 100);
         expect(result).to.equal(100);
     });

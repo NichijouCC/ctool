@@ -43,23 +43,23 @@
  * ```
  */
 export class PersistPromise {
-    private static doingtasks = new Map();
+    private static doingTasks = new Map();
     static create<T = any>(func: () => Promise<T>, dropCondition?: () => Promise<any>) {
         return (): Promise<T> => {
-            if (this.doingtasks.has(func)) {
-                return this.doingtasks.get(func);
+            if (this.doingTasks.has(func)) {
+                return this.doingTasks.get(func);
             } else {
                 let task = func();
-                this.doingtasks.set(func, task);
+                this.doingTasks.set(func, task);
                 if (dropCondition) {
                     dropCondition()
                         .then(() => {
-                            this.doingtasks.delete(func);
+                            this.doingTasks.delete(func);
                         })
                         .catch(() => { })
                 } else {
                     task.finally(() => {
-                        this.doingtasks.delete(func);
+                        this.doingTasks.delete(func);
                     })
                 }
                 return task;
