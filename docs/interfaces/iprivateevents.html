@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ITransition | @mtgoo/ctool</title>
+	<title>IprivateEvents | @mtgoo/ctool</title>
 	<meta name="description" content="Documentation for @mtgoo/ctool">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="itransition.html">ITransition</a>
+					<a href="iprivateevents.html">IprivateEvents</a>
 				</li>
 			</ul>
-			<h1>Interface ITransition</h1>
+			<h1>Interface IprivateEvents</h1>
 		</div>
 	</div>
 </header>
@@ -70,14 +70,8 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ITransition</span>
+						<span class="target">IprivateEvents</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implemented by</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../classes/fsmtranslation.html" class="tsd-signature-type">FsmTranslation</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -87,9 +81,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itransition.html#checkfunc" class="tsd-kind-icon">check<wbr>Func</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itransition.html#from" class="tsd-kind-icon">from</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itransition.html#to" class="tsd-kind-icon">to</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iprivateevents.html#setatt" class="tsd-kind-icon">set<wbr>Att</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,55 +90,28 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="checkfunc" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> check<wbr>Func</h3>
-					<div class="tsd-signature tsd-kind-icon">check<wbr>Func<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>store<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">boolean</span></div>
+					<a name="setatt" class="tsd-anchor"></a>
+					<h3>set<wbr>Att</h3>
+					<div class="tsd-signature tsd-kind-icon">set<wbr>Att<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>att<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>newValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>oldValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyHFSM.ts#L158">tinyHFSM.ts:158</a></li>
+							<li>Defined in proxyData.ts:4</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
-							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>store<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>store: <span class="tsd-signature-type">any</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-									</li>
-								</ul>
+							<li class="tsd-parameter">
+								<h5>att<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>new<wbr>Value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>old<wbr>Value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
 							</li>
 						</ul>
 					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="from" class="tsd-anchor"></a>
-					<h3>from</h3>
-					<div class="tsd-signature tsd-kind-icon">from<span class="tsd-signature-symbol">:</span> <a href="istate.html" class="tsd-signature-type">IState</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyHFSM.ts#L156">tinyHFSM.ts:156</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="to" class="tsd-anchor"></a>
-					<h3>to</h3>
-					<div class="tsd-signature tsd-kind-icon">to<span class="tsd-signature-symbol">:</span> <a href="istate.html" class="tsd-signature-type">IState</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyHFSM.ts#L157">tinyHFSM.ts:157</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 		</div>
@@ -220,27 +185,21 @@
 					<li class=" tsd-kind-interface">
 						<a href="istatemachine.html" class="tsd-kind-icon">IState<wbr>Machine</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="itransition.html" class="tsd-kind-icon">ITransition</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="itransition.html" class="tsd-kind-icon">ITransition</a>
+						<a href="iprivateevents.html" class="tsd-kind-icon">Iprivate<wbr>Events</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="itransition.html#checkfunc" class="tsd-kind-icon">check<wbr>Func</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="itransition.html#from" class="tsd-kind-icon">from</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="itransition.html#to" class="tsd-kind-icon">to</a>
+								<a href="iprivateevents.html#setatt" class="tsd-kind-icon">set<wbr>Att</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="iprivateevents.html" class="tsd-kind-icon">Iprivate<wbr>Events</a>
-					</li>
 					<li class=" tsd-kind-interface">
 						<a href="iwsopts.html" class="tsd-kind-icon">Iws<wbr>Opts</a>
 					</li>

@@ -87,6 +87,7 @@
 								<li class="tsd-kind-class"><a href="classes/hfsmstate.html" class="tsd-kind-icon">HFSMState</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/objectpool.html" class="tsd-kind-icon">Object<wbr>Pool</a></li>
 								<li class="tsd-kind-class"><a href="classes/persistpromise.html" class="tsd-kind-icon">Persist<wbr>Promise</a></li>
+								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/proxydata.html" class="tsd-kind-icon">Proxy<wbr>Data</a></li>
 								<li class="tsd-kind-class"><a href="classes/timer.html" class="tsd-kind-icon">Timer</a></li>
 								<li class="tsd-kind-class"><a href="classes/tinyhfsm.html" class="tsd-kind-icon">TinyHFsm</a></li>
 								<li class="tsd-kind-class"><a href="classes/tinyrpc_ws.html" class="tsd-kind-icon">Tiny<wbr>Rpc_<wbr>ws</a></li>
@@ -100,8 +101,16 @@
 								<li class="tsd-kind-interface"><a href="interfaces/istate.html" class="tsd-kind-icon">IState</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/istatemachine.html" class="tsd-kind-icon">IState<wbr>Machine</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/itransition.html" class="tsd-kind-icon">ITransition</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/iprivateevents.html" class="tsd-kind-icon">Iprivate<wbr>Events</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iwsopts.html" class="tsd-kind-icon">Iws<wbr>Opts</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/wsclienteventmap.html" class="tsd-kind-icon">WSClient<wbr>Event<wbr>Map</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#iattevents" class="tsd-kind-icon">Iatt<wbr>Events</a></li>
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#iproxyevents" class="tsd-kind-icon">Iproxy<wbr>Events</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -126,6 +135,49 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="iattevents" class="tsd-anchor"></a>
+					<h3>Iatt<wbr>Events</h3>
+					<div class="tsd-signature tsd-kind-icon">Iatt<wbr>Events&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in proxyData.ts:6</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
+						</li>
+					</ul>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="iproxyevents" class="tsd-anchor"></a>
+					<h3>Iproxy<wbr>Events</h3>
+					<div class="tsd-signature tsd-kind-icon">Iproxy<wbr>Events&lt;T, K&gt;<span class="tsd-signature-symbol">:</span> <a href="interfaces/iprivateevents.html" class="tsd-signature-type">IprivateEvents</a><span class="tsd-signature-symbol"> &amp; </span><a href="globals.html#iattevents" class="tsd-signature-type">IattEvents</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">K</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in proxyData.ts:9</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span> = <span class="tsd-signature-symbol">{}</span></h4>
+						</li>
+						<li>
+							<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span> = <span class="tsd-signature-symbol">{}</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Variables</h2>
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="parent" class="tsd-anchor"></a>
@@ -133,7 +185,7 @@
 					<div class="tsd-signature tsd-kind-icon">PARENT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unique symbol</span><span class="tsd-signature-symbol"> = Symbol(&quot;parent&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in tinyHFSM.ts:3</li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyHFSM.ts#L3">tinyHFSM.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -143,7 +195,7 @@
 					<div class="tsd-signature tsd-kind-icon">STATE_<wbr>DIC<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unique symbol</span><span class="tsd-signature-symbol"> = Symbol(&quot;STATE_DIC&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in tinyHFSM.ts:6</li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyHFSM.ts#L6">tinyHFSM.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -153,7 +205,7 @@
 					<div class="tsd-signature tsd-kind-icon">TRANSLATION_<wbr>DIC<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unique symbol</span><span class="tsd-signature-symbol"> = Symbol(&quot;TRANSLATION_DIC&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in tinyHFSM.ts:4</li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyHFSM.ts#L4">tinyHFSM.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -163,7 +215,7 @@
 					<div class="tsd-signature tsd-kind-icon">UPDATE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unique symbol</span><span class="tsd-signature-symbol"> = Symbol(&quot;UPDATE&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in tinyHFSM.ts:5</li>
+							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyHFSM.ts#L5">tinyHFSM.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -180,7 +232,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/3977347/src/tinyWs.ts#L280">tinyWs.ts:280</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L280">tinyWs.ts:280</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -203,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in executePromisesByBatch.ts:28</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/executePromisesByBatch.ts#L28">executePromisesByBatch.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -223,7 +275,7 @@
     });
 });
 executePromisesByBatch(tasks, {
-    <span class="hljs-attr">onprogress</span>: <span class="hljs-function">(<span class="hljs-params">progress, result</span>) =&gt;</span> {
+    onprogress: <span class="hljs-function">(<span class="hljs-params">progress, result</span>) =&gt;</span> {
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;progress&quot;</span>, progress, result);
     }
 });
@@ -304,7 +356,7 @@ executePromisesByBatch(tasks, {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in retryPromise.ts:30</li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/retryPromise.ts#L30">retryPromise.ts:30</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -321,8 +373,8 @@ executePromisesByBatch(tasks, {
         reject(value);
     }
 }), {
-    <span class="hljs-attr">onceTryBefore</span>: <span class="hljs-function">(<span class="hljs-params">index</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;开始执行&quot;</span>, index),
-    <span class="hljs-attr">onceTryCallBack</span>: <span class="hljs-function">(<span class="hljs-params">index, result, err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;单次执行结果:&quot;</span>, index, result, err)
+    onceTryBefore: <span class="hljs-function">(<span class="hljs-params">index</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;开始执行&quot;</span>, index),
+    onceTryCallBack: <span class="hljs-function">(<span class="hljs-params">index, result, err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;单次执行结果:&quot;</span>, index, result, err)
 })
     .then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
         <span class="hljs-comment">// do somethin</span>
@@ -440,7 +492,7 @@ executePromisesByBatch(tasks, {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/3977347/src/wrapPromise.ts#L16">wrapPromise.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/wrapPromise.ts#L16">wrapPromise.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -539,6 +591,9 @@ executePromisesByBatch(tasks, {
 					<li class=" tsd-kind-class">
 						<a href="classes/persistpromise.html" class="tsd-kind-icon">Persist<wbr>Promise</a>
 					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/proxydata.html" class="tsd-kind-icon">Proxy<wbr>Data</a>
+					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/timer.html" class="tsd-kind-icon">Timer</a>
 					</li>
@@ -564,10 +619,19 @@ executePromisesByBatch(tasks, {
 						<a href="interfaces/itransition.html" class="tsd-kind-icon">ITransition</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/iprivateevents.html" class="tsd-kind-icon">Iprivate<wbr>Events</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/iwsopts.html" class="tsd-kind-icon">Iws<wbr>Opts</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/wsclienteventmap.html" class="tsd-kind-icon">WSClient<wbr>Event<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#iattevents" class="tsd-kind-icon">Iatt<wbr>Events</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#iproxyevents" class="tsd-kind-icon">Iproxy<wbr>Events</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#parent" class="tsd-kind-icon">PARENT</a>

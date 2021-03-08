@@ -19,6 +19,8 @@ web/node.js常用方法工具集
 12. 副作用管理[【debuffAction】](https://nichijoucc.github.io/ctool/classes/debuffaction.html)
 13. 对象池[【objectPool】](https://nichijoucc.github.io/ctool/classes/objectpool.html)
 14. 分层状态机[【tinyhfsm】](https://nichijoucc.github.io/ctool/classes/tinyhfsm.html)
+15. 数据对象代理[【proxydata】](https://nichijoucc.github.io/ctool/classes/proxydata.html)
+
 
 
 API文档：https://nichijoucc.github.io/ctool/

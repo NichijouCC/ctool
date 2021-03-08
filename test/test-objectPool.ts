@@ -27,7 +27,7 @@ describe("objectPool", () => {
             initSize: 100,
         });
 
-        let ins = pool.create();
+        let ins = pool.instantiate();
         expect(pool.size).to.equal(99);
         expect(ins instanceof Float32Array).to.equal(true);
     });
@@ -43,7 +43,7 @@ describe("objectPool", () => {
             initSize: 100,
         });
 
-        let ins = pool.create();
+        let ins = pool.instantiate();
         expect(ins[0]).to.equal(1);
     });
 });
