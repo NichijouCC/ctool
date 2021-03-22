@@ -67,7 +67,7 @@
 				<a href="#tool" id="tool" style="color: inherit; text-decoration: none;">
 					<h1>tool</h1>
 				</a>
-				<p><a href="https://www.npmjs.com/package/@mtgoo/ctool"><img src="https://img.shields.io/badge/npm-0.0.16-blue" alt=""></a>
+				<p><a href="https://www.npmjs.com/package/@mtgoo/ctool"><img src="https://img.shields.io/badge/npm-0.0.20-blue" alt=""></a>
 				<img src="https://img.shields.io/badge/license-MIT-green" alt=""></p>
 				<p>web/node.js常用方法工具集</p>
 				<a href="#feature" id="feature" style="color: inherit; text-decoration: none;">
@@ -81,13 +81,14 @@
 					<li>promise：在async/await下的异常管理<a href="https://nichijoucc.github.io/ctool/globals.html#wrappromise">【wrapPromise】</a></li>
 					<li>promise：控制句柄暴露<a href="https://nichijoucc.github.io/ctool/classes/exposedPromise.html">【exposedPromise】</a></li>
 					<li>promise：重试执行<a href="https://nichijoucc.github.io/ctool/globals.html#retryfn">【retryPromise】</a></li>
-					<li>轻量级ws<a href="https://nichijoucc.github.io/ctool/classes/tinyws.html">【tinyWs】</a></li>
-					<li>轻量级rpc<a href="https://nichijoucc.github.io/ctool/classes/tinyrpc_ws.html">【tinyRpc】</a></li>
+					<li>轻量级ws<a href="https://nichijoucc.github.io/ctool/classes/tinywsclient.html">【tinyWs】</a></li>
+					<li>轻量级rpc<a href="https://nichijoucc.github.io/ctool/modules/tinyrpc.html">【tinyRpc】</a></li>
 					<li>唯一ID<a href="https://nichijoucc.github.io/ctool/globals.html#uuid">【uuid】</a></li>
 					<li>计时器<a href="https://nichijoucc.github.io/ctool/classes/timer.html">【timer】</a></li>
 					<li>副作用管理<a href="https://nichijoucc.github.io/ctool/classes/debuffaction.html">【debuffAction】</a></li>
 					<li>对象池<a href="https://nichijoucc.github.io/ctool/classes/objectpool.html">【objectPool】</a></li>
 					<li>分层状态机<a href="https://nichijoucc.github.io/ctool/classes/tinyhfsm.html">【tinyhfsm】</a></li>
+					<li>数据对象代理<a href="https://nichijoucc.github.io/ctool/classes/proxydata.html">【proxydata】</a></li>
 				</ol>
 				<p>API文档：<a href="https://nichijoucc.github.io/ctool/">https://nichijoucc.github.io/ctool/</a></p>
 				<a href="#安装" id="安装" style="color: inherit; text-decoration: none;">
@@ -101,6 +102,9 @@
 				<ul>
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="modules/tinyrpc.html">Tiny<wbr>Rpc</a>
 					</li>
 				</ul>
 			</nav>
@@ -137,6 +141,9 @@
 						<a href="classes/hfsmstate.html" class="tsd-kind-icon">HFSMState</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/interceptor.html" class="tsd-kind-icon">Interceptor</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/objectpool.html" class="tsd-kind-icon">Object<wbr>Pool</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -152,13 +159,19 @@
 						<a href="classes/tinyhfsm.html" class="tsd-kind-icon">TinyHFsm</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/tinyrpc_ws.html" class="tsd-kind-icon">Tiny<wbr>Rpc_<wbr>ws</a>
+						<a href="classes/tinyrpcclient.html" class="tsd-kind-icon">Tiny<wbr>Rpc<wbr>Client</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/tinyws.html" class="tsd-kind-icon">Tiny<wbr>Ws</a>
+						<a href="classes/tinyrpcserver.html" class="tsd-kind-icon">Tiny<wbr>Rpc<wbr>Server</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/tinywsclient.html" class="tsd-kind-icon">Tiny<wbr>WsClient</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/uuid.html" class="tsd-kind-icon">UUID</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/irpcclientoptions.html" class="tsd-kind-icon">IRpc<wbr>Client<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/istate.html" class="tsd-kind-icon">IState</a>

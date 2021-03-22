@@ -1,9 +1,9 @@
 import { describe, it, before } from "mocha";
-import { TinyWs } from "../src/index";
+import { TinyWsClient } from "../src/index";
 import * as ws from "ws";
 import { expect } from "chai";
 
-describe("tinyws", () => {
+describe("tinyWsClient", () => {
     const backmsgMark = "server:";
     let wsServer: ws.Server;
     before(() => {
@@ -18,14 +18,14 @@ describe("tinyws", () => {
     });
 
     it("create", (done) => {
-        const ins = TinyWs.connect("ws://localhost:8181");
+        const ins = TinyWsClient.connect("ws://localhost:8181");
         ins.on("connect", () => {
             done();
         });
     });
 
     it("send message", (done) => {
-        const ins = TinyWs.connect("ws://localhost:8181");
+        const ins = TinyWsClient.connect("ws://localhost:8181");
         const msg = "hello";
         ins.on("connect", () => {
             ins.sendMessage(msg);
@@ -38,7 +38,7 @@ describe("tinyws", () => {
 
     it("disconnect", (done) => {
         var server = new ws.Server({ port: 8383 });
-        const ins = TinyWs.connect("ws://localhost:8383", { autoReconnect: { active: false } });
+        const ins = TinyWsClient.connect("ws://localhost:8383", { autoReconnect: { active: false } });
         ins.on("connect", () => {
             server.close();
         });
@@ -50,7 +50,7 @@ describe("tinyws", () => {
 
     it("reconnect trigger", (done) => {
         var server = new ws.Server({ port: 8484 });
-        const ins = TinyWs.connect("ws://localhost:8484");
+        const ins = TinyWsClient.connect("ws://localhost:8484");
         ins.on("connect", () => {
             server.close();
         });
@@ -58,7 +58,7 @@ describe("tinyws", () => {
     });
 
     it("reconnect once trigger", (done) => {
-        const ins = TinyWs.connect("ws://localhost:8585");
+        const ins = TinyWsClient.connect("ws://localhost:8585");
         let tryCount = 0; let failedCount = 0; let sucessedCount = 0;
         ins.on("once_reconnecting", (index) => {
             tryCount++;
@@ -81,14 +81,14 @@ describe("tinyws", () => {
     }).timeout(20000);
 
     it("reconnect failed", (done) => {
-        const ins = TinyWs.connect("ws://localhost:8585", { autoReconnect: { reconnectCount: 1 } });
+        const ins = TinyWsClient.connect("ws://localhost:8585", { autoReconnect: { reconnectCount: 1 } });
         ins.on("reconnect_fail", () => {
             done();
         });
     }).timeout(20000);
 
     it("reconnect success", (done) => {
-        const ins = TinyWs.connect("ws://localhost:8686");
+        const ins = TinyWsClient.connect("ws://localhost:8686");
         ins.on("disconnect", () => {
             var server = new ws.Server({ port: 8686 });
         });

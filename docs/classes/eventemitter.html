@@ -127,7 +127,10 @@ keyboard.on(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="h
 						<span class="target">EventEmitter</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="tinyws.html" class="tsd-signature-type">TinyWs</a>
+								<a href="tinywsclient.html" class="tsd-signature-type">TinyWsClient</a>
+							</li>
+							<li>
+								<a href="tinyrpcserver.html" class="tsd-signature-type">TinyRpcServer</a>
 							</li>
 							<li>
 								<a href="proxydata.html" class="tsd-signature-type">ProxyData</a>
@@ -168,7 +171,7 @@ keyboard.on(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="h
 					<div class="tsd-signature tsd-kind-icon">_listener<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = {} as any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L44">eventEmitter.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L44">eventEmitter.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -178,7 +181,7 @@ keyboard.on(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="h
 					<div class="tsd-signature tsd-kind-icon">be<wbr>Active<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L48">eventEmitter.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L48">eventEmitter.ts:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -200,7 +203,7 @@ keyboard.on(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="h
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L64">eventEmitter.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L64">eventEmitter.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -243,7 +246,7 @@ keyboard.on(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="h
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L75">eventEmitter.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L75">eventEmitter.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -304,7 +307,7 @@ keyboard.on(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="h
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L54">eventEmitter.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L54">eventEmitter.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -365,7 +368,7 @@ keyboard.on(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="h
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L95">eventEmitter.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L95">eventEmitter.ts:95</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -387,7 +390,7 @@ keyboard.on(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="h
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L88">eventEmitter.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L88">eventEmitter.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -484,6 +487,9 @@ keyboard.on(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="h
 						<a href="hfsmstate.html" class="tsd-kind-icon">HFSMState</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="interceptor.html" class="tsd-kind-icon">Interceptor</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="objectpool.html" class="tsd-kind-icon">Object<wbr>Pool</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -499,13 +505,19 @@ keyboard.on(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="h
 						<a href="tinyhfsm.html" class="tsd-kind-icon">TinyHFsm</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="tinyrpc_ws.html" class="tsd-kind-icon">Tiny<wbr>Rpc_<wbr>ws</a>
+						<a href="tinyrpcclient.html" class="tsd-kind-icon">Tiny<wbr>Rpc<wbr>Client</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="tinyws.html" class="tsd-kind-icon">Tiny<wbr>Ws</a>
+						<a href="tinyrpcserver.html" class="tsd-kind-icon">Tiny<wbr>Rpc<wbr>Server</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="tinywsclient.html" class="tsd-kind-icon">Tiny<wbr>WsClient</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="uuid.html" class="tsd-kind-icon">UUID</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/irpcclientoptions.html" class="tsd-kind-icon">IRpc<wbr>Client<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/istate.html" class="tsd-kind-icon">IState</a>

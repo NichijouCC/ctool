@@ -39,15 +39,15 @@ import { wrapPromise } from "./wrapPromise";
  * })();
  * ```
  */
-export class TinyWs extends EventEmitter<WSClientEventMap> {
+export class TinyWsClient extends EventEmitter<WSClientEventMap> {
     /**
      * 创建wsClient,等待连接建立
      * @param url ws服务器地址
      * @param options 
      */
-    static connectSync(url: string, options?: IwsOpts): Promise<TinyWs> {
+    static connectSync(url: string, options?: IwsOpts): Promise<TinyWsClient> {
         return new Promise((resolve, reject) => {
-            const ins = new TinyWs(url, options);
+            const ins = new TinyWsClient(url, options);
             ins.on("connect", () => resolve(ins));
             if (ins.options.autoReconnect.active) {
                 ins.on("reconnect_fail", (err) => reject(err));
@@ -57,19 +57,30 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
         });
     }
 
+    private _receiveMessage = (msg: string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView) => {
+        this.emit(WSEventEnum.message, msg);
+    }
+
+    private _sendMessage = (data: string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView) => {
+        if (this.beOpen) {
+            this.client.ins.send(data);
+        }
+    }
+
+    interceptors = { send: new Interceptor(this._sendMessage), receive: new Interceptor(this._receiveMessage) };
     /**
      * 创建wsClient, 不需要等待连接建立
      * @param url ws服务器地址
      * @param options 
      */
-    static connect(url: string, options?: IwsOpts) {
-        return new this(url, options);
+    static connect<T>(this: new (...params: any) => T, url: string, options?: IwsOpts): T {
+        return new (this as any)(url, options) as T;
     }
 
     private url: string;
     private options: Omit<Required<IwsOpts>, "listeners">;
     private client: { ins: WebSocket; close: () => void; };
-    protected constructor(url: string, opts: IwsOpts = {}) {
+    constructor(url: string, opts: IwsOpts = {}) {
         super();
         this.url = url;
         const { autoReconnect = {} } = opts;
@@ -125,7 +136,7 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
     }
 
     protected onmessage = (ev: MessageEvent) => {
-        this.emit(WSEventEnum.message, ev.data);
+        this.interceptors.receive.execute(ev.data);
     }
 
     private reconnect = async () => {
@@ -186,18 +197,39 @@ export class TinyWs extends EventEmitter<WSClientEventMap> {
         this.client = null;
     }
 
+
     /**
      * 发送消息。注意：未建立连接,会发送失败
      */
-    sendMessage(data: string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView) {
-        if (this.beOpen) {
-            this.client.ins.send(data);
-        }
+    sendMessage(data: any) {
+        this.interceptors.send.execute(data);
     }
 }
 
-
-
+export class Interceptor<T = any> {
+    private _proxy: Function;
+    private _before: (...params: any) => T | Promise<T>;
+    constructor(proxy: (...params: any) => any) {
+        this._proxy = proxy;
+    }
+    use = (before: (...params: any) => T | Promise<T>) => {
+        this._before = before;
+    };
+    execute(data: any): Promise<T> {
+        if (this._before != null) {
+            let beforeResult = this._before(data);
+            if (beforeResult instanceof Promise) {
+                return beforeResult.then((res) => {
+                    return this._proxy?.(res);
+                })
+            } else {
+                return Promise.resolve(this._proxy?.(beforeResult));
+            }
+        } else {
+            return Promise.resolve(this._proxy?.(data));
+        }
+    }
+}
 
 /**
  * 创建ws的可配置参数
@@ -223,7 +255,7 @@ export interface IwsOpts {
     /**
      * 事件监听
      */
-    listeners?: { [key in keyof WSEventEnum]: () => void }
+    listeners?: { [key in keyof WSEventEnum]: () => void };
 }
 
 /**
@@ -296,7 +328,7 @@ function createWs(url: string): Promise<WebSocket> {
     });
 }
 
-interface WSClientEventMap {
+export interface WSClientEventMap {
     "connect": Event;
     "connecting": void;
     "disconnect": CloseEvent;

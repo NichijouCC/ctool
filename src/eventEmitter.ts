@@ -40,7 +40,7 @@
  * });
  * ```
  */
-export class EventEmitter<T = { [key: string]: void }> {
+export class EventEmitter<T = { [key: string]: any }> {
     protected _listener = {} as any;
     /**
      * 激活/禁用 事件管理器，在激活状态下，触发事件才会触发监听器

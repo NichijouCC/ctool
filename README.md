@@ -1,5 +1,5 @@
 # tool
-[![](https://img.shields.io/badge/npm-0.0.16-blue)](https://www.npmjs.com/package/@mtgoo/ctool)
+[![](https://img.shields.io/badge/npm-0.0.20-blue)](https://www.npmjs.com/package/@mtgoo/ctool)
 ![](https://img.shields.io/badge/license-MIT-green)
 
 web/node.js常用方法工具集
@@ -11,9 +11,9 @@ web/node.js常用方法工具集
 4. promise：结果复用[【persistPromise】](https://nichijoucc.github.io/ctool/classes/persistpromise.html)
 5. promise：在async/await下的异常管理[【wrapPromise】](https://nichijoucc.github.io/ctool/globals.html#wrappromise)
 6. promise：控制句柄暴露[【exposedPromise】](https://nichijoucc.github.io/ctool/classes/exposedPromise.html)
-7. promise：重试执行[【retryPromise】](https://nichijoucc.github.io/ctool/globals.html#retryfn)
-8. 轻量级ws[【tinyWs】](https://nichijoucc.github.io/ctool/classes/tinyws.html)
-9. 轻量级rpc[【tinyRpc】](https://nichijoucc.github.io/ctool/classes/tinyrpc_ws.html)
+7. promise：重试执行[【retryPromise】](https://nichijoucc.github.io/ctool/globals.html#retrypromise)
+8. 轻量级ws[【tinyWs】](https://nichijoucc.github.io/ctool/classes/tinywsclient.html)
+9. 轻量级rpc[【tinyRpc】](https://nichijoucc.github.io/ctool/modules/tinyrpc.html)
 10. 唯一ID[【uuid】](https://nichijoucc.github.io/ctool/globals.html#uuid)
 11. 计时器[【timer】](https://nichijoucc.github.io/ctool/classes/timer.html)
 12. 副作用管理[【debuffAction】](https://nichijoucc.github.io/ctool/classes/debuffaction.html)

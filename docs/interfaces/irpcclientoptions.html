@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IprivateEvents | @mtgoo/ctool</title>
+	<title>IRpcClientOptions | @mtgoo/ctool</title>
 	<meta name="description" content="Documentation for @mtgoo/ctool">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="iprivateevents.html">IprivateEvents</a>
+					<a href="irpcclientoptions.html">IRpcClientOptions</a>
 				</li>
 			</ul>
-			<h1>Interface IprivateEvents</h1>
+			<h1>Interface IRpcClientOptions</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IprivateEvents</span>
+						<a href="iwsopts.html" class="tsd-signature-type">IwsOpts</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">IRpcClientOptions</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -81,7 +86,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iprivateevents.html#setatt" class="tsd-kind-icon">set<wbr>Att</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="irpcclientoptions.html#autoreconnect" class="tsd-kind-icon">auto<wbr>Reconnect</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="irpcclientoptions.html#listeners" class="tsd-kind-icon">listeners</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="irpcclientoptions.html#messagetype" class="tsd-kind-icon">message<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="irpcclientoptions.html#timeout" class="tsd-kind-icon">time<wbr>Out</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,28 +97,112 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="setatt" class="tsd-anchor"></a>
-					<h3>set<wbr>Att</h3>
-					<div class="tsd-signature tsd-kind-icon">set<wbr>Att<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>att<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>newValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>oldValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="autoreconnect" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> auto<wbr>Reconnect</h3>
+					<div class="tsd-signature tsd-kind-icon">auto<wbr>Reconnect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>active<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>reconnectCondition<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>reconnectCount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="iwsopts.html">IwsOpts</a>.<a href="iwsopts.html#autoreconnect">autoReconnect</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/proxyData.ts#L4">proxyData.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L241">tinyWs.ts:241</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>自动重连可选配置</p>
+						</div>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter">
-								<h5>att<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> active<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>是否自动重连,默认开启</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
-								<h5>new<wbr>Value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> reconnect<wbr>Condition<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>重连前置条件</p>
+									</div>
+								</div>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-signature">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
 							</li>
 							<li class="tsd-parameter">
-								<h5>old<wbr>Value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> reconnect<wbr>Count<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>重连次数，默认5</p>
+									</div>
+								</div>
 							</li>
 						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="listeners" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> listeners</h3>
+					<div class="tsd-signature tsd-kind-icon">listeners<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="iwsopts.html">IwsOpts</a>.<a href="iwsopts.html#listeners">listeners</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L258">tinyWs.ts:258</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>事件监听</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="messagetype" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> message<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">message<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"string"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in tinyRpc.ts:91</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>默认值：<code>buffer</code></p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="timeout" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> time<wbr>Out</h3>
+					<div class="tsd-signature tsd-kind-icon">time<wbr>Out<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in tinyRpc.ts:87</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>默认值：3000</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -185,9 +277,27 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/uuid.html" class="tsd-kind-icon">UUID</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="irpcclientoptions.html" class="tsd-kind-icon">IRpc<wbr>Client<wbr>Options</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="irpcclientoptions.html#autoreconnect" class="tsd-kind-icon">auto<wbr>Reconnect</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="irpcclientoptions.html#listeners" class="tsd-kind-icon">listeners</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="irpcclientoptions.html#messagetype" class="tsd-kind-icon">message<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="irpcclientoptions.html#timeout" class="tsd-kind-icon">time<wbr>Out</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="istate.html" class="tsd-kind-icon">IState</a>
 					</li>
@@ -197,18 +307,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="itransition.html" class="tsd-kind-icon">ITransition</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="iprivateevents.html" class="tsd-kind-icon">Iprivate<wbr>Events</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iprivateevents.html#setatt" class="tsd-kind-icon">set<wbr>Att</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="iwsopts.html" class="tsd-kind-icon">Iws<wbr>Opts</a>
 					</li>

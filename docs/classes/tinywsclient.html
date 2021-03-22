@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TinyWs | @mtgoo/ctool</title>
+	<title>TinyWsClient | @mtgoo/ctool</title>
 	<meta name="description" content="Documentation for @mtgoo/ctool">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="tinyws.html">TinyWs</a>
+					<a href="tinywsclient.html">TinyWsClient</a>
 				</li>
 			</ul>
-			<h1>Class TinyWs</h1>
+			<h1>Class TinyWsClient</h1>
 		</div>
 	</div>
 </header>
@@ -82,7 +82,7 @@
 						<dd><pre><code class="language-typescript"><span class="hljs-keyword">const</span> client = TinyWs.connect(<span class="hljs-string">&quot;wss://echo.websocket.org&quot;</span>);
 client.on(<span class="hljs-string">&quot;connect&quot;</span>, <span class="hljs-function">() =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;connect to server&quot;</span>);
-    client.sendMessage({ role: <span class="hljs-number">1</span>, message: <span class="hljs-string">&quot;hello！&quot;</span> });
+    client.sendMessage({ <span class="hljs-attr">role</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">message</span>: <span class="hljs-string">&quot;hello！&quot;</span> });
 });
 client.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;出错&quot;</span>, err));
 
@@ -115,10 +115,10 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 						<a href="eventemitter.html" class="tsd-signature-type">EventEmitter</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/wsclienteventmap.html" class="tsd-signature-type">WSClientEventMap</a><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">TinyWs</span>
+								<span class="target">TinyWsClient</span>
 								<ul class="tsd-hierarchy">
 									<li>
-										<a href="tinyrpc_ws.html" class="tsd-signature-type">TinyRpc_ws</a>
+										<a href="tinyrpcclient.html" class="tsd-signature-type">TinyRpcClient</a>
 									</li>
 								</ul>
 							</li>
@@ -130,65 +130,73 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-private-protected">
+						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-protected"><a href="tinyws.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="tinywsclient.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="tinyws.html#_listener" class="tsd-kind-icon">_listener</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="tinyws.html#beactive" class="tsd-kind-icon">be<wbr>Active</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tinyws.html#client" class="tsd-kind-icon">client</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tinyws.html#options" class="tsd-kind-icon">options</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tinyws.html#url" class="tsd-kind-icon">url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="tinywsclient.html#_listener" class="tsd-kind-icon">_listener</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="tinywsclient.html#beactive" class="tsd-kind-icon">be<wbr>Active</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tinywsclient.html#client" class="tsd-kind-icon">client</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tinywsclient.html#options" class="tsd-kind-icon">options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tinywsclient.html#url" class="tsd-kind-icon">url</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="tinyws.html#beopen" class="tsd-kind-icon">be<wbr>Open</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="tinywsclient.html#beopen" class="tsd-kind-icon">be<wbr>Open</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinyws.html#_onceconnect" class="tsd-kind-icon">_once<wbr>Connect</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinyws.html#attachws" class="tsd-kind-icon">attach<wbr>Ws</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tinyws.html#dispose" class="tsd-kind-icon">dispose</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="tinyws.html#emit" class="tsd-kind-icon">emit</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="tinyws.html#off" class="tsd-kind-icon">off</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="tinyws.html#on" class="tsd-kind-icon">on</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinyws.html#onclose" class="tsd-kind-icon">onclose</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinyws.html#onerror" class="tsd-kind-icon">onerror</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="tinyws.html#onmessage" class="tsd-kind-icon">onmessage</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinyws.html#onopen" class="tsd-kind-icon">onopen</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinyws.html#reconnect" class="tsd-kind-icon">reconnect</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="tinyws.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="tinyws.html#removeeventlisteners" class="tsd-kind-icon">remove<wbr>Event<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tinyws.html#sendmessage" class="tsd-kind-icon">send<wbr>Message</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tinyws.html#connect" class="tsd-kind-icon">connect</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tinyws.html#connectsync" class="tsd-kind-icon">connect<wbr>Sync</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinywsclient.html#_onceconnect" class="tsd-kind-icon">_once<wbr>Connect</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinywsclient.html#_receivemessage" class="tsd-kind-icon">_receive<wbr>Message</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinywsclient.html#_sendmessage" class="tsd-kind-icon">_send<wbr>Message</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinywsclient.html#attachws" class="tsd-kind-icon">attach<wbr>Ws</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tinywsclient.html#dispose" class="tsd-kind-icon">dispose</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="tinywsclient.html#emit" class="tsd-kind-icon">emit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="tinywsclient.html#off" class="tsd-kind-icon">off</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="tinywsclient.html#on" class="tsd-kind-icon">on</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinywsclient.html#onclose" class="tsd-kind-icon">onclose</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinywsclient.html#onerror" class="tsd-kind-icon">onerror</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="tinywsclient.html#onmessage" class="tsd-kind-icon">onmessage</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinywsclient.html#onopen" class="tsd-kind-icon">onopen</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tinywsclient.html#reconnect" class="tsd-kind-icon">reconnect</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="tinywsclient.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="tinywsclient.html#removeeventlisteners" class="tsd-kind-icon">remove<wbr>Event<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tinywsclient.html#sendmessage" class="tsd-kind-icon">send<wbr>Message</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="tinywsclient.html#connect" class="tsd-kind-icon">connect</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tinywsclient.html#connectsync" class="tsd-kind-icon">connect<wbr>Sync</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-class"><a href="tinywsclient.html#interceptors" class="tsd-kind-icon">interceptors</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
 					<a name="constructor" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Tiny<wbr>Ws<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, opts<span class="tsd-signature-symbol">?: </span><a href="../interfaces/iwsopts.html" class="tsd-signature-type">IwsOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tinyws.html" class="tsd-signature-type">TinyWs</a></li>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Tiny<wbr>WsClient<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, opts<span class="tsd-signature-symbol">?: </span><a href="../interfaces/iwsopts.html" class="tsd-signature-type">IwsOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tinywsclient.html" class="tsd-signature-type">TinyWsClient</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L71">tinyWs.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L82">tinyWs.ts:82</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -200,7 +208,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> opts: <a href="../interfaces/iwsopts.html" class="tsd-signature-type">IwsOpts</a><span class="tsd-signature-symbol"> = {}</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="tinyws.html" class="tsd-signature-type">TinyWs</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="tinywsclient.html" class="tsd-signature-type">TinyWsClient</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -214,7 +222,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="eventemitter.html">EventEmitter</a>.<a href="eventemitter.html#_listener">_listener</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L44">eventEmitter.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L44">eventEmitter.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -225,7 +233,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="eventemitter.html">EventEmitter</a>.<a href="eventemitter.html#beactive">beActive</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L48">eventEmitter.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L48">eventEmitter.ts:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -240,7 +248,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 					<div class="tsd-signature tsd-kind-icon">client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>close<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">; </span>ins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">WebSocket</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L71">tinyWs.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L82">tinyWs.ts:82</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -273,7 +281,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iwsopts.html" class="tsd-signature-type">IwsOpts</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"listeners"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L70">tinyWs.ts:70</a></li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L81">tinyWs.ts:81</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -283,7 +291,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L69">tinyWs.ts:69</a></li>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L80">tinyWs.ts:80</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -300,7 +308,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L179">tinyWs.ts:179</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L190">tinyWs.ts:190</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -325,10 +333,56 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L160">tinyWs.ts:160</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L171">tinyWs.ts:171</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">WebSocket</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="_receivemessage" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _receive<wbr>Message</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">_receive<wbr>Message<span class="tsd-signature-symbol">(</span>msg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">SharedArrayBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Blob</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBufferView</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L60">tinyWs.ts:60</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>msg: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">SharedArrayBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Blob</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBufferView</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="_sendmessage" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _send<wbr>Message</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">_send<wbr>Message<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">SharedArrayBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Blob</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBufferView</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L64">tinyWs.ts:64</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">SharedArrayBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Blob</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBufferView</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -342,7 +396,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L92">tinyWs.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L103">tinyWs.ts:103</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -365,7 +419,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L183">tinyWs.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L194">tinyWs.ts:194</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -388,7 +442,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="eventemitter.html">EventEmitter</a>.<a href="eventemitter.html#emit">emit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L64">eventEmitter.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L64">eventEmitter.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -432,7 +486,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="eventemitter.html">EventEmitter</a>.<a href="eventemitter.html#off">off</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L75">eventEmitter.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L75">eventEmitter.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -494,7 +548,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="eventemitter.html">EventEmitter</a>.<a href="eventemitter.html#on">on</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L54">eventEmitter.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L54">eventEmitter.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -555,7 +609,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L115">tinyWs.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L126">tinyWs.ts:126</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -578,7 +632,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L123">tinyWs.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L134">tinyWs.ts:134</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -601,7 +655,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L127">tinyWs.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L138">tinyWs.ts:138</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -624,7 +678,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L111">tinyWs.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L122">tinyWs.ts:122</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -647,7 +701,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L131">tinyWs.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L142">tinyWs.ts:142</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -665,7 +719,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="eventemitter.html">EventEmitter</a>.<a href="eventemitter.html#removealllisteners">removeAllListeners</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L95">eventEmitter.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L95">eventEmitter.ts:95</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -688,7 +742,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="eventemitter.html">EventEmitter</a>.<a href="eventemitter.html#removeeventlisteners">removeEventListeners</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/eventEmitter.ts#L88">eventEmitter.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/eventEmitter.ts#L88">eventEmitter.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -719,13 +773,13 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 					<a name="sendmessage" class="tsd-anchor"></a>
 					<h3>send<wbr>Message</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Message<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">SharedArrayBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Blob</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBufferView</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Message<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L192">tinyWs.ts:192</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L204">tinyWs.ts:204</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -736,24 +790,24 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>data: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">SharedArrayBuffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Blob</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBufferView</span></h5>
+									<h5>data: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 					<a name="connect" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> connect</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/iwsopts.html" class="tsd-signature-type">IwsOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tinyws.html" class="tsd-signature-type">TinyWs</a></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">connect&lt;T&gt;<span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/iwsopts.html" class="tsd-signature-type">IwsOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L65">tinyWs.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L76">tinyWs.ts:76</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -761,8 +815,19 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 									<p>创建wsClient, 不需要等待连接建立</p>
 								</div>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5>this: <span class="tsd-signature-symbol">{}</span></h5>
+									<ul class="tsd-parameters">
+									</ul>
+								</li>
 								<li>
 									<h5>url: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
@@ -775,7 +840,7 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="tinyws.html" class="tsd-signature-type">TinyWs</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -783,13 +848,13 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 					<a name="connectsync" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> connect<wbr>Sync</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">connect<wbr>Sync<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/iwsopts.html" class="tsd-signature-type">IwsOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="tinyws.html" class="tsd-signature-type">TinyWs</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">connect<wbr>Sync<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/iwsopts.html" class="tsd-signature-type">IwsOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="tinywsclient.html" class="tsd-signature-type">TinyWsClient</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mtgoo/ctool/blob/15fa3b5/src/tinyWs.ts#L48">tinyWs.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L48">tinyWs.ts:48</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -811,9 +876,42 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="tinyws.html" class="tsd-signature-type">TinyWs</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="tinywsclient.html" class="tsd-signature-type">TinyWsClient</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class">
+					<a name="interceptors" class="tsd-anchor"></a>
+					<h3>interceptors</h3>
+					<div class="tsd-signature tsd-kind-icon">interceptors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L70">tinyWs.ts:70</a></li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="interceptors.receive" class="tsd-anchor"></a>
+						<h3>receive</h3>
+						<div class="tsd-signature tsd-kind-icon">receive<span class="tsd-signature-symbol">:</span> <a href="interceptor.html" class="tsd-signature-type">Interceptor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Interceptor(this._receiveMessage)</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L70">tinyWs.ts:70</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="interceptors.send" class="tsd-anchor"></a>
+						<h3>send</h3>
+						<div class="tsd-signature tsd-kind-icon">send<span class="tsd-signature-symbol">:</span> <a href="interceptor.html" class="tsd-signature-type">Interceptor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Interceptor(this._sendMessage)</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/NichijouCC/ctool/blob/96d8815/src/tinyWs.ts#L70">tinyWs.ts:70</a></li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 			</section>
 		</div>
@@ -858,6 +956,9 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 						<a href="hfsmstate.html" class="tsd-kind-icon">HFSMState</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="interceptor.html" class="tsd-kind-icon">Interceptor</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="objectpool.html" class="tsd-kind-icon">Object<wbr>Pool</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -873,81 +974,93 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 						<a href="tinyhfsm.html" class="tsd-kind-icon">TinyHFsm</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="tinyrpc_ws.html" class="tsd-kind-icon">Tiny<wbr>Rpc_<wbr>ws</a>
+						<a href="tinyrpcclient.html" class="tsd-kind-icon">Tiny<wbr>Rpc<wbr>Client</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="tinyrpcserver.html" class="tsd-kind-icon">Tiny<wbr>Rpc<wbr>Server</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="tinyws.html" class="tsd-kind-icon">Tiny<wbr>Ws</a>
+						<a href="tinywsclient.html" class="tsd-kind-icon">Tiny<wbr>WsClient</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-protected">
-								<a href="tinyws.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="tinywsclient.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="tinyws.html#_listener" class="tsd-kind-icon">_listener</a>
+								<a href="tinywsclient.html#_listener" class="tsd-kind-icon">_listener</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="tinyws.html#beactive" class="tsd-kind-icon">be<wbr>Active</a>
+								<a href="tinywsclient.html#beactive" class="tsd-kind-icon">be<wbr>Active</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="tinyws.html#client" class="tsd-kind-icon">client</a>
+								<a href="tinywsclient.html#client" class="tsd-kind-icon">client</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="tinyws.html#options" class="tsd-kind-icon">options</a>
+								<a href="tinywsclient.html#options" class="tsd-kind-icon">options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="tinyws.html#url" class="tsd-kind-icon">url</a>
+								<a href="tinywsclient.html#url" class="tsd-kind-icon">url</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="tinyws.html#beopen" class="tsd-kind-icon">be<wbr>Open</a>
+								<a href="tinywsclient.html#beopen" class="tsd-kind-icon">be<wbr>Open</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="tinyws.html#_onceconnect" class="tsd-kind-icon">_once<wbr>Connect</a>
+								<a href="tinywsclient.html#_onceconnect" class="tsd-kind-icon">_once<wbr>Connect</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="tinyws.html#attachws" class="tsd-kind-icon">attach<wbr>Ws</a>
+								<a href="tinywsclient.html#_receivemessage" class="tsd-kind-icon">_receive<wbr>Message</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="tinywsclient.html#_sendmessage" class="tsd-kind-icon">_send<wbr>Message</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="tinywsclient.html#attachws" class="tsd-kind-icon">attach<wbr>Ws</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tinyws.html#dispose" class="tsd-kind-icon">dispose</a>
+								<a href="tinywsclient.html#dispose" class="tsd-kind-icon">dispose</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-								<a href="tinyws.html#emit" class="tsd-kind-icon">emit</a>
+								<a href="tinywsclient.html#emit" class="tsd-kind-icon">emit</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-								<a href="tinyws.html#off" class="tsd-kind-icon">off</a>
+								<a href="tinywsclient.html#off" class="tsd-kind-icon">off</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-								<a href="tinyws.html#on" class="tsd-kind-icon">on</a>
+								<a href="tinywsclient.html#on" class="tsd-kind-icon">on</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="tinyws.html#onclose" class="tsd-kind-icon">onclose</a>
+								<a href="tinywsclient.html#onclose" class="tsd-kind-icon">onclose</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="tinyws.html#onerror" class="tsd-kind-icon">onerror</a>
+								<a href="tinywsclient.html#onerror" class="tsd-kind-icon">onerror</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="tinyws.html#onmessage" class="tsd-kind-icon">onmessage</a>
+								<a href="tinywsclient.html#onmessage" class="tsd-kind-icon">onmessage</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="tinyws.html#onopen" class="tsd-kind-icon">onopen</a>
+								<a href="tinywsclient.html#onopen" class="tsd-kind-icon">onopen</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="tinyws.html#reconnect" class="tsd-kind-icon">reconnect</a>
+								<a href="tinywsclient.html#reconnect" class="tsd-kind-icon">reconnect</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="tinyws.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
+								<a href="tinywsclient.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-								<a href="tinyws.html#removeeventlisteners" class="tsd-kind-icon">remove<wbr>Event<wbr>Listeners</a>
+								<a href="tinywsclient.html#removeeventlisteners" class="tsd-kind-icon">remove<wbr>Event<wbr>Listeners</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tinyws.html#sendmessage" class="tsd-kind-icon">send<wbr>Message</a>
+								<a href="tinywsclient.html#sendmessage" class="tsd-kind-icon">send<wbr>Message</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
+								<a href="tinywsclient.html#connect" class="tsd-kind-icon">connect</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="tinyws.html#connect" class="tsd-kind-icon">connect</a>
+								<a href="tinywsclient.html#connectsync" class="tsd-kind-icon">connect<wbr>Sync</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="tinyws.html#connectsync" class="tsd-kind-icon">connect<wbr>Sync</a>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-class">
+								<a href="tinywsclient.html#interceptors" class="tsd-kind-icon">interceptors</a>
 							</li>
 						</ul>
 					</li>
@@ -955,6 +1068,9 @@ client.on(<span class="hljs-string">&quot;message&quot;</span>, <span class="hlj
 				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="uuid.html" class="tsd-kind-icon">UUID</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/irpcclientoptions.html" class="tsd-kind-icon">IRpc<wbr>Client<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/istate.html" class="tsd-kind-icon">IState</a>
