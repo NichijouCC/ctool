@@ -12,5 +12,5 @@ export * from './persistPromise';
 export * from './objectPool';
 export * from './exposedPromise';
 export * as TinyHFSM from './tinyHFSM';
-export * from './proxyData';
+export * from './observableData';
 
