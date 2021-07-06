@@ -1,9 +1,12 @@
 import { UUID } from "./uuid";
 
-const PARENT = Symbol("parent");
-const TRANSLATION_DIC = Symbol("TRANSLATION_DIC");
-const UPDATE = Symbol("UPDATE");
-const STATE_DIC = Symbol("STATE_DIC");
+namespace Private{
+    export const PARENT = Symbol("PARENT");
+    export const TRANSLATION_DIC = Symbol("TRANSLATION_DIC");
+    export const UPDATE = Symbol("UPDATE");
+    export const STATE_DIC = Symbol("STATE_DIC");
+}
+
 /**
  * 分层状态机：状态连线
  */
@@ -18,9 +21,9 @@ export class FsmTranslation implements ITransition {
 export class HFSMState implements IState {
     readonly id = UUID.create_v4();
     name: string;
-    [PARENT]: IStateMachine;
-    get machine(): IStateMachine { return this[PARENT] };
-    [TRANSLATION_DIC]: Map<IState, Omit<ITransition, "from">> = new Map();
+    [Private.PARENT]: IStateMachine;
+    get machine(): IStateMachine { return this[Private.PARENT] };
+    [Private.TRANSLATION_DIC]: Map<IState, Omit<ITransition, "from">> = new Map();
     /**
      * 添加同层级子状态连线
      * @param translation 
@@ -31,31 +34,31 @@ export class HFSMState implements IState {
             console.error(msg, translation);
             throw new Error(msg);
         };
-        if (this[TRANSLATION_DIC].has(translation.to)) {
+        if (this[Private.TRANSLATION_DIC].has(translation.to)) {
             let msg = `State:${this.name} already has translation to target(${translation.to.name})`;
             console.error(msg, translation);
             throw new Error(msg);
         }
-        if (this[PARENT].hasState(translation.to)) {
-            this[TRANSLATION_DIC].set(translation.to, translation);
+        if (this[Private.PARENT].hasState(translation.to)) {
+            this[Private.TRANSLATION_DIC].set(translation.to, translation);
         } else {
-            let msg = `State:${this.name} cannot add translation to target(${translation.to.name}) which has not add to machine system（${this[PARENT].name}）`;
+            let msg = `State:${this.name} cannot add translation to target(${translation.to.name}) which has not add to machine system（${this[Private.PARENT].name}）`;
             console.error(msg, translation);
             throw new Error(msg);
         }
     }
-    removeTranslation(to: IState) { this[TRANSLATION_DIC].delete(to); }
+    removeTranslation(to: IState) { this[Private.TRANSLATION_DIC].delete(to); }
 
     onEnter(prev: IState): void { }
     onExit(next: IState): void { }
-    [UPDATE](deltaTime: number) {
-        for (const value of this[TRANSLATION_DIC].values()) {
+    [Private.UPDATE](deltaTime: number) {
+        for (const value of this[Private.TRANSLATION_DIC].values()) {
             if (value.checkFunc) {
-                let needTranslate = value.checkFunc(this[PARENT]?.store);
-                if (needTranslate) this[PARENT].changToState(value.to);
+                let needTranslate = value.checkFunc(this[Private.PARENT]?.store);
+                if (needTranslate) this[Private.PARENT].changToState(value.to);
                 return;
             } else {
-                this[PARENT].changToState(value.to);
+                this[Private.PARENT].changToState(value.to);
                 return;
             }
         }
@@ -66,7 +69,7 @@ export class HFSMState implements IState {
 
 export class EnterState extends HFSMState {
     addTranslation(translation: Omit<ITransition, "from">) {
-        this[TRANSLATION_DIC].clear();
+        this[Private.TRANSLATION_DIC].clear();
         super.addTranslation(translation);
     }
 }
@@ -78,15 +81,15 @@ export class ExitState extends HFSMState { }
  * 分层状态机
  */
 export class TinyHFsm extends HFSMState implements IStateMachine {
-    [STATE_DIC]: Map<string, IState> = new Map();
+    [Private.STATE_DIC]: Map<string, IState> = new Map();
     enterState: IState = new EnterState();
     exitState: IState = new ExitState();
     anyState: IState = new AnyState();
     store: any;
     curState: IState;
-    addState(state: IState): void { this[STATE_DIC].set(state.id, state); }
-    hasState(state: IState) { return this[STATE_DIC].has(state.id); }
-    removeState(state: IState): void { this[STATE_DIC].delete(state.id); }
+    addState(state: IState): void { this[Private.STATE_DIC].set(state.id, state); }
+    hasState(state: IState) { return this[Private.STATE_DIC].has(state.id); }
+    removeState(state: IState): void { this[Private.STATE_DIC].delete(state.id); }
     constructor(store: any) {
         super();
         this.store = store;
@@ -94,9 +97,9 @@ export class TinyHFsm extends HFSMState implements IStateMachine {
     onEnter(prev: IState) { this.curState = this.enterState; }
     onExit(next: IState) { this.curState = null; }
     update(deltaTime: number) {
-        this[UPDATE](deltaTime);
+        this[Private.UPDATE](deltaTime);
         if (this.curState) {
-            this.curState[UPDATE](deltaTime);
+            this.curState[Private.UPDATE](deltaTime);
         }
     }
     /**
@@ -129,7 +132,7 @@ export interface IStateMachine extends IState {
     readonly anyState: IState;
     readonly store: any;
     readonly curState: IState;
-    [STATE_DIC]: Map<string, IState>;
+    [Private.STATE_DIC]: Map<string, IState>;
     addState(state: IState): void;
     removeState(state: IState): void;
     hasState(state: IState): boolean;
@@ -141,10 +144,10 @@ export interface IStateMachine extends IState {
 export interface IState {
     readonly id: string;
     name: string;
-    [PARENT]: IStateMachine;
+    [Private.PARENT]: IStateMachine;
     readonly machine: IStateMachine;
-    [TRANSLATION_DIC]: Map<IState, Omit<ITransition, "from">>;
-    [UPDATE](deltaTime: number): void;
+    [Private.TRANSLATION_DIC]: Map<IState, Omit<ITransition, "from">>;
+    [Private.UPDATE](deltaTime: number): void;
     addTranslation(translation: Omit<ITransition, "from">): void;
     removeTranslation(to: IState): void;
     onEnter(prev: IState): void;

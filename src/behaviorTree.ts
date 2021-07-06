@@ -9,7 +9,7 @@ interface IBVNode {
     currentResult: BVNodeResult;
     execute<T = any>(blackBoard: T): BVNodeResult
     rest(): void;
-    [INTERNAL_TICK](blackBoard: any): BVNodeResult
+    [Private.INTERNAL_TICK](blackBoard: any): BVNodeResult
 }
 
 class BaseNode implements IBVNode {
@@ -36,7 +36,7 @@ class BaseNode implements IBVNode {
     protected _execute(blackBoard: any) {
         return this.execute(blackBoard);
     }
-    [INTERNAL_TICK](blackBoard: any): BVNodeResult {
+    [Private.INTERNAL_TICK](blackBoard: any): BVNodeResult {
         if (this._currentState == "INIT") {
             this._enter(blackBoard);
         }
@@ -46,7 +46,7 @@ class BaseNode implements IBVNode {
             if (result != "RUNNING") {
                 this._exit(blackBoard);
             } else {
-                this._tree[RUNNING_NODE] = this;
+                this._tree[Private.RUNNING_NODE] = this;
             }
             this.currentResult = result;
         }
@@ -71,10 +71,10 @@ export abstract class ActionNode extends BaseNode {
     protected _execute(blackBoard: any) {
         let result = super._execute(blackBoard);
         if (result == "RUNNING") {
-            this._tree[RUNNING_NODE] = this;
-        } else if (this._tree[RUNNING_NODE] == this) {
+            this._tree[Private.RUNNING_NODE] = this;
+        } else if (this._tree[Private.RUNNING_NODE] == this) {
             //执行完毕
-            this._tree[RUNNING_NODE] = null;
+            this._tree[Private.RUNNING_NODE] = null;
         }
         return result;
     }
@@ -101,7 +101,7 @@ export abstract class ConditionNode extends LogicNode {
         let result = this.check(blackBoard);
         if (result == "SUCCESS") {
             if (this.child != null) {
-                return this.child[INTERNAL_TICK](blackBoard);
+                return this.child[Private.INTERNAL_TICK](blackBoard);
             }
         } else {
             return result
@@ -122,7 +122,7 @@ export abstract class ConditionNode extends LogicNode {
 export abstract class DecoratorNode extends LogicNode {
     execute<T = any>(blackBoard: T): BVNodeResult {
         if (this.child == null) return "FAILED";
-        let result = this.child[INTERNAL_TICK](blackBoard);
+        let result = this.child[Private.INTERNAL_TICK](blackBoard);
         return this.decorate(result, blackBoard);
     }
     rest() {
@@ -160,7 +160,7 @@ export class Sequence extends CompositeNode {
     execute<T = any>(blackBoard: T): BVNodeResult {
         if (this.children.length == 0) return "FAILED";
         for (let i = 0; i < this.children.length; i++) {
-            let result = this.children[i][INTERNAL_TICK](blackBoard);
+            let result = this.children[i][Private.INTERNAL_TICK](blackBoard);
             if (result != "SUCCESS") return result;
         }
         return "SUCCESS";
@@ -176,7 +176,7 @@ export class Selector extends CompositeNode {
     execute<T = any>(blackBoard: T): BVNodeResult {
         if (this.children.length == 0) return "FAILED";
         for (let i = 0; i < this.children.length; i++) {
-            let result = this.children[i][INTERNAL_TICK](blackBoard);
+            let result = this.children[i][Private.INTERNAL_TICK](blackBoard);
             if (result == "SUCCESS") return result;
         }
         return "FAILED"
@@ -193,7 +193,7 @@ export class ParallelSequence extends CompositeNode {
         if (this.children.length == 0) return "FAILED";
         let result: BVNodeResult = "SUCCESS"
         for (let i = 0; i < this.children.length; i++) {
-            let childResult = this.children[i][INTERNAL_TICK](blackBoard);
+            let childResult = this.children[i][Private.INTERNAL_TICK](blackBoard);
             if (childResult != "SUCCESS") result = childResult;
         }
         return result;
@@ -210,15 +210,19 @@ export class ParallelSelector extends CompositeNode {
         if (this.children.length == 0) return "FAILED";
         let result: BVNodeResult = "FAILED"
         for (let i = 0; i < this.children.length; i++) {
-            let childResult = this.children[i][INTERNAL_TICK](blackBoard);
+            let childResult = this.children[i][Private.INTERNAL_TICK](blackBoard);
             if (childResult == "SUCCESS") result = childResult;
         }
         return result;
     }
 }
 
-const RUNNING_NODE = Symbol("runningNode");
-const INTERNAL_TICK = Symbol("internalTick");
+
+
+namespace Private{
+    export const RUNNING_NODE = Symbol("runningNode");
+    export const INTERNAL_TICK = Symbol("internalTick");
+}
 
 /**
  * 行为树
@@ -228,7 +232,7 @@ const INTERNAL_TICK = Symbol("internalTick");
  */
 export class BehaviorTree {
     readonly root = new BaseNode(this);
-    [RUNNING_NODE]: BaseNode;
+    [Private.RUNNING_NODE]: BaseNode;
     blackBoard: any;
     private _autoTick: boolean;
     private _timer: Timer;
@@ -270,7 +274,7 @@ export class BehaviorTree {
      * 用途：打断当前节点的执行，重新决策
      */
     rest = () => {
-        this[RUNNING_NODE] = null;
+        this[Private.RUNNING_NODE] = null;
         this.root.rest();
     }
 
@@ -286,10 +290,10 @@ export class BehaviorTree {
     }
 
     private _execute() {
-        if (this[RUNNING_NODE]) {
-            return this[RUNNING_NODE].parent[INTERNAL_TICK](this.blackBoard);
+        if (this[Private.RUNNING_NODE]) {
+            return this[Private.RUNNING_NODE].parent[Private.INTERNAL_TICK](this.blackBoard);
         } else {
-            return this.root[INTERNAL_TICK](this.blackBoard);
+            return this.root[Private.INTERNAL_TICK](this.blackBoard);
         }
     }
 }
