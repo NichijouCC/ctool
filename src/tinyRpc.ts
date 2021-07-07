@@ -3,9 +3,10 @@ import { IwsOpts, TinyWsClient } from "./tinyWs";
 import { EventEmitter } from "./eventEmitter";
 
 /**
- * @example 创建 client
+ * @example 
  * ```
- * let ins: TinyRpcClient =new TinyRpcClient("ws://localhost:3030") as any;
+ * //创建 client
+ * let ins: RpcClient =new RpcClient("ws://localhost:3030") as any;
  * ins.on("connect", () => {
  *      //调用远程方法
  *     ins.callMethod("add", [1, 2])
@@ -16,7 +17,7 @@ import { EventEmitter } from "./eventEmitter";
  * ```
  * 
  */
-export class TinyRpcClient extends TinyWsClient {
+export class RpcClient extends TinyWsClient {
     protected opts: IRpcClientOptions;
     constructor(url: string, opts: IRpcClientOptions = {}) {
         super(url, opts);
@@ -92,12 +93,14 @@ export interface IRpcClientOptions extends IwsOpts {
 }
 
 /**
- * @example 创建server
+ * @example 
  * ```
- * TinyWsServer.create({ port: 8080 });
+ * //创建server
+ * RpcServer.create({ port: 8080 });
  * ```
- * @example 使用 http/https server
+ * @example 
  * ```
+ * //使用 http/https server
  * const fs = require('fs');
  * const https = require('https');
  * const WebSocket = require('ws');
@@ -107,14 +110,14 @@ export interface IRpcClientOptions extends IwsOpts {
  * key: fs.readFileSync('/path/to/key.pem')
  * });
  * 
- * TinyWsServer.create({server});
+ * RpcServer.create({server});
  * ```
  * @param options 
  */
-export class TinyRpcServer extends EventEmitter {
+export class RpcServer extends EventEmitter {
 
     static create(options: { port?: number, server?: any }) {
-        return new TinyRpcServer(options);
+        return new RpcServer(options);
     }
     private constructor(options: { port?: number, server?: any }) {
         super();
@@ -160,10 +163,10 @@ export class TinyRpcServer extends EventEmitter {
 }
 /**
  * 基于tinyWs的简易rpc实现
- * 
- *@description <br/> 
- * <br/> 
- * 
+ *
+ *@description <br/>
+ * <br/>
+ *
  * 发送消息结构:
  * ```
  * {
@@ -179,18 +182,20 @@ export class TinyRpcServer extends EventEmitter {
  *      result:"方法结果"
  * }
  * ```
- * 
- * @example 创建server
- * 
+ *
+ * @example
+ *
  * ```
+ * //创建server
  * var server = TinyRpcServer.create({ port: 9191 });
  * server.registerMethod("add", (data: any[]) => {
  *     return data[0] + data[1];
  * })
  * ```
- * 
- * @example 创建 client
+ *
+ * @example
  * ```
+ * //创建 client
  * let ins: TinyRpcClient =new TinyRpcClient("ws://localhost:3030") as any;
  * ins.on("connect", () => {
  *      //调用远程方法
@@ -200,10 +205,6 @@ export class TinyRpcServer extends EventEmitter {
  *         })
  * })
  * ```
- * 
- * 
+ *
+ *
  */
-export namespace TinyRpc {
-    export const Client = TinyRpcClient;
-    export const Server = TinyRpcServer;
-}
