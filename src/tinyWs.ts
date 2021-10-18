@@ -79,7 +79,7 @@ export class TinyWsClient extends EventEmitter<WSClientEventMap> {
 
     private url: string;
     private options: Omit<Required<IwsOpts>, "listeners">;
-    private client: { ins: WebSocket; close: () => void; };
+    private client: { ins: WebSocket; close: () => void };
     constructor(url: string, opts: IwsOpts = {}) {
         super();
         this.url = url;
@@ -108,7 +108,6 @@ export class TinyWsClient extends EventEmitter<WSClientEventMap> {
         ws.addEventListener("close", this.onclose);
         ws.addEventListener("message", this.onmessage);
         ws.addEventListener("error", this.onerror);
-
         const destroy = () => {
             ws.removeEventListener("open", this.onopen);
             ws.removeEventListener("close", this.onclose);
@@ -116,6 +115,7 @@ export class TinyWsClient extends EventEmitter<WSClientEventMap> {
             ws.removeEventListener("error", this.onerror);
             ws.close();
         };
+        ws.binaryType = "arraybuffer";
         this.client = { ins: ws, close: destroy };
     }
 
