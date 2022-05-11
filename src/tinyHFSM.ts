@@ -1,6 +1,6 @@
 import { UUID } from "./uuid";
 
-namespace Private{
+export namespace Private {
     export const PARENT = Symbol("PARENT");
     export const TRANSLATION_DIC = Symbol("TRANSLATION_DIC");
     export const UPDATE = Symbol("UPDATE");
@@ -19,11 +19,17 @@ export class FsmTranslation implements ITransition {
  * 分层状态机子状态
  */
 export class HFSMState implements IState {
-    readonly id = UUID.create_v4();
+    readonly id: string;
     name: string;
     [Private.PARENT]: IStateMachine;
     get machine(): IStateMachine { return this[Private.PARENT] };
-    [Private.TRANSLATION_DIC]: Map<IState, Omit<ITransition, "from">> = new Map();
+    [Private.TRANSLATION_DIC]: Map<IState, Omit<ITransition, "from">>
+
+    constructor() {
+        this.id = UUID.create_v4()
+        this[Private.TRANSLATION_DIC] = new Map();
+    }
+
     /**
      * 添加同层级子状态连线
      * @param translation 
@@ -81,10 +87,10 @@ export class ExitState extends HFSMState { }
  * 分层状态机
  */
 export class TinyHFsm extends HFSMState implements IStateMachine {
-    [Private.STATE_DIC]: Map<string, IState> = new Map();
-    enterState: IState = new EnterState();
-    exitState: IState = new ExitState();
-    anyState: IState = new AnyState();
+    [Private.STATE_DIC]: Map<string, IState>;
+    enterState: IState;
+    exitState: IState;
+    anyState: IState;
     store: any;
     curState: IState;
     addState(state: IState): void { this[Private.STATE_DIC].set(state.id, state); }
@@ -93,6 +99,10 @@ export class TinyHFsm extends HFSMState implements IStateMachine {
     constructor(store: any) {
         super();
         this.store = store;
+        this[Private.STATE_DIC] = new Map();
+        this.enterState = new EnterState();
+        this.exitState = new ExitState();
+        this.anyState = new AnyState();
     }
     onEnter(prev: IState) { this.curState = this.enterState; }
     onExit(next: IState) { this.curState = null; }

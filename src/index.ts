@@ -7,7 +7,7 @@ export * from "./wrapPromise";
 export * from "./uuid";
 export * from "./timer";
 export * from "./tinyWs";
-export * from './tinyRpc';
+export * as TinyRpc from './tinyRpc';
 export * from './persistPromise';
 export * from './objectPool';
 export * from './exposedPromise';

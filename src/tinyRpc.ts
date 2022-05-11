@@ -3,9 +3,32 @@ import { IwsOpts, TinyWsClient } from "./tinyWs";
 import { EventEmitter } from "./eventEmitter";
 
 /**
+ * 基于JSON-RPC2.0实现的客户端
+ * 
+ *@description <br/> 
+ * <br/> 
+ * 
+ * 发送消息结构:
+ * ```
+ * {
+ *      jsonrpc:"2.0",
+ *      id: "消息id",
+ *      method: "消息名",
+ *      params: "消息参数"
+ * }
+ * ```
+ * 返回消息结构:
+ * ```
+ * {
+ *      jsonrpc:"2.0",
+ *      id:"消息id",
+ *      result:"方法结果",
+ *      error:{code:123,message:"出错原因"}
+ * }
+ * ```
  * @example 创建 client
  * ```
- * let ins: TinyRpcClient =new TinyRpcClient("ws://localhost:3030") as any;
+ * let ins =new TinyRpc.Client("ws://localhost:3030") as any;
  * ins.on("connect", () => {
  *      //调用远程方法
  *     ins.callMethod("add", [1, 2])
@@ -16,9 +39,9 @@ import { EventEmitter } from "./eventEmitter";
  * ```
  * 
  */
-export class TinyRpcClient extends TinyWsClient {
-    protected opts: IRpcClientOptions;
-    constructor(url: string, opts: IRpcClientOptions = {}) {
+export class Client extends TinyWsClient {
+    protected opts: IClientOptions;
+    constructor(url: string, opts: IClientOptions = {}) {
         super(url, opts);
         this.opts = opts;
         this.opts.timeOut = opts.timeOut ?? 3000;
@@ -89,7 +112,7 @@ export class TinyRpcClient extends TinyWsClient {
     }
 }
 
-export interface IRpcClientOptions extends IwsOpts {
+export interface IClientOptions extends IwsOpts {
     /**
      * 默认值：3000
      */
@@ -103,7 +126,7 @@ export interface IRpcClientOptions extends IwsOpts {
 /**
  * @example 创建server,按照JSON-RPC 2.0 规范（https://www.jsonrpc.org/specification）
  * ```
- * TinyWsServer.create({ port: 8080 });
+ * TinyRpc.Server.create({ port: 8080 });
  * ```
  * @example 使用 http/https server
  * ```
@@ -116,13 +139,13 @@ export interface IRpcClientOptions extends IwsOpts {
  * key: fs.readFileSync('/path/to/key.pem')
  * });
  * 
- * TinyWsServer.create({server});
+ * TinyRpc.Server.create({server});
  * ```
  * @param options 
  */
-export class TinyRpcServer extends EventEmitter {
+export class Server extends EventEmitter {
     static create(options: { port?: number, server?: any }) {
-        return new TinyRpcServer(options);
+        return new Server(options);
     }
     private constructor(options: { port?: number, server?: any }) {
         super();
@@ -233,10 +256,4 @@ export class TinyRpcServer extends EventEmitter {
  *         })
  * })
  * ```
- * 
- * 
  */
-export namespace TinyRpc {
-    export const Client = TinyRpcClient;
-    export const Server = TinyRpcServer;
-}
