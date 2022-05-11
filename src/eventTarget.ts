@@ -25,7 +25,7 @@ export class EventTarget<T = void> {
      * 
      * 在激活状态下触发事件才会触发监听器
      */
-    beactive = true;
+    beActive = true;
 
     /**
      * 添加监听器
@@ -56,7 +56,7 @@ export class EventTarget<T = void> {
      * @param event 
      */
     raiseEvent(event: T) {
-        if (this.beactive) {
+        if (this.beActive) {
             this.listener.forEach(fuc => {
                 fuc(event);
             });

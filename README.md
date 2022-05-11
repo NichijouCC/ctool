@@ -13,7 +13,7 @@ web/node.js常用方法工具集
 6. promise：控制句柄暴露[【exposedPromise】](https://nichijoucc.github.io/ctool/classes/exposedPromise.html)
 7. promise：重试执行[【retryPromise】](https://nichijoucc.github.io/ctool/globals.html#retrypromise)
 8. 轻量级ws[【tinyWs】](https://nichijoucc.github.io/ctool/classes/tinywsclient.html)
-9. 轻量级rpc[【tinyRpc】](https://nichijoucc.github.io/ctool/modules/tinyrpc.html)
+9. 轻量级rpc[【tinyRpc】]JSON-RPC2.0规范(https://nichijoucc.github.io/ctool/modules/tinyrpc.html)
 10. 唯一ID[【uuid】](https://nichijoucc.github.io/ctool/globals.html#uuid)
 11. 计时器[【timer】](https://nichijoucc.github.io/ctool/classes/timer.html)
 12. 副作用管理[【debuffAction】](https://nichijoucc.github.io/ctool/classes/debuffaction.html)
