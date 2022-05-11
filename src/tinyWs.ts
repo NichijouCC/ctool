@@ -314,13 +314,16 @@ function createWs(url: string): Promise<WebSocket> {
         const onclose = (ev: CloseEvent) => {
             reject(ev);
         };
+        let onerror = () => { };
         const onopen = () => {
             ins.removeEventListener("open", onopen);
             ins.removeEventListener("close", onclose);
+            ins.removeEventListener("error", onerror);
             resolve(ins);
         };
         ins.addEventListener("open", onopen);
         ins.addEventListener("close", onclose);
+        ins.addEventListener("error", onerror);
     });
 }
 

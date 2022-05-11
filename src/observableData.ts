@@ -55,7 +55,7 @@ export function Observable<T extends object>(target: T) {
 
 
 
-namespace Private{
+namespace Private {
     export const proxyBro = Symbol("_proxy_bro");
 }
 /**
@@ -72,7 +72,6 @@ namespace Private{
  */
 export function RecurveObservable<T extends object>(obj: T): T {
     let creatProxyBro = (obj: object, notifyParent?: () => void, props?: string) => {
-        console.log("creat-proxy", props);
         let proxy = new Proxy(obj, {
             set: (target, props, value) => {
                 // console.log(`set ${props.toString()} ${value}`);

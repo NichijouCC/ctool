@@ -1,6 +1,7 @@
 import { UUID } from "./uuid";
 import { IwsOpts, TinyWsClient } from "./tinyWs";
 import { EventEmitter } from "./eventEmitter";
+import { ExposedPromise } from "./exposedPromise";
 
 /**
  * 基于JSON-RPC2.0实现的客户端
@@ -47,22 +48,10 @@ export class Client extends TinyWsClient {
         this.opts.timeOut = opts.timeOut ?? 3000;
         this.opts.messageType = opts.messageType ?? "buffer";
         this.on("message", (data: any) => {
-            let { id, jsonrpc, result, error } = data;
-            if (id != null) {
-                let cb = this.rpcCall.get(id);
-                if (cb) {
-                    this.rpcCall.delete(id);
-                    if (error != null) {
-                        cb.reject(error)
-                    } else {
-                        cb.resolve(result);
-                    }
-                }
+            if (data instanceof Array) {
+                data.forEach(item => this.handleResponse(item))
             } else {
-                //找不到response，console打印错误
-                if (error != null) {
-                    console.error("RPC请求报错", error);
-                }
+                this.handleResponse(data);
             }
         });
 
@@ -87,29 +76,94 @@ export class Client extends TinyWsClient {
         }
     }
 
+    private handleResponse(response: IRpcResponse) {
+        let { id, result, error } = response;
+        if (id != null) {
+            let cb = this.rpcCall.get(id);
+            if (cb) {
+                this.rpcCall.delete(id);
+                if (error != null) {
+                    cb.reject(error)
+                } else {
+                    cb.resolve(result);
+                }
+            }
+        } else {
+            //找不到response，console打印错误
+            if (error != null) {
+                console.error("RPC请求报错", error);
+            }
+        }
+    }
+
     private handleTimeout = (id: string) => {
         let cb = this.rpcCall.get(id);
         if (cb) {
-            cb.reject(new Error("time out"));
+            cb.reject({ code: -1, message: "请求超时" });
             this.rpcCall.delete(id);
         }
     }
-    private rpcCall = new Map<string, { resolve: (result: any) => void, reject: (err: Error) => void }>();
+    private rpcCall = new Map<string | number, { resolve: (result: any) => void, reject: (error: { code: number, message: string }) => void }>();
     /**
      * rpc调用
      * @param methodName 
      * @param params 
      */
-    callMethod<T = any>(methodName: string, params: any[]): Promise<T> {
+    callMethod<T = any>(method: string, params: any, beNotify = false): Promise<T> {
+        if (!this.beOpen) return Promise.reject("websocket还未连接.")
         return new Promise((resolve, reject) => {
-            if (this.beOpen) {
-                let msgId = UUID.create_v4();
-                this.sendMessage({ id: msgId, method: methodName, params });
-                this.rpcCall.set(msgId, { resolve, reject });
-                setTimeout(() => this.handleTimeout(msgId), this.opts.timeOut)
+            let call: any = { id: null, method, params, jsonrpc: "2.0" }
+            if (!beNotify) {
+                let callId = UUID.create_v4();
+                this.rpcCall.set(callId, { resolve, reject });
+                setTimeout(() => this.handleTimeout(callId), this.opts.timeOut);
+                call.id = callId;
             }
+            this.sendMessage(call);
         })
     }
+    /**
+     * rpc批量调用
+     * @param requests 
+     */
+    callBatchedMethod(requests: { method: string, params: any, beNotify?: boolean, callback?: (result: any, error: { code: number, message: string }) => void }[]) {
+        if (!this.beOpen) return Promise.reject({ "message": "websocket还未连接." });
+        let task = ExposedPromise.create();
+        let count = 0;
+        let content = requests.map((item, index) => {
+            let call: any = { id: null, jsonrpc: "2.0", method: item.method, params: item.params }
+            if (!item.beNotify) {
+                let callId = UUID.create_v4();
+                call.id = callId;
+                count++;
+                this.rpcCall.set(callId,
+                    {
+                        resolve: (result) => {
+                            item.callback?.(result, null);
+                            count--;
+                            if (count == 0) {
+                                task.resolve();
+                            }
+                        },
+                        reject: (error) => {
+                            item.callback?.(null, error);
+                            task.reject({ callIndex: index, error, message: "请求出错" });
+                        }
+                    });
+                setTimeout(() => this.handleTimeout(callId), this.opts.timeOut);
+            }
+            return call;
+        });
+        this.sendMessage(content);
+        return task.ins;
+    }
+}
+
+interface IRpcResponse {
+    jsonrpc: "2.0",
+    id: string | number,
+    result?: any,
+    error?: { code: number, message: string }
 }
 
 export interface IClientOptions extends IwsOpts {
@@ -187,26 +241,35 @@ export class Server extends EventEmitter {
         let { id, method, params, jsonrpc } = request;
         //JSON-RPC2.0规范request的固定字段
         if (jsonrpc != "2.0" || method == null) {
-            return { error: { code: -32600, message: "Invalid Request - 无效请求" }, jsonrpc: "2.0" };
+            return { id, error: { code: -32600, message: "Invalid Request - 无效请求" }, jsonrpc: "2.0" };
         }
         let handler = this._handlers.get(method);
         if (handler == null) {
-            return { error: { code: -32601, message: "Method not found - 找不到方法" }, jsonrpc: "2.0" };
+            return { id, error: { code: -32601, message: "Method not found - 找不到方法" }, jsonrpc: "2.0" };
         }
         if (handler != null) {
-            let result = handler(params);
-            //JSON-RPC2.0规范request,如果不存在id则为通知，不需要回复
-            if (id != null) {
-                return { id, result, jsonrpc: "2.0" };
+            try {
+                let error = handler.checkParams?.(params);
+                if (error) {
+                    return { id, error: { code: -32602, message: "Invalid params - 无效的参数", data: error }, jsonrpc: "2.0" };
+                }
+                let result = handler.handle(params);
+                //JSON-RPC2.0规范request,如果不存在id则为通知，不需要回复
+                if (id != null) {
+                    return { id, result, jsonrpc: "2.0" };
+                }
+            }
+            catch (error) {
+                return { error: { id, code: -32603, message: "Internal error - 内部错误" }, jsonrpc: "2.0" };
             }
         }
         return null;
     }
 
 
-    private _handlers = new Map<string, (params: any[]) => any>();
-    registerMethod = (method: string, handler: (params: any[]) => any) => {
-        this._handlers.set(method, handler);
+    private _handlers = new Map<string, { handle: (params: any) => any, checkParams: (params: any) => string }>();
+    registerMethod = (method: string, handle: (params: any) => any, checkParams?: (params: any) => string | null) => {
+        this._handlers.set(method, { handle, checkParams });
     }
 
     unregisterMethod = (method: string) => {
@@ -232,7 +295,7 @@ export class Server extends EventEmitter {
  * {
  *      id:"消息id",
  *      result:"方法结果",
- *      error:{code:123,message:"出错原因"}
+ *      error:{code:123,message:"出错原因",data:"出错详情"}
  * }
  * ```
  * 
