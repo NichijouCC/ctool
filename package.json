@@ -1,6 +1,6 @@
 {
   "name": "@mtgoo/ctool",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "./dist/ctool.js",
   "module": "./dist/ctool.es.js",
   "typings": "./dist/types/index.d.ts",
