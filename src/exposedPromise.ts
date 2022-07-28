@@ -25,7 +25,7 @@
  */
 export class ExposedPromise<T = void>{
     resolve: (value: T) => void;
-    reject: () => void;
+    reject: (error: any) => void;
     ins: Promise<T>;
 
     private constructor() { }

@@ -20,7 +20,7 @@ describe("timer", () => {
         await new Promise<void>((resolve, reject) => {
             setTimeout(() => resolve(), 500);
         });
-        expect(timer.recordTime).to.approximately(500, 10);
+        expect(timer.recordTime).to.approximately(500, 20);
         timer.resetRecordTime();
         expect(timer.recordTime).to.equal(0);
     });

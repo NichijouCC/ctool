@@ -9,6 +9,8 @@ import { wrapPromise } from "./wrapPromise";
  * <br/>  
  * feature:
  * 1. 断线重连
+ * 2. 可自定义重连外部条件
+ * 2. interceptor
  * 
  * @example
  * ```typescript
@@ -56,18 +58,6 @@ export class TinyWsClient extends EventEmitter<WSClientEventMap> {
             }
         });
     }
-
-    private _receiveMessage = (msg: string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView) => {
-        this.emit(WSEventEnum.message, msg);
-    }
-
-    private _sendMessage = (data: string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView) => {
-        if (this.beOpen) {
-            this.client.ins.send(data);
-        }
-    }
-
-    interceptors = { send: new Interceptor(this._sendMessage), receive: new Interceptor(this._receiveMessage) };
     /**
      * 创建wsClient, 不需要等待连接建立
      * @param url ws服务器地址
@@ -76,10 +66,25 @@ export class TinyWsClient extends EventEmitter<WSClientEventMap> {
     static connect<T>(this: new (...params: any) => T, url: string, options?: IwsOpts): T {
         return new (this as any)(url, options) as T;
     }
+    private _receiveMessage = (msg: string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView) => {
+        this.emit(WSEventEnum.message, msg);
+    }
 
-    private url: string;
+    private _sendMessage = (data: string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView) => {
+        if (this.beOpen) {
+            this._client.ins.send(data);
+        }
+    }
+
+    interceptors = { send: new Interceptor(this._sendMessage), receive: new Interceptor(this._receiveMessage) };
+    readonly url: string;
     private options: Omit<Required<IwsOpts>, "listeners">;
-    private client: { ins: WebSocket; close: () => void };
+    private _client: { ins: WebSocket; detach: () => void; };
+    get ins() { return this._client?.ins }
+    /**
+     * 是否ready
+     */
+    get beOpen() { return this._client?.ins.readyState == 1; };
     constructor(url: string, opts: IwsOpts = {}) {
         super();
         this.url = url;
@@ -91,7 +96,7 @@ export class TinyWsClient extends EventEmitter<WSClientEventMap> {
                 reconnectCondition: autoReconnect.reconnectCondition
             }
         };
-        this.attachWs(new WebSocket(url));
+        this.attach(new WebSocket(url));
         if (opts.listeners) {
             for (const event in opts.listeners) {
                 this.on(event as any, opts.listeners[event]);
@@ -100,23 +105,23 @@ export class TinyWsClient extends EventEmitter<WSClientEventMap> {
         this.emit(WSEventEnum.connecting, undefined);
     }
 
-    private attachWs = (ws: WebSocket) => {
-        if (this.client) {
-            this.client.close();
+    private attach = (ws: WebSocket) => {
+        if (this._client) {
+            this._client.detach();
+            this._client.ins.close();
         }
         ws.addEventListener("open", this.onopen);
         ws.addEventListener("close", this.onclose);
         ws.addEventListener("message", this.onmessage);
         ws.addEventListener("error", this.onerror);
-        const destroy = () => {
+
+        const detach = () => {
             ws.removeEventListener("open", this.onopen);
             ws.removeEventListener("close", this.onclose);
             ws.removeEventListener("message", this.onmessage);
             ws.removeEventListener("error", this.onerror);
-            ws.close();
         };
-        ws.binaryType = "arraybuffer";
-        this.client = { ins: ws, close: destroy };
+        this._client = { ins: ws, detach };
     }
 
     private onopen = (ev: Event) => {
@@ -158,7 +163,7 @@ export class TinyWsClient extends EventEmitter<WSClientEventMap> {
                 }
             })
             .then((ws) => {
-                this.attachWs(ws);
+                this.attach(ws);
                 this.emit(WSEventEnum.reconnect, undefined);
                 this.emit(WSEventEnum.connect, undefined);
             })
@@ -185,24 +190,18 @@ export class TinyWsClient extends EventEmitter<WSClientEventMap> {
     }
 
     /**
-     * 是否ready
-     */
-    get beOpen() { return this.client?.ins.readyState == 1; };
-    /**
-     * 关闭 websocket
-     */
-    dispose = () => {
-        this.beActive = false;
-        this.client?.close();
-        this.client = null;
-    }
-
-
-    /**
      * 发送消息。注意：未建立连接,会发送失败
      */
     sendMessage(data: any) {
         this.interceptors.send.execute(data);
+    }
+    /**
+     * 销毁
+     */
+    dispose = () => {
+        this.beActive = false;
+        this._client?.detach();
+        this._client = null;
     }
 }
 
@@ -315,7 +314,7 @@ function createWs(url: string): Promise<WebSocket> {
         const onclose = (ev: CloseEvent) => {
             reject(ev);
         };
-        const onerror = () => { };
+        let onerror = () => { };
         const onopen = () => {
             ins.removeEventListener("open", onopen);
             ins.removeEventListener("close", onclose);
