@@ -43,6 +43,12 @@ export class ObservableData<T extends object = {}, K extends object = {}> extend
                     (container as any).emit(prop, { newValue: value, oldValue });
                     return true;
                 }
+            },
+            get: function (obj, prop: string) {
+                if (obj._target) {
+                    return (obj._target as any)[prop]
+                }
+                return undefined
             }
         });
         return proxy as any;
@@ -55,7 +61,7 @@ export function Observable<T extends object>(target: T) {
 
 
 
-namespace Private{
+namespace Private {
     export const proxyBro = Symbol("_proxy_bro");
 }
 /**
