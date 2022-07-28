@@ -37,11 +37,11 @@ export class ObjectPool<T> {
     constructor(
         options: {
             create: () => T,
-            reInit: (obj: T) => void,
+            reInit?: (obj: T) => void,
             initSize?: number,
         }) {
         this._create = options.create;
-        this._reInit = options.reInit;
+        this._reInit = options?.reInit;
         if (options.initSize != null) {
             this._pool = [...new Array(options.initSize)].map(item => this._create())
         }
@@ -49,12 +49,12 @@ export class ObjectPool<T> {
     /**
      * 创建对象
      */
-    instantiate() {
+    instantiate(reInit = true) {
         if (this._pool.length == 0) {
             return this._create();
         } else {
             let item = this._pool.shift();
-            this._reInit(item);
+            if (reInit) this._reInit?.(item);
             return item;
         }
     }
