@@ -1,4 +1,4 @@
-import { UUID } from "./UUID";
+import { UUID } from "./uuid";
 
 export namespace Private {
     export const PARENT = Symbol("PARENT");
