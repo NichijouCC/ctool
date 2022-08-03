@@ -1,4 +1,4 @@
-import { UUID } from "./uuid";
+import { UUID } from "./UUID";
 
 export namespace Private {
     export const PARENT = Symbol("PARENT");
@@ -20,7 +20,8 @@ export class FsmTranslation implements ITransition {
  */
 export class HFSMState implements IState {
     readonly id: string;
-    name: string;
+    readonly name: string;
+    enableTranslate = true;
     [Private.PARENT]: IStateMachine;
     get machine(): IStateMachine { return this[Private.PARENT] };
     [Private.TRANSLATION_DIC]: Map<IState, Omit<ITransition, "from">>
@@ -28,6 +29,7 @@ export class HFSMState implements IState {
     constructor() {
         this.id = UUID.create_v4()
         this[Private.TRANSLATION_DIC] = new Map();
+        this.name = this.constructor.name;
     }
 
     /**
@@ -58,14 +60,18 @@ export class HFSMState implements IState {
     onEnter(prev: IState): void { }
     onExit(next: IState): void { }
     [Private.UPDATE](deltaTime: number) {
-        for (const value of this[Private.TRANSLATION_DIC].values()) {
-            if (value.checkFunc) {
-                let needTranslate = value.checkFunc(this[Private.PARENT]?.store);
-                if (needTranslate) this[Private.PARENT].changToState(value.to);
-                return;
-            } else {
-                this[Private.PARENT].changToState(value.to);
-                return;
+        if (this.enableTranslate) {
+            for (const value of this[Private.TRANSLATION_DIC].values()) {
+                if (value.checkFunc) {
+                    let needTranslate = value.checkFunc(this[Private.PARENT]?.store);
+                    if (needTranslate) {
+                        this[Private.PARENT].changToState(value.to);
+                        return;
+                    }
+                } else {
+                    this[Private.PARENT].changToState(value.to);
+                    return;
+                }
             }
         }
         this.onUpdate(deltaTime);
@@ -86,28 +92,41 @@ export class ExitState extends HFSMState { }
 /**
  * 分层状态机
  */
-export class TinyHFsm extends HFSMState implements IStateMachine {
+export class TinyHFsm<T = any> extends HFSMState implements IStateMachine {
     [Private.STATE_DIC]: Map<string, IState>;
     enterState: IState;
     exitState: IState;
     anyState: IState;
-    store: any;
+    store: T;
     curState: IState;
-    addState(state: IState): void { this[Private.STATE_DIC].set(state.id, state); }
+    addState(state: IState | IState[]): void {
+        if (state instanceof Array) {
+            for (let el of state) {
+                this[Private.STATE_DIC].set(el.id, el);
+                el[Private.PARENT] = this;
+            }
+        } else {
+            this[Private.STATE_DIC].set(state.id, state);
+            state[Private.PARENT] = this;
+        }
+    }
     hasState(state: IState) { return this[Private.STATE_DIC].has(state.id); }
     removeState(state: IState): void { this[Private.STATE_DIC].delete(state.id); }
-    constructor(store: any) {
+    constructor(store: T) {
         super();
         this.store = store;
         this[Private.STATE_DIC] = new Map();
         this.enterState = new EnterState();
         this.exitState = new ExitState();
         this.anyState = new AnyState();
+        this.addState([this.enterState, this.exitState, this.anyState]);
+        this.curState = this.enterState;
     }
     onEnter(prev: IState) { this.curState = this.enterState; }
     onExit(next: IState) { this.curState = null; }
     update(deltaTime: number) {
         this[Private.UPDATE](deltaTime);
+        this.anyState[Private.UPDATE](deltaTime);
         if (this.curState) {
             this.curState[Private.UPDATE](deltaTime);
         }
@@ -129,18 +148,21 @@ export class TinyHFsm extends HFSMState implements IStateMachine {
      * @param state 
      */
     changToState(state: IState): void {
-        let current = this.curState;
-        current.onExit(state);
-        state.onEnter(current);
-        this.curState = state;
+        if (state != this.curState) {
+            // console.log(`fsm translate from ${this.curState?.name} to ${state.name}`);
+            let current = this.curState;
+            current.onExit(state);
+            state.onEnter(current);
+            this.curState = state;
+        }
     }
 }
 
-export interface IStateMachine extends IState {
+export interface IStateMachine<T = any> extends IState {
     readonly enterState: IState;
     readonly exitState: IState;
     readonly anyState: IState;
-    readonly store: any;
+    readonly store: T;
     readonly curState: IState;
     [Private.STATE_DIC]: Map<string, IState>;
     addState(state: IState): void;

@@ -53,13 +53,12 @@ export class Timer {
     }) {
         this._interval = opts?.interval;
         this._beActive = opts?.beActive ?? true;
-        this.startLoop();
+        this.Loop();
     }
 
-    private _tickDeltaTime: number = 0;
     private _tickOffsetTime: number = 0;
 
-    private startLoop = () => {
+    private Loop = () => {
         if (this._beActive) {
             const currentTime = Date.now();
             const deltaTime = this._lastTime != null ? (currentTime - this._lastTime) : 0;
@@ -67,12 +66,10 @@ export class Timer {
             this._recordTime += deltaTime;
 
             if (this._interval != null) {
-                this._tickDeltaTime += deltaTime;
-                const newOffset = this._tickDeltaTime + this._tickOffsetTime - this._interval;
+                const newOffset = deltaTime + this._tickOffsetTime - this._interval;
                 if (newOffset >= 0) {
                     this._tickOffsetTime = newOffset;
-                    this.tick.raiseEvent(this._tickDeltaTime);
-                    this._tickDeltaTime = 0;
+                    this.tick.raiseEvent(deltaTime);
                 }
             } else {
                 this.tick.raiseEvent(deltaTime);
@@ -80,9 +77,9 @@ export class Timer {
         }
         if (!this._beDisposed) {
             if (typeof requestAnimationFrame != undefined) {
-                requestAnimationFrame(this.startLoop);
+                requestAnimationFrame(this.Loop);
             } else {
-                setTimeout(this.startLoop, 0);
+                setTimeout(this.Loop, 0);
             }
         }
     }

@@ -74,13 +74,13 @@ namespace Private {
  * ```
  */
 export function RecurveObservable<T extends object>(obj: T): T {
-    let creatProxyBro = (obj: object, notifyParent?: () => void, props?: string) => {
+    let createProxyBro = (obj: object, notifyParent?: () => void, props?: string) => {
         let proxy = new Proxy(obj, {
             set: (target, props, value) => {
                 // console.log(`set ${props.toString()} ${value}`);
                 let bro: { proxy: any, eventEmitter: EventEmitter } = Reflect.get(target, Private.proxyBro);
                 if (typeof value == "object") {
-                    creatProxyBro(value, () => {
+                    createProxyBro(value, () => {
                         bro.eventEmitter.emit(props as any, value);
                     }, props as any);
                 };
@@ -99,7 +99,7 @@ export function RecurveObservable<T extends object>(obj: T): T {
 
                 let bro: { proxy: any, eventEmitter: EventEmitter } = Reflect.get(value, Private.proxyBro);
                 if (bro == null && typeof value == "object") {
-                    creatProxyBro(value, () => {
+                    createProxyBro(value, () => {
                         // console.log("notify-parent", props);
                         parentBro.eventEmitter.emit(props as any, value);
                     }, props as any);
@@ -111,7 +111,7 @@ export function RecurveObservable<T extends object>(obj: T): T {
         Reflect.set(obj, Private.proxyBro, { proxy, eventEmitter: new EventEmitter() });
         return proxy;
     }
-    return creatProxyBro(obj) as any;
+    return createProxyBro(obj) as any;
 }
 
 export function Watch<T extends object, P extends keyof T>(target: T, props: P, callback: (newValue: T[P]) => void) {

@@ -38,3 +38,5 @@ export class ExposedPromise<T = void>{
         return newTask;
     }
 }
+
+export { ExposedPromise as TaskPromise };
