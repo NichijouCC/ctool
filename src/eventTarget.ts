@@ -18,7 +18,7 @@
  * ```
  */
 export class EventTarget<T = void> {
-    protected listener: ((event: T) => void)[] = [];
+    protected listener: ((event: T) => void | boolean)[] = [];
 
     /**
      * 是否激活事件管理器，默认：true
@@ -28,10 +28,10 @@ export class EventTarget<T = void> {
     beActive = true;
 
     /**
-     * 添加监听器
+     * 添加监听器;监听函数返回true则结束监听
      * @param func 
      */
-    addEventListener(func: (event: T) => void) {
+    addEventListener(func: (event: T) => void | boolean) {
         this.listener.push(func);
     }
 
@@ -39,7 +39,7 @@ export class EventTarget<T = void> {
      * 移除监听器
      * @param func 
      */
-    removeEventListener(func: (event: T) => void) {
+    removeEventListener(func: (event: T) => void | boolean) {
         const index = this.listener.indexOf(func);
         if (index >= 0) {
             this.listener.splice(index);
@@ -57,9 +57,15 @@ export class EventTarget<T = void> {
      */
     raiseEvent(event: T) {
         if (this.beActive) {
-            this.listener.forEach(fuc => {
-                fuc(event);
-            });
+            for (let i = 0; i < this.listener.length;) {
+                let func = this.listener[i];
+                let result = func(event);
+                if (result) {
+                    this.listener.splice(i, 1);
+                } else {
+                    i++;
+                }
+            }
         }
     }
 
