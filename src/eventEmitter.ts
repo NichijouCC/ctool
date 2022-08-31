@@ -51,7 +51,7 @@ export class EventEmitter<T = { [key: string]: any }> {
      * @param ev 事件str
      * @param callback 监听函数
      */
-    on<K extends keyof T>(ev: K, callback: (ev: T[K]) => void) {
+    on<K extends keyof T>(ev: K, callback: (ev: T[K]) => void | boolean) {
         if (this._listener[ev] == null) this._listener[ev] = [];
         this._listener[ev].push(callback);
     }
@@ -63,7 +63,18 @@ export class EventEmitter<T = { [key: string]: any }> {
      */
     emit<K extends keyof T>(ev: K, params?: T[K]) {
         if (this.beActive) {
-            this._listener[ev]?.forEach((func: (...args: any) => any) => func(params));
+            let listeners = this._listener[ev];
+            if (listeners) {
+                for (let i = 0; i < listeners.length;) {
+                    let func = listeners[i];
+                    let result = func(params);
+                    if (result) {
+                        listeners.splice(i, 1);
+                    } else {
+                        i++;
+                    }
+                }
+            }
         }
     }
 
@@ -72,7 +83,7 @@ export class EventEmitter<T = { [key: string]: any }> {
      * @param ev 事件str
      * @param callback 监听函数
      */
-    off<K extends keyof T>(ev: K, callback: (ev: T[K]) => void) {
+    off<K extends keyof T>(ev: K, callback: (ev: T[K]) => void | boolean) {
         if (this._listener[ev]) {
             const index = this._listener[ev].indexOf(callback);
             if (index >= 0) {
