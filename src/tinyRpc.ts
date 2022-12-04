@@ -1,7 +1,7 @@
 import { UUID } from "./uuid";
 import { IwsOpts, TinyWsClient } from "./tinyWs";
 import { EventEmitter } from "./eventEmitter";
-import { ExposedPromise } from "./exposedPromise";
+import { OncePromise } from "./exposedPromise";
 
 /**
  * 基于JSON-RPC2.0实现的客户端
@@ -128,7 +128,7 @@ export class Client extends TinyWsClient {
      */
     callBatchedMethod(requests: { method: string, params: any, beNotify?: boolean, callback?: (result: any, error: { code: number, message: string }) => void }[]) {
         if (!this.beOpen) return Promise.reject({ "message": "websocket还未连接." });
-        let task = ExposedPromise.create();
+        let task = OncePromise.create();
         let count = 0;
         let content = requests.map((item, index) => {
             let call: any = { id: null, jsonrpc: "2.0", method: item.method, params: item.params }

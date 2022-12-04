@@ -2,7 +2,7 @@ export * from "./debuffAction";
 export * from "./eventEmitter";
 export * from "./eventTarget";
 export * from "./retryPromise";
-export * from "./executePromisesByBatch";
+export * from "./taskPool";
 export * from "./wrapPromise";
 export * from "./uuid";
 export * from "./timer";

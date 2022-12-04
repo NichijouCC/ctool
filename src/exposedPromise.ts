@@ -39,4 +39,31 @@ export class ExposedPromise<T = void>{
     }
 }
 
+
+export class OncePromise<T = void>{
+    resolve: (value: T) => void;
+    reject: (error: any) => void;
+    ins: Promise<T>;
+    private beExecuted = false
+    private constructor() { }
+    static create<T = void>() {
+        let newTask = new OncePromise<T>();
+        newTask.ins = new Promise((resolve, reject) => {
+            newTask.resolve = (result) => {
+                if (!newTask.beExecuted) {
+                    newTask.beExecuted = true;
+                    resolve(result);
+                }
+            };
+            newTask.reject = (err) => {
+                if (!newTask.beExecuted) {
+                    newTask.beExecuted = true;
+                    reject(err);
+                }
+            };
+        });
+        return newTask;
+    }
+}
+
 export { ExposedPromise as TaskPromise };
