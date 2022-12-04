@@ -7,9 +7,9 @@ export class TaskPool {
     maxConcurrency: number;
     //其中一个任务失败是否导致pool中所有任务失败，默认：false
     errBreak: boolean;
-    constructor(options?: { maxConcurrency: number, errBreak: boolean }) {
-        this.maxConcurrency = options.maxConcurrency ?? 5;
-        this.errBreak = options.errBreak ?? false;
+    constructor(options?: { maxConcurrency?: number, errBreak?: boolean }) {
+        this.maxConcurrency = options?.maxConcurrency ?? 5;
+        this.errBreak = options?.errBreak ?? false;
     }
     private tasks: { task: () => Promise<any>, onEnd: TaskPromise<any> }[] = [];
     push<T = any>(task: () => Promise<T>) {
