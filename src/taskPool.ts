@@ -11,7 +11,7 @@ export class TaskPool {
         this.maxConcurrency = options?.maxConcurrency ?? 5;
         this.errBreak = options?.errBreak ?? false;
     }
-    private tasks: { task: () => Promise<any>, onEnd: TaskPromise<any> }[] = [];
+    private tasks: { task: () => Promise<any>, onEnd: OncePromise<any> }[] = [];
     push<T = any>(task: () => Promise<T>) {
         let onEnd = OncePromise.create<T>();
         this.tasks.push({ task, onEnd });
